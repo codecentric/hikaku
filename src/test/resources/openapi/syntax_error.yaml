@@ -1,0 +1,11 @@
+openapi: 3.0.2
+info:
+  title: Todo List
+paths:
+  todos
+    get
+      summary: Add a new todo
+      description: 'Creates a new todo.'
+      responses:
+        '200':
+          description: OK

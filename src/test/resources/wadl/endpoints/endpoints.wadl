@@ -1,0 +1,75 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://wadl.dev.java.net/2009/02"
+  xmlns="http://wadl.dev.java.net/2009/02">
+  <resources base="http://api.example.com/v1">
+    <resource path="todos">
+      <method name="GET" id="getAllTodos">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="POST" id="createTodo">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="PUT" id="createOrUpdateTodo">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="PATCH" id="partiallyUpdateTodo">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="DELETE" id="deleteTodo">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="TRACE" id="traceTodos">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="HEAD" id="headTodos">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="OPTIONS" id="optionsTodos">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="/tags">
+      <method name="GET" id="getAllTags">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="POST" id="createTag">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="DELETE" id="deleteTag">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="HEAD" id="headTags">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+      <method name="OPTIONS" id="optionsTags">
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

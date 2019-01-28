@@ -1,0 +1,45 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Todo List
+paths:
+  /todos/{id}:
+    get:
+      description: 'Get all todos'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Identifier of a specific todo entry."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+    post:
+      description: 'Create a new todo.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Identifier of a specific todo entry."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+    delete:
+      description: 'Delete a todo entry.'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Identifier of a specific todo entry."
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK

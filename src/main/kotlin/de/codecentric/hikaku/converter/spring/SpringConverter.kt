@@ -46,8 +46,8 @@ class SpringConverter(
             Endpoint(
                     path = cleanedPath,
                     httpMethod = it,
-                    queryParameter = mappingEntry.value.queryParameter(),
-                    pathParameter = mappingEntry.value.pathParameter()
+                    queryParameters = mappingEntry.value.queryParameter(),
+                    pathParameters = mappingEntry.value.pathParameter()
             )
         }
         .toMutableSet()

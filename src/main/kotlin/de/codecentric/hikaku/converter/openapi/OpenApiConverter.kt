@@ -48,8 +48,8 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
             httpMethod: HttpMethod,
             operation: Operation?
     ): Endpoint {
-        val queryParameter = mutableSetOf<QueryParameter>()
-        val pathParameter = mutableSetOf<PathParameter>()
+        val queryParameters = mutableSetOf<QueryParameter>()
+        val pathParameters = mutableSetOf<PathParameter>()
 
         operation?.parameters?.forEach {
             when (it) {
@@ -61,8 +61,8 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
         return Endpoint(
                 path = path.key,
                 httpMethod = httpMethod,
-                queryParameter = queryParameter,
-                pathParameter =pathParameter
+                queryParameters = queryParameters,
+                pathParameters = pathParameters
         )
     }
 

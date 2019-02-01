@@ -14,7 +14,7 @@ class QueryParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("c_param"),
                         QueryParameter("a_param"),
                         QueryParameter("b_param")
@@ -23,7 +23,7 @@ class QueryParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("b_param"),
                         QueryParameter("c_param"),
                         QueryParameter("a_param")
@@ -57,7 +57,7 @@ class QueryParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("c_param"),
                         QueryParameter("a_param"),
                         QueryParameter("b_param")
@@ -66,7 +66,7 @@ class QueryParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("y_param"),
                         QueryParameter("z_param"),
                         QueryParameter("x_param")
@@ -100,7 +100,7 @@ class QueryParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("c_param"),
                         QueryParameter("b_param")
                 )
@@ -108,7 +108,7 @@ class QueryParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                queryParameter = setOf(
+                queryParameters = setOf(
                         QueryParameter("b_param"),
                         QueryParameter("c_param"),
                         QueryParameter("a_param")
@@ -121,8 +121,8 @@ class QueryParameterMatcherTest {
         //then
         assertThat(result).hasSize(1)
 
-        assertThat(result[0].specificationValue).isEqualTo(specificationEndpoint.queryParameter.size)
-        assertThat(result[0].implementationValue).isEqualTo(implementationEndpoint.queryParameter.size)
+        assertThat(result[0].specificationValue).isEqualTo(specificationEndpoint.queryParameters.size)
+        assertThat(result[0].implementationValue).isEqualTo(implementationEndpoint.queryParameters.size)
         assertThat(result[0].matches).isFalse()
     }
 }

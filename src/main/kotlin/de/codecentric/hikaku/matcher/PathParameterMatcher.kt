@@ -6,21 +6,21 @@ import de.codecentric.hikaku.endpoints.Endpoint
 object PathParameterMatcher {
 
     fun matchPathParameter(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
-        if (specificationEndpoint.pathParameter.size != implementationEndpoint.pathParameter.size) {
+        if (specificationEndpoint.pathParameters.size != implementationEndpoint.pathParameters.size) {
             return listOf(
                     MatchResult(
                             relatesTo = "Number of path parameters for [${specificationEndpoint.httpMethod} ${implementationEndpoint.path}]",
-                            specificationValue = specificationEndpoint.pathParameter.size,
-                            implementationValue = implementationEndpoint.pathParameter.size
+                            specificationValue = specificationEndpoint.pathParameters.size,
+                            implementationValue = implementationEndpoint.pathParameters.size
                     )
             )
         }
 
-        val pathParameterInSpecification = specificationEndpoint.pathParameter
+        val pathParameterInSpecification = specificationEndpoint.pathParameters
                 .map { it.parameterName }
                 .sorted()
 
-        val pathParameterInImplementation = implementationEndpoint.pathParameter
+        val pathParameterInImplementation = implementationEndpoint.pathParameters
                 .map { it.parameterName }
                 .sorted()
 

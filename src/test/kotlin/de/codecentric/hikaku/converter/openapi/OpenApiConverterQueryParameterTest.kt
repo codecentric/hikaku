@@ -17,7 +17,7 @@ class OpenApiConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                                 QueryParameter("tag", false),
                                 QueryParameter("limit", true)
                         )

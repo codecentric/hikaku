@@ -27,7 +27,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", true)
                         )
                 ),
@@ -35,7 +35,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = HEAD,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                                 QueryParameter("tag", true)
                         )
                 ),
@@ -69,7 +69,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", true)
                         )
                 ),
@@ -77,7 +77,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = HEAD,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", true)
                         )
                 ),
@@ -111,7 +111,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", true)
                         )
                 ),
@@ -119,7 +119,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = HEAD,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", true)
                         )
                 ),
@@ -167,7 +167,7 @@ class SpringConverterQueryParameterTest {
                     Endpoint(
                             path = "/todos",
                             httpMethod = GET,
-                            queryParameter = setOf(
+                            queryParameters = setOf(
                                 QueryParameter("tag", false)
                             )
                     ),
@@ -175,7 +175,7 @@ class SpringConverterQueryParameterTest {
                     Endpoint(
                             path = "/todos",
                             httpMethod = HEAD,
-                            queryParameter = setOf(
+                            queryParameters = setOf(
                                 QueryParameter("tag", false)
                             )
                     ),
@@ -209,7 +209,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", false)
                         )
                 ),
@@ -217,7 +217,7 @@ class SpringConverterQueryParameterTest {
                 Endpoint(
                         path = "/todos",
                         httpMethod = HEAD,
-                        queryParameter = setOf(
+                        queryParameters = setOf(
                             QueryParameter("tag", false)
                         )
                 ),

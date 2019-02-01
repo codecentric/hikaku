@@ -674,14 +674,14 @@ class SpringConverterEndpointTest {
                 Endpoint(
                         path = "/todos/{id}",
                         httpMethod = GET,
-                        pathParameter = setOf(
+                        pathParameters = setOf(
                                 PathParameter("id")
                         )
                 ),
                 Endpoint(
                         path = "/todos/{id}",
                         httpMethod = HEAD,
-                        pathParameter = setOf(
+                        pathParameters = setOf(
                                 PathParameter("id")
                         )
                 ),
@@ -716,14 +716,14 @@ class SpringConverterEndpointTest {
                 Endpoint(
                         path = "/todos/{id}",
                         httpMethod = GET,
-                        pathParameter = setOf(
+                        pathParameters = setOf(
                                 PathParameter("id")
                         )
                 ),
                 Endpoint(
                         path = "/todos/{id}",
                         httpMethod = HEAD,
-                        pathParameter = setOf(
+                        pathParameters = setOf(
                                 PathParameter("id")
                         )
                 ),

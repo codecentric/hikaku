@@ -166,7 +166,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos/{id}",
                                     httpMethod = GET,
-                                    pathParameter = setOf(
+                                    pathParameters = setOf(
                                             PathParameter("id")
                                     )
                             )
@@ -180,7 +180,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos/{id}",
                                     httpMethod = GET,
-                                    pathParameter = setOf(
+                                    pathParameters = setOf(
                                             PathParameter("id")
                                     )
                             )
@@ -222,7 +222,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos/{id}",
                                     httpMethod = GET,
-                                    pathParameter = setOf(
+                                    pathParameters = setOf(
                                             PathParameter("id")
                                     )
                             )
@@ -237,7 +237,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos/{id}",
                                     httpMethod = GET,
-                                    pathParameter = setOf(
+                                    pathParameters = setOf(
                                             PathParameter("othername")
                                     )
                             )
@@ -280,7 +280,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter(queryParameterName)
                                     )
                             )
@@ -294,7 +294,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter(queryParameterName)
                                     )
                             )
@@ -336,7 +336,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter("filter")
                                     )
                             )
@@ -351,7 +351,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter("tag")
                                     )
                             )
@@ -394,7 +394,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter(queryParameterName, true)
                                     )
                             )
@@ -408,7 +408,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter(queryParameterName, true)
                                     )
                             )
@@ -450,7 +450,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter("filter", true)
                                     )
                             )
@@ -465,7 +465,7 @@ class HikakuTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    queryParameter = setOf(
+                                    queryParameters = setOf(
                                             QueryParameter("tag", false)
                                     )
                             )

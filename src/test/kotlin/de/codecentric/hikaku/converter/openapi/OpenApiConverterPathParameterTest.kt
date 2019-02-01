@@ -17,21 +17,21 @@ class OpenApiConverterPathParameterTest {
             Endpoint(
                     path = "/todos/{id}",
                     httpMethod = GET,
-                    pathParameter = setOf(
+                    pathParameters = setOf(
                             PathParameter("id")
                     )
             ),
             Endpoint(
                     path = "/todos/{id}",
                     httpMethod = DELETE,
-                    pathParameter = setOf(
+                    pathParameters = setOf(
                             PathParameter("id")
                     )
             ),
             Endpoint(
                     path = "/todos/{id}",
                     httpMethod = POST,
-                    pathParameter = setOf(
+                    pathParameters = setOf(
                             PathParameter("id")
                     )
             )

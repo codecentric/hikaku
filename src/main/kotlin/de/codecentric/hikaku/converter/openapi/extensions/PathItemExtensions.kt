@@ -12,7 +12,7 @@ import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.TRACE
 
-fun PathItem.ops() = mapOf<HttpMethod, Operation?>(
+fun PathItem.httpMethods() = mapOf<HttpMethod, Operation?>(
         GET to get,
         POST to post,
         PATCH to patch,

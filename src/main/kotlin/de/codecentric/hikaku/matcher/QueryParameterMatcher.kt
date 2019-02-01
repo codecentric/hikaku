@@ -7,7 +7,7 @@ import de.codecentric.hikaku.endpoints.QueryParameter
 object QueryParameterMatcher {
 
     fun matchQueryParameterName(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
-        if (specificationEndpoint.queryParameter.size != implementationEndpoint.queryParameter.size) {
+        if (specificationEndpoint.queryParameters.size != implementationEndpoint.queryParameters.size) {
             return createListSizesDifferMatchResult(specificationEndpoint, implementationEndpoint)
         }
 
@@ -24,7 +24,7 @@ object QueryParameterMatcher {
     }
 
     fun matchQueryParameterRequired(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
-        if (specificationEndpoint.queryParameter.size != implementationEndpoint.queryParameter.size) {
+        if (specificationEndpoint.queryParameters.size != implementationEndpoint.queryParameters.size) {
             return createListSizesDifferMatchResult(specificationEndpoint, implementationEndpoint)
         }
 
@@ -41,17 +41,17 @@ object QueryParameterMatcher {
     }
 
     private fun createPair(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<Pair<QueryParameter, QueryParameter>> {
-        return specificationEndpoint.queryParameter
+        return specificationEndpoint.queryParameters
                 .sortedBy { it.parameterName }
-                .zip(implementationEndpoint.queryParameter.sortedBy { it.parameterName })
+                .zip(implementationEndpoint.queryParameters.sortedBy { it.parameterName })
     }
 
     private fun createListSizesDifferMatchResult(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<Int>> {
         return listOf(
                 MatchResult(
                         relatesTo = "Number of query parameters for [${specificationEndpoint.httpMethod} ${implementationEndpoint.path}]",
-                        specificationValue = specificationEndpoint.queryParameter.size,
-                        implementationValue = implementationEndpoint.queryParameter.size
+                        specificationValue = specificationEndpoint.queryParameters.size,
+                        implementationValue = implementationEndpoint.queryParameters.size
                 )
         )
     }

@@ -14,7 +14,7 @@ class PathParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("c_param"),
                         PathParameter("a_param"),
                         PathParameter("b_param")
@@ -23,7 +23,7 @@ class PathParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("b_param"),
                         PathParameter("c_param"),
                         PathParameter("a_param")
@@ -57,7 +57,7 @@ class PathParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("c_param"),
                         PathParameter("a_param"),
                         PathParameter("b_param")
@@ -66,7 +66,7 @@ class PathParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("y_param"),
                         PathParameter("z_param"),
                         PathParameter("x_param")
@@ -100,7 +100,7 @@ class PathParameterMatcherTest {
         //given
         val specificationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("c_param"),
                         PathParameter("b_param")
                 )
@@ -108,7 +108,7 @@ class PathParameterMatcherTest {
 
         val implementationEndpoint = Endpoint(
                 path = "/todos",
-                pathParameter = setOf(
+                pathParameters = setOf(
                         PathParameter("b_param"),
                         PathParameter("c_param"),
                         PathParameter("a_param")
@@ -121,8 +121,8 @@ class PathParameterMatcherTest {
         //then
         assertThat(result).hasSize(1)
 
-        assertThat(result[0].specificationValue).isEqualTo(specificationEndpoint.pathParameter.size)
-        assertThat(result[0].implementationValue).isEqualTo(implementationEndpoint.pathParameter.size)
+        assertThat(result[0].specificationValue).isEqualTo(specificationEndpoint.pathParameters.size)
+        assertThat(result[0].implementationValue).isEqualTo(implementationEndpoint.pathParameters.size)
         assertThat(result[0].matches).isFalse()
     }
 }

@@ -27,7 +27,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = GET,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                 PathParameter("id")
                             )
                     ),
@@ -35,7 +35,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                 PathParameter("id")
                             )
                     ),
@@ -69,7 +69,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = GET,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),
@@ -77,7 +77,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),
@@ -111,7 +111,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = GET,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),
@@ -119,7 +119,7 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),
@@ -167,14 +167,14 @@ class SpringConverterPathParameterTest {
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = OPTIONS,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
-                            pathParameter = setOf(
+                            pathParameters = setOf(
                                     PathParameter("id")
                             )
                     ),

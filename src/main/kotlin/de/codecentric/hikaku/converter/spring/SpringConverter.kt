@@ -2,17 +2,13 @@ package de.codecentric.hikaku.converter.spring
 
 import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature.PathParameter
-import de.codecentric.hikaku.SupportedFeatures.Feature.QueryParameterName
+import de.codecentric.hikaku.SupportedFeatures.Feature
+import de.codecentric.hikaku.converter.spring.extensions.*
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.TRACE
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.converter.spring.extensions.httpMethods
-import de.codecentric.hikaku.converter.spring.extensions.pathParameter
-import de.codecentric.hikaku.converter.spring.extensions.paths
-import de.codecentric.hikaku.converter.spring.extensions.queryParameter
 import org.springframework.context.ApplicationContext
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
@@ -23,8 +19,10 @@ class SpringConverter(
 ) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
-            QueryParameterName,
-            PathParameter
+            Feature.QueryParameterName,
+            Feature.PathParameter,
+            Feature.HeaderParameterName,
+            Feature.HeaderParameterRequired
     )
 
     override fun convert(): Set<Endpoint> {
@@ -47,7 +45,8 @@ class SpringConverter(
                     path = cleanedPath,
                     httpMethod = it,
                     queryParameters = mappingEntry.value.queryParameter(),
-                    pathParameters = mappingEntry.value.pathParameter()
+                    pathParameters = mappingEntry.value.pathParameter(),
+                    headerParameters = mappingEntry.value.headerParameter()
             )
         }
         .toMutableSet()

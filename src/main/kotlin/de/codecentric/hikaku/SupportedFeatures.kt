@@ -9,6 +9,8 @@ class SupportedFeatures(
     enum class Feature {
         QueryParameterName,
         QueryParameterRequired,
-        PathParameter
+        PathParameter,
+        HeaderParameterName,
+        HeaderParameterRequired
     }
 }

@@ -1,7 +1,6 @@
 package de.codecentric.hikaku.converter.openapi
 
 import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.Feature.*
 import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.converter.openapi.extensions.httpMethods
 import de.codecentric.hikaku.endpoints.Endpoint
@@ -10,6 +9,9 @@ import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
 import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParameter
 import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
+import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
+import de.codecentric.hikaku.SupportedFeatures.Feature
+import de.codecentric.hikaku.endpoints.*
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
@@ -26,8 +28,10 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
     }
 
     override val supportedFeatures = SupportedFeatures(
-            QueryParameterName,
-            PathParameter
+            Feature.QueryParameterName,
+            Feature.PathParameter,
+            Feature.HeaderParameterName,
+            Feature.HeaderParameterRequired
     )
 
     override fun convert(): Set<Endpoint> {
@@ -47,11 +51,13 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
     ): Endpoint {
         val queryParameters = mutableSetOf<QueryParameter>()
         val pathParameters = mutableSetOf<PathParameter>()
+        val headerParameters = mutableSetOf<HeaderParameter>()
 
         operation?.parameters?.forEach {
             when (it) {
                 is OpenApiQueryParameter -> queryParameters += QueryParameter(it.name, it.required)
                 is OpenApiPathParameter -> pathParameters += PathParameter(it.name)
+                is OpenApiHeaderParameter -> headerParameters += HeaderParameter(it.name, it.required)
             }
         }
 

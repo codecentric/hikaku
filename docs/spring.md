@@ -58,6 +58,26 @@ You will find a list of spring specific features that are supported below.
 
 + Throw an exception in case both 'value' and 'name' are set. This is good to fail fast. Otherwise this would only throw an error during runtime.
   + _Example:_ `@PathVariable(value = "param", name = "other") foo: Int`
+  
+### Check header parameter
+
++ Check parameter name using variable name
+  + _Example:_ `@RequestHeader useCache: String`
+
++ Check parameter name defined by 'value'
+  + _Example:_ `@RequestParam(value = "use-cache") otherName: String`
+
++ Check parameter name defined by alias 'name'
+  + _Example:_ `@RequestHeader(name = "use-cache") otherName: String`
+
++ Throw an exception in case both 'value' and 'name' are set. This is good to fail fast. Otherwise this would only throw an error during runtime.
+  + _Example:_ `@RequestHeader(value = "param", name = "other") foo: String`
+
++ Check if parameter is required depending on value of 'required' attribute
+  + _Example:_ `@RequestHeader(required = false) foo: String`
+
++ Check if parameter is required depending on the existence of 'defaultValue' attribute
+  + _Example:_ `@RequestHeader(value = "tracker-id", defaultValue = "2394")`
 
 ## Currently not supported
 

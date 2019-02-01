@@ -1,0 +1,25 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Todo List
+paths:
+  /todos:
+    get:
+      description: 'Get all todos'
+      parameters:
+        - name: track-request
+          in: query
+          required: false
+          description: "Track request or not."
+          schema:
+            type: string
+        - name: use-cache
+          in: query
+          required: true
+          description: "Whether or to use cached data."
+          schema:
+            type: number
+            format: int32
+      responses:
+        '200':
+          description: OK

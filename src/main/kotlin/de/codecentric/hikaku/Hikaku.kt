@@ -5,13 +5,12 @@ import de.codecentric.hikaku.converter.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.matcher.EndpointMatchResult
-import de.codecentric.hikaku.matcher.MatchResult
-import de.codecentric.hikaku.matcher.MatchResultGroup
+import de.codecentric.hikaku.matcher.*
 import de.codecentric.hikaku.matcher.PathParameterMatcher.matchPathParameter
-import de.codecentric.hikaku.matcher.PreCheckListSizeMatchResult
 import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterName
 import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterRequired
+import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterName
+import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterRequired
 import kotlin.test.fail
 
 class Hikaku(
@@ -97,6 +96,8 @@ class Hikaku(
                     QueryParameterName -> matchQueryParameterName(specificationEndpoint, implementationEndpoint)
                     QueryParameterRequired -> matchQueryParameterRequired(specificationEndpoint, implementationEndpoint)
                     PathParameter -> matchPathParameter(specificationEndpoint, implementationEndpoint)
+                    HeaderParameterName -> matchHeaderParameterName(specificationEndpoint, implementationEndpoint)
+                    HeaderParameterRequired -> matchHeaderParameterRequired(specificationEndpoint, implementationEndpoint)
                 }
             }
 

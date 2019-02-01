@@ -1,15 +1,16 @@
 package de.codecentric.hikaku.converter.openapi
 
-import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature.*
+import de.codecentric.hikaku.converter.AbstractEndpointConverter
+import de.codecentric.hikaku.converter.openapi.extensions.httpMethods
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
-import de.codecentric.hikaku.converter.openapi.extensions.ops
+import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParameter
+import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.Operation
-import io.swagger.v3.oas.models.PathItem
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
 import java.nio.charset.StandardCharsets.UTF_8
@@ -30,21 +31,17 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
     )
 
     override fun convert(): Set<Endpoint> {
-        val endpoints = mutableSetOf<Endpoint>()
+        val openApi = OpenAPIV3Parser().readContents(openApiSpecification, null, null).openAPI
 
-        OpenAPIV3Parser().readContents(openApiSpecification, null, null).let { openApi ->
-            openApi.openAPI.paths.forEach { openApiPath ->
-                openApiPath.value.ops().forEach { httpMethod: HttpMethod, operation: Operation? ->
-                    endpoints.add(mapEndpoint(openApiPath, httpMethod, operation))
-                }
+        return openApi.paths.flatMap { (path, pathItem) ->
+            pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
+                createEndpoint(path, httpMethod, operation)
             }
-        }
-
-        return endpoints
+        }.toSet()
     }
 
-    private fun mapEndpoint(
-            path: Map.Entry<String, PathItem>,
+    private fun createEndpoint(
+            path: String,
             httpMethod: HttpMethod,
             operation: Operation?
     ): Endpoint {
@@ -53,13 +50,13 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
 
         operation?.parameters?.forEach {
             when (it) {
-                is io.swagger.v3.oas.models.parameters.QueryParameter -> queryParameter += QueryParameter(it.name, it.required)
-                is io.swagger.v3.oas.models.parameters.PathParameter -> pathParameter += PathParameter(it.name)
+                is OpenApiQueryParameter -> queryParameters += QueryParameter(it.name, it.required)
+                is OpenApiPathParameter -> pathParameters += PathParameter(it.name)
             }
         }
 
         return Endpoint(
-                path = path.key,
+                path = path,
                 httpMethod = httpMethod,
                 queryParameters = queryParameters,
                 pathParameters = pathParameters

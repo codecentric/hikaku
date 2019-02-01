@@ -64,6 +64,8 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
     }
 
     companion object {
+        @JvmStatic
+        @JvmName("usingPath")
         operator fun invoke(openApiSpecification: Path): OpenApiConverter {
             checkFileValidity(openApiSpecification)
 
@@ -86,6 +88,8 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
             }
         }
 
+        @JvmStatic
+        @JvmName("usingFile")
         operator fun invoke(openApiSpecification: File): OpenApiConverter {
             return OpenApiConverter(openApiSpecification.toPath())
         }

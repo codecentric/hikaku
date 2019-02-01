@@ -81,6 +81,8 @@ class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
     }
 
     companion object {
+        @JvmStatic
+        @JvmName("usingPath")
         operator fun invoke(wadlFile: Path): WadlConverter {
             checkIfFileIsValid(wadlFile)
 
@@ -110,6 +112,8 @@ class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
             }
         }
 
+        @JvmStatic
+        @JvmName("usingFile")
         operator fun invoke(wadlFile: File): WadlConverter {
             return WadlConverter(wadlFile.toPath())
         }

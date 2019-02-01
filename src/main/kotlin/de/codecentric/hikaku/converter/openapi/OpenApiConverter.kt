@@ -70,16 +70,9 @@ class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpo
         operator fun invoke(openApiSpecification: Path): OpenApiConverter {
             checkFileValidity(openApiSpecification)
 
-            val expectedFileContentBuilder = StringBuilder()
+            val expectedFileContent = Files.readAllLines(openApiSpecification, UTF_8).joinToString("\n")
 
-            Files.readAllLines(openApiSpecification, UTF_8)
-                    .map { line ->
-                        expectedFileContentBuilder
-                                .append(line)
-                                .append("\n")
-                    }
-
-            return OpenApiConverter(expectedFileContentBuilder.toString())
+            return OpenApiConverter(expectedFileContent)
         }
 
         private fun checkFileValidity(openApiSpecification: Path) {

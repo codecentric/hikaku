@@ -603,7 +603,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            ignorePaths = IGNORE_ERROR_ENDPOINTS,
+                            ignorePaths = setOf(IGNORE_ERROR_ENDPOINTS),
                             reporter = reporter
                     )
             )

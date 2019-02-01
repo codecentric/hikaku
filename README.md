@@ -65,11 +65,11 @@ public class SpecificationTest {
 
   @Test
   public void compare_specification_and_implementation() {
-    OpenApiConverter openApiConverter = Companion.invoke(Paths.get("openapi.json"));
+    OpenApiConverter openApiConverter = OpenApiConverter.usingPath(Paths.get("openapi.json"));
     SpringConverter springConverter = new SpringConverter(springContext);
 
     HikakuConfig hikakuConfig = new HikakuConfig(
-        new HashSet<>(SpringConverter.Companion.getIGNORE_ERROR_ENDPOINTS()),
+        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINTS)),
         false,
         false,
         new CommandLineReporter()

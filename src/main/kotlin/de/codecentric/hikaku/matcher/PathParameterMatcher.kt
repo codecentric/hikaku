@@ -3,7 +3,7 @@ package de.codecentric.hikaku.matcher
 import de.codecentric.hikaku.SupportedFeatures.Feature.PathParameter
 import de.codecentric.hikaku.endpoints.Endpoint
 
-object PathParameterMatcher {
+internal object PathParameterMatcher {
 
     fun matchPathParameter(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
         if (specificationEndpoint.pathParameters.size != implementationEndpoint.pathParameters.size) {

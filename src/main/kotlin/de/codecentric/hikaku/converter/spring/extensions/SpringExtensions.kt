@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 
-fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
+internal fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
     return this.methods
             .map {
                 when (it) {
@@ -23,8 +23,8 @@ fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
             .toSet()
 }
 
-fun RequestMappingInfo.httpMethods() = this.methodsCondition.httpMethods()
+internal fun RequestMappingInfo.httpMethods() = this.methodsCondition.httpMethods()
 
-fun RequestMappingInfo.paths(): Set<String> {
+internal fun RequestMappingInfo.paths(): Set<String> {
     return this.patternsCondition.patterns
 }

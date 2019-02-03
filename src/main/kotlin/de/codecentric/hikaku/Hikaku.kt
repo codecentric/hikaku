@@ -5,14 +5,24 @@ import de.codecentric.hikaku.converter.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.matcher.*
-import de.codecentric.hikaku.matcher.PathParameterMatcher.matchPathParameter
-import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterName
-import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterRequired
+import de.codecentric.hikaku.matcher.EndpointMatchResult
 import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterName
 import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterRequired
+import de.codecentric.hikaku.matcher.MatchResult
+import de.codecentric.hikaku.matcher.MatchResultGroup
+import de.codecentric.hikaku.matcher.PathParameterMatcher.matchPathParameter
+import de.codecentric.hikaku.matcher.PreCheckListSizeMatchResult
+import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterName
+import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterRequired
+import de.codecentric.hikaku.reporter.Reporter
 import kotlin.test.fail
 
+/**
+ * Entry point for writing a hikaku test. Provide the [EndpointConverter]s and call [match] to test if the specification and the implementation of your REST-API match.
+ * @param specification An [EndpointConverter] which converts your specification for the equality check.
+ * @param implementation An [EndpointConverter]  which converts your implementation for the equality check.
+ * @param config The configuration is optional. It let's you partially control the matching.
+ */
 class Hikaku(
         private val specification: EndpointConverter,
         private val implementation: EndpointConverter,
@@ -37,6 +47,9 @@ class Hikaku(
         config.reporter.report(matchResults)
     }
 
+    /**
+     * Calling this method creates a list of [MatchResult]s. It passes those to the [Reporter] defined in the configuration and call [assert] with the end result.
+     */
     fun match() {
         val specificationEndpoints = specification
                 .conversionResult

@@ -17,6 +17,9 @@ import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPathConstants.*
 import javax.xml.xpath.XPathFactory
 
+/**
+ * Extracts and converts [Endpoint]s from a WADL file.
+ */
 class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
 
     init {

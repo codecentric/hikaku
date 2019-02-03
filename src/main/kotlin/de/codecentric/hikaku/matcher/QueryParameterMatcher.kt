@@ -4,7 +4,7 @@ import de.codecentric.hikaku.SupportedFeatures.Feature.*
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.QueryParameter
 
-object QueryParameterMatcher {
+internal object QueryParameterMatcher {
 
     fun matchQueryParameterName(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
         if (specificationEndpoint.queryParameters.size != implementationEndpoint.queryParameters.size) {

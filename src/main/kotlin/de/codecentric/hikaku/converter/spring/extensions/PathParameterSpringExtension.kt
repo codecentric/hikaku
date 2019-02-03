@@ -6,7 +6,7 @@ import org.springframework.web.method.HandlerMethod
 import kotlin.reflect.KParameter
 import kotlin.reflect.jvm.kotlinFunction
 
-fun HandlerMethod.pathParameter(): Set<PathParameter> {
+internal fun HandlerMethod.pathParameter(): Set<PathParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters

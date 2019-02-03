@@ -2,6 +2,9 @@ package de.codecentric.hikaku.converter
 
 import de.codecentric.hikaku.endpoints.Endpoint
 
+/**
+ * Abstract [EndpointConverter] which triggers conversion when accessing the [conversionResult]s.
+ */
 abstract class AbstractEndpointConverter : EndpointConverter {
 
     override val conversionResult: Set<Endpoint> by lazy {

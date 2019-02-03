@@ -19,6 +19,9 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files
 import java.nio.file.Path
 
+/**
+ * Extracts and converts [Endpoint]s from OpenAPI 3.0.X document. Either a *.yaml,*.yml or a *.json file.
+ */
 class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpointConverter() {
 
     init {

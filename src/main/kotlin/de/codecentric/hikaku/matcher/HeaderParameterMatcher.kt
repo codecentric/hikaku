@@ -4,7 +4,7 @@ import de.codecentric.hikaku.SupportedFeatures.Feature.*
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HeaderParameter
 
-object HeaderParameterMatcher {
+internal object HeaderParameterMatcher {
 
     fun matchHeaderParameterName(specificationEndpoint: Endpoint, implementationEndpoint: Endpoint): List<MatchResult<*>> {
         if (specificationEndpoint.headerParameters.size != implementationEndpoint.headerParameters.size) {

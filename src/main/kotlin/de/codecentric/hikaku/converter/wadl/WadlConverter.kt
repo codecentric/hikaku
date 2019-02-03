@@ -1,10 +1,12 @@
 package de.codecentric.hikaku.converter.wadl
 
-import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.converter.AbstractEndpointConverter
+import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.converter.wadl.extensions.getAttribute
+import de.codecentric.hikaku.endpoints.QueryParameter
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
@@ -28,7 +30,10 @@ class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
         }
     }
 
-    override val supportedFeatures = SupportedFeatures()
+    override val supportedFeatures = SupportedFeatures(
+            Feature.QueryParameterName,
+            Feature.QueryParameterRequired
+    )
 
     override fun convert(): Set<Endpoint> {
         val doc = DocumentBuilderFactory
@@ -67,12 +72,33 @@ class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
             endpoints.add(
                     Endpoint(
                             path = normalizePath(path),
-                            httpMethod = httpMethod
+                            httpMethod = httpMethod,
+                            queryParameters = extractQueryParameter(method)
                     )
             )
         }
 
         return endpoints
+    }
+
+    private fun extractQueryParameter(method: Node): Set<QueryParameter> {
+        val xPath = XPathFactory
+                .newInstance()
+                .newXPath()
+
+        val parameters = xPath.evaluate("//param[@style=\"query\"]", method.childNodes, NODESET) as NodeList
+
+        val queryParameter: MutableSet<QueryParameter> = mutableSetOf()
+
+        for (i in 0 until parameters.length) {
+            val parameter = parameters.item(i)
+            val parameterName = parameter.getAttribute("name")
+            val isParameterRequired = "true" == parameter.getAttribute("required")
+
+            queryParameter += QueryParameter(parameterName, isParameterRequired)
+        }
+
+        return queryParameter
     }
 
     private fun normalizePath(path: String): String {

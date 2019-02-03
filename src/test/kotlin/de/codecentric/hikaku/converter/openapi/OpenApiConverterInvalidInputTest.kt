@@ -9,19 +9,27 @@ import kotlin.test.assertFailsWith
 class OpenApiConverterInvalidInputTest {
 
     @Nested
-    inner class InvalidStringTest {
+    inner class EmptyFileTest {
 
         @Test
         fun `empty string as specification throws an exception`() {
+            //given
+            val file = Paths.get(OpenApiConverterInvalidInputTest::class.java.classLoader.getResource("openapi/empty_file.yaml").toURI())
+
+            //when
             assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter("")
+                OpenApiConverter(file)
             }
         }
 
         @Test
         fun `specification string consisting solely of whitespaces throws an exception`() {
+            //given
+            val file = Paths.get(OpenApiConverterInvalidInputTest::class.java.classLoader.getResource("openapi/whitespace_only_file.yaml").toURI())
+
+            //when
             assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter("      ")
+                OpenApiConverter(file)
             }
         }
     }

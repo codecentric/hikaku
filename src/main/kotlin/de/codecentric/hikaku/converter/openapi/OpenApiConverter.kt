@@ -20,9 +20,11 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 /**
- * Extracts and converts [Endpoint]s from OpenAPI 3.0.X document. Either a *.yaml,*.yml or a *.json file.
+ * Extracts and converts [Endpoint]s from OpenAPI 3.0.X document. Either a *.yaml*, *.yml* or a *.json* file.
+ *
+ * In Java invoke via: `OpenApiConverter.usingPath(Paths.get("");` or `OpenApiConverter.usingFile(new File("");`
  */
-class OpenApiConverter(private val openApiSpecification: String) : AbstractEndpointConverter() {
+class OpenApiConverter private constructor(private val openApiSpecification: String) : AbstractEndpointConverter() {
 
     init {
         if (openApiSpecification.isBlank()) {

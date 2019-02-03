@@ -20,9 +20,12 @@ import javax.xml.xpath.XPathConstants.*
 import javax.xml.xpath.XPathFactory
 
 /**
- * Extracts and converts [Endpoint]s from a WADL file.
+ * Extracts and converts [Endpoint]s from a *.wadl* file.
+ *
+ * In Java invoke via: `WadlConverter.usingPath(Paths.get("specification.wadl");`
+ * or `WadlConverter.usingFile(new File("specification.wadl");`
  */
-class WadlConverter(private val wadl: String) : AbstractEndpointConverter() {
+class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
     init {
         if (wadl.isBlank()) {

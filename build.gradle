@@ -105,7 +105,7 @@ uploadArchives {
         name 'hikaku'
         packaging 'jar'
 
-        description "A library to test if the implementation of a REST-API meets it's specification."
+        description "A library to test if the implementation of a REST-API meets its specification."
         url 'https://github.com/codecentric/hikaku'
 
         scm {

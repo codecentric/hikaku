@@ -21,7 +21,7 @@ import kotlin.test.fail
  * Entry point for writing a hikaku test. Provide the [EndpointConverter]s and call [match] to test if the specification and the implementation of your REST-API match.
  * @param specification An [EndpointConverter] which converts your specification for the equality check.
  * @param implementation An [EndpointConverter]  which converts your implementation for the equality check.
- * @param config The configuration is optional. It let's you partially control the matching.
+ * @param config The configuration is optional. It lets you partially control the matching.
  */
 class Hikaku(
         private val specification: EndpointConverter,

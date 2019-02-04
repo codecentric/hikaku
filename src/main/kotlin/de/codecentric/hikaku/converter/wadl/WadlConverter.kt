@@ -75,7 +75,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
             endpoints.add(
                     Endpoint(
-                            path = normalizePath(path),
+                            path = path,
                             httpMethod = httpMethod,
                             queryParameters = extractQueryParameters(method),
                             headerParameters = extractHeaderParameters(method),
@@ -123,14 +123,6 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         }
 
         return parameterMap
-    }
-
-    private fun normalizePath(path: String): String {
-        return if (!path.startsWith("/")) {
-            return "/$path"
-        } else {
-            path
-        }
     }
 
     companion object {

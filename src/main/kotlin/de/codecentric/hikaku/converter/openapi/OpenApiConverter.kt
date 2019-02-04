@@ -70,7 +70,8 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
                 path = path,
                 httpMethod = httpMethod,
                 queryParameters = queryParameters,
-                pathParameters = pathParameters
+                pathParameters = pathParameters,
+                headerParameters = headerParameters
         )
     }
 

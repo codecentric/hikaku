@@ -7,19 +7,18 @@ paths:
     get:
       description: 'Get all todos'
       parameters:
-        - name: track-request
-          in: query
+        - name: x-b3-traceid
+          in: header
           required: false
-          description: "Track request or not."
+          description: "Trace id."
           schema:
             type: string
         - name: use-cache
-          in: query
+          in: header
           required: true
           description: "Whether or to use cached data."
           schema:
-            type: number
-            format: int32
+            type: boolean
       responses:
         '200':
           description: OK

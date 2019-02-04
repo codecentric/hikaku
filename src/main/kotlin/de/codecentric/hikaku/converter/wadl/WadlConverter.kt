@@ -1,11 +1,12 @@
 package de.codecentric.hikaku.converter.wadl
 
 import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
+import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.converter.wadl.extensions.getAttribute
+import de.codecentric.hikaku.endpoints.Endpoint
+import de.codecentric.hikaku.endpoints.HeaderParameter
+import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.QueryParameter
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
@@ -16,7 +17,7 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files
 import java.nio.file.Path
 import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.xpath.XPathConstants.*
+import javax.xml.xpath.XPathConstants.NODESET
 import javax.xml.xpath.XPathFactory
 
 /**
@@ -76,7 +77,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                     Endpoint(
                             path = normalizePath(path),
                             httpMethod = httpMethod,
-                            queryParameters = extractQueryParameter(method)
+                            queryParameters = extractQueryParameters(method),
+                            headerParameters = extractHeaderParameters(method)
                     )
             )
         }
@@ -84,24 +86,36 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         return endpoints
     }
 
-    private fun extractQueryParameter(method: Node): Set<QueryParameter> {
+    private fun extractQueryParameters(method: Node): Set<QueryParameter> {
+        return extractParameter(method, "query").entries
+                .map { QueryParameter(it.key, it.value) }
+                .toSet()
+    }
+
+    private fun extractHeaderParameters(method: Node): Set<HeaderParameter> {
+        return extractParameter(method, "header").entries
+                .map { HeaderParameter(it.key, it.value) }
+                .toSet()
+    }
+
+    private fun extractParameter(method: Node, style: String): Map<String, Boolean> {
         val xPath = XPathFactory
                 .newInstance()
                 .newXPath()
 
-        val parameters = xPath.evaluate("//param[@style=\"query\"]", method.childNodes, NODESET) as NodeList
+        val parameters = xPath.evaluate("//param[@style=\"$style\"]", method.childNodes, NODESET) as NodeList
 
-        val queryParameter: MutableSet<QueryParameter> = mutableSetOf()
+        val parameterMap: MutableMap<String, Boolean> = mutableMapOf()
 
         for (i in 0 until parameters.length) {
             val parameter = parameters.item(i)
             val parameterName = parameter.getAttribute("name")
             val isParameterRequired = "true" == parameter.getAttribute("required")
 
-            queryParameter += QueryParameter(parameterName, isParameterRequired)
+            parameterMap[parameterName] = isParameterRequired
         }
 
-        return queryParameter
+        return parameterMap
     }
 
     private fun normalizePath(path: String): String {

@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converter.openapi
+package de.codecentric.hikaku.converter.wadl
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HeaderParameter
@@ -7,12 +7,12 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
-class OpenApiConverterHeaderParameterTest {
+class WadlConverterHeaderParameterTest {
 
     @Test
     fun `check that header parameter are extracted correctly`() {
         //given
-        val file = Paths.get(OpenApiConverterHeaderParameterTest::class.java.classLoader.getResource("openapi/header_parameter.yaml").toURI())
+        val file = Paths.get(WadlConverterHeaderParameterTest::class.java.classLoader.getResource("wadl/header_parameter.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
                 Endpoint(
                         path = "/todos",
@@ -25,7 +25,7 @@ class OpenApiConverterHeaderParameterTest {
         )
 
         //when
-        val specification = OpenApiConverter(file).conversionResult
+        val specification = WadlConverter(file).conversionResult
 
         //then
         assertThat(specification).isEqualTo(implementation)

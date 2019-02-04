@@ -3,7 +3,7 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="http://wadl.dev.java.net/2009/02">
   ources base="http://api.example.com/v1">
-    <resource path="todos">
+    <resource path="/todos">
       <method name="GET" id="search"
         <request>
           <param name="tag" type="xsd:string" style="query" required="false"/>

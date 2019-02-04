@@ -4,10 +4,7 @@ import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.converter.wadl.extensions.getAttribute
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.QueryParameter
+import de.codecentric.hikaku.endpoints.*
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
@@ -38,7 +35,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             Feature.QueryParameterName,
             Feature.QueryParameterRequired,
             Feature.HeaderParameterName,
-            Feature.HeaderParameterRequired
+            Feature.HeaderParameterRequired,
+            Feature.PathParameter
     )
 
     override fun convert(): Set<Endpoint> {
@@ -80,13 +78,19 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                             path = normalizePath(path),
                             httpMethod = httpMethod,
                             queryParameters = extractQueryParameters(method),
-                            headerParameters = extractHeaderParameters(method)
-
+                            headerParameters = extractHeaderParameters(method),
+                            pathParameters = extractPathParameters(method)
                     )
             )
         }
 
         return endpoints
+    }
+
+    private fun extractPathParameters(method: Node): Set<PathParameter> {
+        return extractParameter(method, "template").entries
+                .map { PathParameter(it.key) }
+                .toSet()
     }
 
     private fun extractQueryParameters(method: Node): Set<QueryParameter> {

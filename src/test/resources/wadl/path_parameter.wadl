@@ -3,11 +3,10 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="http://wadl.dev.java.net/2009/02">
   <resources base="http://api.example.com/v1">
-    <resource path="/todos">
+    <resource path="/todos/{id}">
       <method name="GET" id="search">
         <request>
-          <param name="x-b3-traceid" type="xsd:string" style="header" required="false"/>
-          <param name="use-cache" type="xsd:boolean" style="header" required="true"/>
+          <param name="id" type="xsd:string" style="template" required="true"/>
         </request>
         <response status="200">
           <representation mediaType="application/json"/>

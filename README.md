@@ -43,7 +43,7 @@ class SpecificationTest {
                 specification = OpenApiConverter(Paths.get("openapi.yaml")),
                 implementation = SpringConverter(springContext),
                 config = HikakuConfig(
-                        ignorePaths = SpringConverter.IGNORE_ERROR_ENDPOINTS
+                        ignorePaths = setOf(SpringConverter.IGNORE_ERROR_ENDPOINTS)
                 )
         )
         .match()

@@ -36,7 +36,9 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameterName,
-            Feature.QueryParameterRequired
+            Feature.QueryParameterRequired,
+            Feature.HeaderParameterName,
+            Feature.HeaderParameterRequired
     )
 
     override fun convert(): Set<Endpoint> {
@@ -79,6 +81,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                             httpMethod = httpMethod,
                             queryParameters = extractQueryParameters(method),
                             headerParameters = extractHeaderParameters(method)
+
                     )
             )
         }

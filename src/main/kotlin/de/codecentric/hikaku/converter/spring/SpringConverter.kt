@@ -95,6 +95,6 @@ class SpringConverter(
     }
 
     companion object {
-        const val IGNORE_ERROR_ENDPOINTS = "/error"
+        const val IGNORE_ERROR_ENDPOINT = "/error"
     }
 }

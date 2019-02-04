@@ -1,7 +1,7 @@
 package de.codecentric.hikaku
 
 import de.codecentric.hikaku.converter.EndpointConverter
-import de.codecentric.hikaku.converter.spring.SpringConverter.Companion.IGNORE_ERROR_ENDPOINTS
+import de.codecentric.hikaku.converter.spring.SpringConverter.Companion.IGNORE_ERROR_ENDPOINT
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.PathParameter
@@ -603,7 +603,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            ignorePaths = setOf(IGNORE_ERROR_ENDPOINTS),
+                            ignorePaths = setOf(IGNORE_ERROR_ENDPOINT),
                             reporter = reporter
                     )
             )

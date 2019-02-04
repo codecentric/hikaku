@@ -77,21 +77,19 @@ class SpringConverter(
     }
 
     private fun extractAvailableHttpMethods(mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>): Set<HttpMethod> {
-        var httpMethods = mappingEntry.key.httpMethods()
+        val httpMethods = mappingEntry.key.httpMethods()
 
         // Spring adds all http methods except for trace if no http method has been set explicitly
         // OPTIONS is a special case. If it's not added manually it has to be added without any path or query parameters
-        if (httpMethods.isEmpty()) {
-            httpMethods = HttpMethod.values()
+        return if (httpMethods.isEmpty()) {
+            HttpMethod.values()
                     .filterNot { it == TRACE }
                     .filterNot { it == OPTIONS }
                     .toSet()
+        } else {
+            // Spring always adds a HEAD http method
+            httpMethods + HEAD
         }
-
-        // Spring always adds a HEAD http method
-        httpMethods += HEAD
-
-        return httpMethods
     }
 
     companion object {

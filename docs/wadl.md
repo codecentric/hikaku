@@ -6,4 +6,4 @@ Please refer to the list of [all features](features.md). To check the feature su
 
 ## Usage
 
-The WadlConverter can be used either with a `File` or a `Path` object. It is also possible to add the file's content directly as `String`.
+The WadlConverter can be used either with a `File` or a `Path` object.

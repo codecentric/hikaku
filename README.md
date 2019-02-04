@@ -43,7 +43,7 @@ class SpecificationTest {
                 specification = OpenApiConverter(Paths.get("openapi.yaml")),
                 implementation = SpringConverter(springContext),
                 config = HikakuConfig(
-                        ignorePaths = setOf(SpringConverter.IGNORE_ERROR_ENDPOINTS)
+                        ignorePaths = setOf(SpringConverter.IGNORE_ERROR_ENDPOINT)
                 )
         )
         .match()
@@ -69,7 +69,7 @@ public class SpecificationTest {
     SpringConverter springConverter = new SpringConverter(springContext);
 
     HikakuConfig hikakuConfig = new HikakuConfig(
-        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINTS)),
+        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT)),
         false,
         false,
         new CommandLineReporter()

@@ -4,16 +4,12 @@
   <resources base="http://api.example.com/v1">
     <resource path="/todos">
       <method name="GET" id="getAllTodos">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
     <resource path="/tags">
       <method name="GET" id="getAllTags">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
   </resources>

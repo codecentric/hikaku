@@ -11,21 +11,10 @@ class WadlConverterEndpointTest {
     @Test
     fun `extract two different paths`() {
         //given
-        val file = Paths.get(WadlConverterEndpointTest::class.java.classLoader.getResource("wadl/endpoints/endpoints.wadl").toURI())
+        val file = Paths.get(WadlConverterEndpointTest::class.java.classLoader.getResource("wadl/endpoints/endpoints_two_different_paths.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
             Endpoint("/todos", GET),
-            Endpoint("/todos", POST),
-            Endpoint("/todos", PUT),
-            Endpoint("/todos", PATCH),
-            Endpoint("/todos", DELETE),
-            Endpoint("/todos", HEAD),
-            Endpoint("/todos", OPTIONS),
-            Endpoint("/todos", TRACE),
-            Endpoint("/tags", GET),
-            Endpoint("/tags", POST),
-            Endpoint("/tags", DELETE),
-            Endpoint("/tags", HEAD),
-            Endpoint("/tags", OPTIONS)
+            Endpoint("/tags", GET)
         )
 
         //when
@@ -38,21 +27,10 @@ class WadlConverterEndpointTest {
     @Test
     fun `extract two nested paths`() {
         //given
-        val file = Paths.get(WadlConverterEndpointTest::class.java.classLoader.getResource("wadl/endpoints/endpoints.wadl").toURI())
+        val file = Paths.get(WadlConverterEndpointTest::class.java.classLoader.getResource("wadl/endpoints/endpoints_two_nested_paths.wadl").toURI())
         val implementation: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET),
-                Endpoint("/todos", POST),
-                Endpoint("/todos", PUT),
-                Endpoint("/todos", PATCH),
-                Endpoint("/todos", DELETE),
-                Endpoint("/todos", HEAD),
-                Endpoint("/todos", OPTIONS),
-                Endpoint("/todos", TRACE),
-                Endpoint("/tags", GET),
-                Endpoint("/tags", POST),
-                Endpoint("/tags", DELETE),
-                Endpoint("/tags", HEAD),
-                Endpoint("/tags", OPTIONS)
+                Endpoint("/todos/{id}", GET)
         )
 
         //when

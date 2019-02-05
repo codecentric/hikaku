@@ -4,7 +4,7 @@
   xmlns="http://wadl.dev.java.net/2009/02">
   ources base="http://api.example.com/v1">
     <resource path="/todos">
-      <method name="GET" id="search"
+      <method name="GET" id="getAllTodos"
         <request>
           <param name="tag" type="xsd:string" style="query" required="false"/>
           <param name="limit" type="xsd:unsignedInt" style="query" required="true"/>

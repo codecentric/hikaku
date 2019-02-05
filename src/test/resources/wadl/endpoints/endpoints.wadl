@@ -4,71 +4,45 @@
   <resources base="http://api.example.com/v1">
     <resource path="/todos">
       <method name="GET" id="getAllTodos">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="POST" id="createTodo">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="PUT" id="createOrUpdateTodo">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="PATCH" id="partiallyUpdateTodo">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="DELETE" id="deleteTodo">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="TRACE" id="traceTodos">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="HEAD" id="headTodos">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="OPTIONS" id="optionsTodos">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
     <resource path="/tags">
       <method name="GET" id="getAllTags">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="POST" id="createTag">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="DELETE" id="deleteTag">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="HEAD" id="headTags">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
       <method name="OPTIONS" id="optionsTags">
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
   </resources>

@@ -36,18 +36,19 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             Feature.QueryParameterRequired,
             Feature.HeaderParameterName,
             Feature.HeaderParameterRequired,
-            Feature.PathParameter
+            Feature.PathParameter,
+            Feature.Produces
     )
+
+    private val xPath = XPathFactory
+            .newInstance()
+            .newXPath()
 
     override fun convert(): Set<Endpoint> {
         val doc = DocumentBuilderFactory
                 .newInstance()
                 .newDocumentBuilder()
                 .parse(InputSource(StringReader(wadl)))
-
-        val xPath = XPathFactory
-                .newInstance()
-                .newXPath()
 
         val resources = xPath.evaluate("//resource", doc, NODESET) as NodeList
 
@@ -62,9 +63,6 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
     private fun createEndpoints(resourceElement: Node): Set<Endpoint> {
         val path = resourceElement.getAttribute("path")
-        val xPath = XPathFactory
-                .newInstance()
-                .newXPath()
 
         val methods = xPath.evaluate("//resource[@path=\"$path\"]//method", resourceElement.childNodes, NODESET) as NodeList
         val endpoints: MutableSet<Endpoint> = mutableSetOf()
@@ -79,12 +77,26 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                             httpMethod = httpMethod,
                             queryParameters = extractQueryParameters(method),
                             headerParameters = extractHeaderParameters(method),
-                            pathParameters = extractPathParameters(method)
+                            pathParameters = extractPathParameters(method),
+                            produces = extractResponseMediaTypes(method)
                     )
             )
         }
 
         return endpoints
+    }
+
+    private fun extractResponseMediaTypes(method: Node): Set<String> {
+        val representations = xPath.evaluate("//representation", method.childNodes, NODESET) as NodeList
+
+        val mediaTypes: MutableSet<String> = mutableSetOf()
+
+        for (i in 0 until representations.length) {
+            val parameter = representations.item(i)
+            mediaTypes += parameter.getAttribute("mediaType")
+        }
+
+        return mediaTypes
     }
 
     private fun extractPathParameters(method: Node): Set<PathParameter> {
@@ -106,10 +118,6 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     }
 
     private fun extractParameter(method: Node, style: String): Map<String, Boolean> {
-        val xPath = XPathFactory
-                .newInstance()
-                .newXPath()
-
         val parameters = xPath.evaluate("//param[@style=\"$style\"]", method.childNodes, NODESET) as NodeList
 
         val parameterMap: MutableMap<String, Boolean> = mutableMapOf()

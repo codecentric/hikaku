@@ -12,5 +12,6 @@ data class Endpoint(
         val httpMethod: HttpMethod = OPTIONS,
         val queryParameters: Set<QueryParameter> = emptySet(),
         val pathParameters: Set<PathParameter> = emptySet(),
-        val headerParameters: Set<HeaderParameter> = emptySet()
+        val headerParameters: Set<HeaderParameter> = emptySet(),
+        val produces: Set<String> = emptySet()
 )

@@ -8,9 +8,7 @@
         <request>
           <param name="id" type="xsd:string" style="template" required="true"/>
         </request>
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
   </resources>

@@ -21,6 +21,8 @@ class SupportedFeatures(
         /** Checks the equality of the names of header parameters. */
         HeaderParameterName,
         /** Checks if a header parameter is required. */
-        HeaderParameterRequired
+        HeaderParameterRequired,
+        /** Checks the supported media types of the response. */
+        Produces
     }
 }

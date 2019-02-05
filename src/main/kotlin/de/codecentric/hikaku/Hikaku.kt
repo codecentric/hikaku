@@ -111,6 +111,7 @@ class Hikaku(
                     PathParameter -> matchPathParameter(specificationEndpoint, implementationEndpoint)
                     HeaderParameterName -> matchHeaderParameterName(specificationEndpoint, implementationEndpoint)
                     HeaderParameterRequired -> matchHeaderParameterRequired(specificationEndpoint, implementationEndpoint)
+                    Produces -> TODO()
                 }
             }
 

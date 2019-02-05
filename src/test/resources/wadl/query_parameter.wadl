@@ -9,9 +9,7 @@
           <param name="tag" type="xsd:string" style="query" required="false"/>
           <param name="limit" type="xsd:unsignedInt" style="query" required="true"/>
         </request>
-        <response status="200">
-          <representation mediaType="application/json"/>
-        </response>
+        <response status="200"/>
       </method>
     </resource>
   </resources>

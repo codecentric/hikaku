@@ -35,16 +35,18 @@ class CommandLineReporter: Reporter {
         val httpMethodImplementation = endpointMatchResult.httpMethodMatchResult.implementationValue
         val httpMethodMatches = createMatchEmoji(endpointMatchResult.httpMethodMatchResult.matches)
 
-        println("Expected http method [$httpMethodSpecification] and found [$httpMethodImplementation] $httpMethodMatches")
+        println("Expected http method ${dynamicAssertValue(httpMethodSpecification)} and found ${dynamicAssertValue(httpMethodImplementation)} $httpMethodMatches")
 
         val pathImplementation = endpointMatchResult.pathMatchResult.implementationValue
         val pathMatches = createMatchEmoji(endpointMatchResult.pathMatchResult.matches)
 
-        println("Expected path [$pathSpecification] and found [$pathImplementation] $pathMatches")
+        println("Expected path ${dynamicAssertValue(pathSpecification)} and found ${dynamicAssertValue(pathImplementation)} $pathMatches")
         println("\n")
 
         printGenericMatchResults(endpointMatchResult.matchResults)
     }
+
+    private fun dynamicAssertValue(value: Any?) = "<$value>"
 
     private fun printPreCheckMatchResult(preCheckListSizeMatchResult: PreCheckListSizeMatchResult) {
         printGenericMatchResults(preCheckListSizeMatchResult.matchResults)
@@ -52,7 +54,7 @@ class CommandLineReporter: Reporter {
 
     private fun printGenericMatchResults(matchResults: List<MatchResult<*>>) {
         matchResults.forEach {
-            println("Expected ${it.relatesTo} [${it.specificationValue}] and found [${it.implementationValue}] ${createMatchEmoji(it.matches)}")
+            println("Expected ${it.relatesTo} ${dynamicAssertValue(it.specificationValue)} and found ${dynamicAssertValue(it.implementationValue)} ${createMatchEmoji(it.matches)}")
         }
     }
 

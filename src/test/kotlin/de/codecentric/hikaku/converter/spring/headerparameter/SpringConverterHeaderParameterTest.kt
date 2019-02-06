@@ -8,14 +8,16 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterHeaderParameterTest {
 
     @Nested
-    @WebMvcTest(HeaderParameterNamedByVariableController::class)
+    @WebMvcTest(HeaderParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterNamedByVariableTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -29,7 +31,8 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = GET,
                         headerParameters = setOf(
                             HeaderParameter("useCache", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -37,27 +40,21 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = HEAD,
                         headerParameters = setOf(
                                 HeaderParameter("useCache", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(HeaderParameterNamedByValueAttributeController::class)
+    @WebMvcTest(HeaderParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterNamedByValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -71,7 +68,8 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = GET,
                         headerParameters = setOf(
                             HeaderParameter("use-cache", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -79,27 +77,21 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = HEAD,
                         headerParameters = setOf(
                             HeaderParameter("use-cache", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(HeaderParameterNamedByNameAttributeController::class)
+    @WebMvcTest(HeaderParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterNamedByNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -113,7 +105,8 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = GET,
                         headerParameters = setOf(
                             HeaderParameter("use-cache", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -121,27 +114,21 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = HEAD,
                         headerParameters = setOf(
                             HeaderParameter("use-cache", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(HeaderParameterHavingBothNameAndValueAttributeController::class)
+    @WebMvcTest(HeaderParameterHavingBothNameAndValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterHavingBothNameAndValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -155,7 +142,7 @@ class SpringConverterHeaderParameterTest {
     }
 
     @Nested
-    @WebMvcTest(HeaderParameterOptionalController::class)
+    @WebMvcTest(HeaderParameterOptionalController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterOptionalTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -169,7 +156,8 @@ class SpringConverterHeaderParameterTest {
                             httpMethod = GET,
                             headerParameters = setOf(
                                 HeaderParameter("use-cache", false)
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint("/todos", OPTIONS),
                     Endpoint(
@@ -177,27 +165,21 @@ class SpringConverterHeaderParameterTest {
                             httpMethod = HEAD,
                             headerParameters = setOf(
                                 HeaderParameter("use-cache", false)
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(HeaderParameterOptionalBecauseOfDefaultValueController::class)
+    @WebMvcTest(HeaderParameterOptionalBecauseOfDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class HeaderParameterOptionalBecauseOfDefaultValueTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -211,7 +193,8 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = GET,
                         headerParameters = setOf(
                             HeaderParameter("tracker-id", false)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -219,22 +202,16 @@ class SpringConverterHeaderParameterTest {
                         httpMethod = HEAD,
                         headerParameters = setOf(
                             HeaderParameter("tracker-id", false)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 }

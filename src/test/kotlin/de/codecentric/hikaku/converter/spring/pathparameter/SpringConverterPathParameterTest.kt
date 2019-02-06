@@ -8,14 +8,16 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterPathParameterTest {
 
     @Nested
-    @WebMvcTest(PathParameterNamedByVariableController::class)
+    @WebMvcTest(PathParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class PathParameterNamedByVariableTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -29,7 +31,8 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                 PathParameter("id")
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -37,27 +40,21 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                 PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(PathParameterNamedByValueAttributeController::class)
+    @WebMvcTest(PathParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class PathParameterNamedByValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -71,7 +68,8 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -79,27 +77,21 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(PathParameterNamedByNameAttributeController::class)
+    @WebMvcTest(PathParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class PathParameterNamedByNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -113,7 +105,8 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -121,33 +114,27 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(PathParameterHavingBorthValueAndNameAttributeController::class)
-    inner class PathParameterHavingBorthValueAndNameAttributeTest {
+    @WebMvcTest(PathParameterHavingBothValueAndNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class PathParameterHavingBothValueAndNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter name defined by 'name' attribute`() {
+        fun `path parameter name defined by both 'value' and 'name' attribute`() {
             assertFailsWith<IllegalStateException> {
                 SpringConverter(context).conversionResult
             }
@@ -155,7 +142,7 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterSupportedForOptionsIfExplicitlyDefinedController::class)
+    @WebMvcTest(PathParameterSupportedForOptionsIfExplicitlyDefinedController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class PathParameterSupportedForOptionsIfExplicitlyDefinedTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -169,29 +156,24 @@ class SpringConverterPathParameterTest {
                             httpMethod = OPTIONS,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 }

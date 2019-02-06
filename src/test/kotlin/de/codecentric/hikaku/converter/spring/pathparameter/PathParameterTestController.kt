@@ -36,7 +36,7 @@ open class PathParameterNamedByNameAttributeController {
 
 @RestController
 @RequestMapping("/todos")
-open class PathParameterHavingBorthValueAndNameAttributeController {
+open class PathParameterHavingBothValueAndNameAttributeController {
 
     @GetMapping("/{id}")
     fun getSpecificTodoItem(@PathVariable(value = "valueAttribute", name = "nameAttribute") variable: Int) { }

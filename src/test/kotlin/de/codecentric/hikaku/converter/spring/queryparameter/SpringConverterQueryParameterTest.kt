@@ -8,14 +8,16 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterQueryParameterTest {
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByVariableController::class)
+    @WebMvcTest(QueryParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterNamedByVariableTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -29,7 +31,8 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -37,27 +40,21 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                                 QueryParameter("tag", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByValueAttributeController::class)
+    @WebMvcTest(QueryParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterNamedByValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -71,7 +68,8 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -79,27 +77,21 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterNamedByNameAttributeController::class)
+    @WebMvcTest(QueryParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterNamedByNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -113,7 +105,8 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -121,27 +114,21 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterHavingBothNameAndValueAttributeController::class)
+    @WebMvcTest(QueryParameterHavingBothNameAndValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterHavingBothNameAndValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
@@ -155,13 +142,13 @@ class SpringConverterQueryParameterTest {
     }
 
     @Nested
-    @WebMvcTest(QueryParameterOptionalController::class)
+    @WebMvcTest(QueryParameterOptionalController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterOptionalTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `query parameter optional`() {
+        fun `query parameter set to optional`() {
             //given
             val specification: Set<Endpoint> = setOf(
                     Endpoint(
@@ -169,7 +156,8 @@ class SpringConverterQueryParameterTest {
                             httpMethod = GET,
                             queryParameters = setOf(
                                 QueryParameter("tag", false)
-                            )
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                     ),
                     Endpoint("/todos", OPTIONS),
                     Endpoint(
@@ -177,33 +165,27 @@ class SpringConverterQueryParameterTest {
                             httpMethod = HEAD,
                             queryParameters = setOf(
                                 QueryParameter("tag", false)
-                            )
-                    ),
-                    Endpoint("/error", GET),
-                    Endpoint("/error", PUT),
-                    Endpoint("/error", POST),
-                    Endpoint("/error", DELETE),
-                    Endpoint("/error", PATCH),
-                    Endpoint("/error", HEAD),
-                    Endpoint("/error", OPTIONS)
+                            ),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 
     @Nested
-    @WebMvcTest(QueryParameterOptionalBecauseOfDefaultValueController::class)
+    @WebMvcTest(QueryParameterOptionalBecauseOfDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
     inner class QueryParameterOptionalBecauseOfDefaultValueTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `query parameter optional because of a default value`() {
+        fun `query parameter optional, because of a default value`() {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint(
@@ -211,7 +193,8 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", false)
-                        )
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -219,22 +202,16 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", false)
-                        )
-                ),
-                Endpoint("/error", GET),
-                Endpoint("/error", PUT),
-                Endpoint("/error", POST),
-                Endpoint("/error", DELETE),
-                Endpoint("/error", PATCH),
-                Endpoint("/error", HEAD),
-                Endpoint("/error", OPTIONS)
+                        ),
+                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                )
             )
 
             //when
-            val implementation = SpringConverter(context).conversionResult
+            val implementation = SpringConverter(context)
 
             //then
-            assertThat(implementation).containsAll(specification)
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 }

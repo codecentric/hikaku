@@ -24,7 +24,3 @@ internal fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
 }
 
 internal fun RequestMappingInfo.httpMethods() = this.methodsCondition.httpMethods()
-
-internal fun RequestMappingInfo.paths(): Set<String> {
-    return this.patternsCondition.patterns
-}

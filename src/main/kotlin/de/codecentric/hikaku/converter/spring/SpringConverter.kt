@@ -1,15 +1,15 @@
 package de.codecentric.hikaku.converter.spring
 
-import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature
+import de.codecentric.hikaku.converter.AbstractEndpointConverter
 import de.codecentric.hikaku.converter.spring.extensions.*
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
-import de.codecentric.hikaku.endpoints.HttpMethod.TRACE
-import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
+import de.codecentric.hikaku.endpoints.HttpMethod.*
 import org.springframework.context.ApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.http.MediaType.TEXT_PLAIN_VALUE
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
@@ -50,7 +50,8 @@ class SpringConverter(
                     httpMethod = it,
                     queryParameters = mappingEntry.value.queryParameter(),
                     pathParameters = mappingEntry.value.pathParameter(),
-                    headerParameters = mappingEntry.value.headerParameter()
+                    headerParameters = mappingEntry.value.headerParameter(),
+                    produces = extractProducesMediaType(mappingEntry)
             )
         }
         .toMutableSet()
@@ -66,6 +67,20 @@ class SpringConverter(
         }
 
         return endpoints
+    }
+
+    private fun extractProducesMediaType(mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>): Set<String> {
+        val produces = mappingEntry.key.produces()
+
+        if (produces.isEmpty()) {
+            if (mappingEntry.value.method.returnType == String::class.java) {
+                return setOf(TEXT_PLAIN_VALUE)
+            }
+
+            return setOf(APPLICATION_JSON_UTF8_VALUE)
+        }
+
+        return produces
     }
 
     private fun removeRegex(path: String): String {

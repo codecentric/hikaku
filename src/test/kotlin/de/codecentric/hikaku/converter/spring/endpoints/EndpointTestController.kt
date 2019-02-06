@@ -9,7 +9,7 @@ open class DummyApp
 
 @RestController
 @RequestMapping("/todos")
-open class RequestMappingDefinedOnClassImplicitlyAddingAllMethodsController {
+open class RequestMappingDefinedOnClassImplicitlyAddingAllHttpMethodsController {
 
     @RequestMapping
     fun getAllTodos() { }
@@ -132,14 +132,14 @@ open class MultipleExplicitMappingAnnotationsAreNotSupportedBySpringController {
 }
 
 @RestController
-open class RequestMappingSolelyOnFunctionController {
+open class RequestMappingOnlyOnFunctionController {
 
     @RequestMapping("/todos", method = [GET])
     fun getAllTodos() { }
 }
 
 @RestController
-open class MappingSolelyOnFunctionController {
+open class MappingOnlyOnFunctionController {
 
     @GetMapping("/todos")
     fun getAllTodos() { }
@@ -147,7 +147,7 @@ open class MappingSolelyOnFunctionController {
 
 @RestController
 @RequestMapping("/todo")
-open class RequestMappingDefinedOnBothClassAndExplicitlyOnFunctionController {
+open class RequestMappingDefinedOnClassAndGetMappingOnFunctionController {
 
     @GetMapping("/list")
     fun getAllTodos() { }

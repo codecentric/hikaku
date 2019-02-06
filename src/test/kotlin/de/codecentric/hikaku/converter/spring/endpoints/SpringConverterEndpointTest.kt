@@ -46,7 +46,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -76,7 +76,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
             
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -106,7 +106,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -136,7 +136,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -166,7 +166,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -196,7 +196,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -226,7 +226,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -256,7 +256,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -286,7 +286,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -316,7 +316,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -346,7 +346,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -376,7 +376,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -406,7 +406,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -436,7 +436,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -466,7 +466,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -496,7 +496,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -526,7 +526,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -556,7 +556,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -589,7 +589,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -622,7 +622,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -657,7 +657,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -699,7 +699,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -741,7 +741,7 @@ class SpringConverterEndpointTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 }

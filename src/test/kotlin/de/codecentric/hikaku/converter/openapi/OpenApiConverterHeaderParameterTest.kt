@@ -28,6 +28,6 @@ class OpenApiConverterHeaderParameterTest {
         val specification = OpenApiConverter(file).conversionResult
 
         //then
-        assertThat(specification).isEqualTo(implementation)
+        assertThat(specification).containsAll(implementation)
     }
 }

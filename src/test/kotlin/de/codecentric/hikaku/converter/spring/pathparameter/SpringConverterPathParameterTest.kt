@@ -52,7 +52,7 @@ class SpringConverterPathParameterTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -94,7 +94,7 @@ class SpringConverterPathParameterTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -136,7 +136,7 @@ class SpringConverterPathParameterTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 
@@ -191,7 +191,7 @@ class SpringConverterPathParameterTest {
             val implementation = SpringConverter(context).conversionResult
 
             //then
-            assertThat(implementation).isEqualTo(specification)
+            assertThat(implementation).containsAll(specification)
         }
     }
 }

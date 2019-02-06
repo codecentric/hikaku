@@ -28,6 +28,6 @@ class WadlConverterQueryParameterTest {
         val specification = WadlConverter(file).conversionResult
 
         //then
-        assertThat(specification).isEqualTo(implementation)
+        assertThat(specification).containsAll(implementation)
     }
 }

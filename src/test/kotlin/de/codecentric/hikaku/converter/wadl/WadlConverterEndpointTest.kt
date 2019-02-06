@@ -21,7 +21,7 @@ class WadlConverterEndpointTest {
         val specification = WadlConverter(file).conversionResult
         
         //then
-        assertThat(specification).isEqualTo(implementation)
+        assertThat(specification).containsAll(implementation)
     }
 
     @Test
@@ -37,7 +37,7 @@ class WadlConverterEndpointTest {
         val specification = WadlConverter(file).conversionResult
 
         //then
-        assertThat(specification).isEqualTo(implementation)
+        assertThat(specification).containsAll(implementation)
     }
 
     @Test
@@ -64,6 +64,6 @@ class WadlConverterEndpointTest {
         val specification = WadlConverter(file).conversionResult
 
         //then
-        assertThat(specification).isEqualTo(implementation)
+        assertThat(specification).containsAll(implementation)
     }
 }

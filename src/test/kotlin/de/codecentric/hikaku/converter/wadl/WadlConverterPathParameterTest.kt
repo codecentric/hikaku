@@ -1,11 +1,10 @@
 package de.codecentric.hikaku.converter.wadl
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.PathParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
+
 
 class WadlConverterPathParameterTest {
 
@@ -13,20 +12,13 @@ class WadlConverterPathParameterTest {
     fun `check that path parameter are extracted correctly`() {
         //given
         val file = Paths.get(WadlConverterPathParameterTest::class.java.classLoader.getResource("wadl/path_parameter.wadl").toURI())
-        val implementation: Set<Endpoint> = setOf(
-                Endpoint(
-                        path = "/todos/{id}",
-                        httpMethod = GET,
-                        pathParameters = setOf(
-                                PathParameter("id")
-                        )
-                )
-        )
+        val pathParameter = PathParameter("id")
 
         //when
-        val specification = WadlConverter(file).conversionResult
+        val specification = WadlConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        val resultingPathParameters = specification.conversionResult.toList()[0].pathParameters
+        assertThat(resultingPathParameters).containsExactly(pathParameter)
     }
 }

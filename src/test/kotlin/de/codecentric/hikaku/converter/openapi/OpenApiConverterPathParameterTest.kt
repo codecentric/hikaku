@@ -1,7 +1,5 @@
 package de.codecentric.hikaku.converter.openapi
 
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.PathParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -13,34 +11,15 @@ class OpenApiConverterPathParameterTest {
     fun `check that path parameter are extracted correctly`() {
         //given
         val file = Paths.get(OpenApiConverterPathParameterTest::class.java.classLoader.getResource("openapi/path_parameter.yaml").toURI())
-        val implementation: Set<Endpoint> = setOf(
-            Endpoint(
-                    path = "/todos/{id}",
-                    httpMethod = GET,
-                    pathParameters = setOf(
-                            PathParameter("id")
-                    )
-            ),
-            Endpoint(
-                    path = "/todos/{id}",
-                    httpMethod = DELETE,
-                    pathParameters = setOf(
-                            PathParameter("id")
-                    )
-            ),
-            Endpoint(
-                    path = "/todos/{id}",
-                    httpMethod = POST,
-                    pathParameters = setOf(
-                            PathParameter("id")
-                    )
-            )
-        )
+        val pathParameter = PathParameter("id")
 
         //when
-        val specification = OpenApiConverter(file).conversionResult
+        val specification = OpenApiConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        val resultingEndpoints = specification.conversionResult.toList()
+        assertThat(resultingEndpoints[0].pathParameters).containsExactly(pathParameter)
+        assertThat(resultingEndpoints[1].pathParameters).containsExactly(pathParameter)
+        assertThat(resultingEndpoints[2].pathParameters).containsExactly(pathParameter)
     }
 }

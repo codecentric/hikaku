@@ -18,10 +18,10 @@ class WadlConverterEndpointTest {
         )
 
         //when
-        val specification = WadlConverter(file).conversionResult
+        val specification = WadlConverter(file)
         
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 
     @Test
@@ -34,10 +34,10 @@ class WadlConverterEndpointTest {
         )
 
         //when
-        val specification = WadlConverter(file).conversionResult
+        val specification = WadlConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 
     @Test
@@ -61,9 +61,9 @@ class WadlConverterEndpointTest {
         )
 
         //when
-        val specification = WadlConverter(file).conversionResult
+        val specification = WadlConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 }

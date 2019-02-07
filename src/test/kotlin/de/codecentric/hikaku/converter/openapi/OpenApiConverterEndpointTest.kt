@@ -18,10 +18,10 @@ class OpenApiConverterEndpointTest {
         )
 
         //when
-        val specification = OpenApiConverter(file).conversionResult
+        val specification = OpenApiConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 
     @Test
@@ -34,10 +34,10 @@ class OpenApiConverterEndpointTest {
         )
 
         //when
-        val specification = OpenApiConverter(file).conversionResult
+        val specification = OpenApiConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 
     @Test
@@ -56,9 +56,9 @@ class OpenApiConverterEndpointTest {
         )
 
         //when
-        val specification = OpenApiConverter(file).conversionResult
+        val specification = OpenApiConverter(file)
 
         //then
-        assertThat(specification).containsAll(implementation)
+        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
     }
 }

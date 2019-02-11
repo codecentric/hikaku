@@ -1,0 +1,38 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Todo List
+paths:
+  /todos/query:
+    get:
+      description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        default:
+          description: No data
+          content:
+            plain/text:
+              schema:
+                $ref: '#/components/schemas/NotFoundModel'
+components:
+  responses:
+    TodoResponse:
+      description: A complex object array response
+      content:
+        application/xml:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Todo'
+  schemas:
+    Todo:
+      type: array
+      items:
+        type: string
+    NotFoundModel:
+      type: string

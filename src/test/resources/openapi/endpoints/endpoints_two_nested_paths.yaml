@@ -9,7 +9,7 @@ paths:
       responses:
         '200':
           description: OK
-  /todos/{id}:
+  /todos/query:
     get:
       description: ''
       responses:

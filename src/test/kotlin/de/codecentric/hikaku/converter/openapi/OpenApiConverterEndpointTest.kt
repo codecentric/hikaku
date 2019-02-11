@@ -30,7 +30,7 @@ class OpenApiConverterEndpointTest {
         val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/endpoints/endpoints_two_nested_paths.yaml").toURI())
         val implementation = setOf(
                 Endpoint("/todos", GET),
-                Endpoint("/todos/{id}", GET)
+                Endpoint("/todos/query", GET)
         )
 
         //when

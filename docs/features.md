@@ -10,4 +10,4 @@ The check for endpoint paths and http methods are base functions that every conv
 | PathParameter | Name of a path parameter. Example: For `/todos/{id}` the path parameter name is `id`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
 | HeaderParameterName |Name of a header parameter. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
 | HeaderParameterRequired | Flag indicating whether a particular header parameter is required or not. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
-| Consumes | Checks the supported media types of the response. | NO | NO | YES _(1.1.0)_ |  
+| Produces | Checks the supported media types of the response. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |  

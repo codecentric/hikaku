@@ -1,0 +1,11 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Todo List
+paths:
+  /todos:
+    delete:
+      description: 'Delete all todos'
+      responses:
+        '204':
+          description: ''

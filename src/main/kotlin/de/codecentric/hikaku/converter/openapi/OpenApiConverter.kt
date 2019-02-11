@@ -12,6 +12,7 @@ import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.endpoints.*
+import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
@@ -25,6 +26,8 @@ import java.nio.file.Path
  * In Java invoke via: `OpenApiConverter.usingPath(Paths.get("");` or `OpenApiConverter.usingFile(new File("");`
  */
 class OpenApiConverter private constructor(private val openApiSpecification: String) : AbstractEndpointConverter() {
+
+    private lateinit var openApi: OpenAPI
 
     init {
         if (openApiSpecification.isBlank()) {
@@ -40,7 +43,7 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
     )
 
     override fun convert(): Set<Endpoint> {
-        val openApi = OpenAPIV3Parser().readContents(openApiSpecification, null, null).openAPI
+        openApi = OpenAPIV3Parser().readContents(openApiSpecification, null, null).openAPI
 
         return openApi.paths.flatMap { (path, pathItem) ->
             pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
@@ -71,8 +74,43 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
                 httpMethod = httpMethod,
                 queryParameters = queryParameters,
                 pathParameters = pathParameters,
-                headerParameters = headerParameters
+                headerParameters = headerParameters,
+                produces = extractProduceContentTypes(operation)
         )
+    }
+
+    private fun extractProduceContentTypes(operation: Operation?): Set<String> {
+        return operation?.responses
+                ?.flatMap {
+                    it.value
+                        ?.content
+                        ?.keys
+                        .orEmpty()
+                }
+                ?.union(extractResponsesFromComponents(operation))
+                .orEmpty()
+                .toSet()
+    }
+
+    private fun extractResponsesFromComponents(operation: Operation?): Set<String> {
+        return operation?.responses
+                ?.mapNotNull { it.value.`$ref` }
+                ?.map {
+                    Regex("#/components/responses/(?<key>.+)")
+                            .find(it)
+                            ?.groups
+                            ?.get("key")
+                            ?.value
+                }
+                ?.flatMap {
+                    openApi.components
+                            .responses[it]
+                            ?.content
+                            ?.keys
+                            .orEmpty()
+                }
+                .orEmpty()
+                .toSet()
     }
 
     companion object {

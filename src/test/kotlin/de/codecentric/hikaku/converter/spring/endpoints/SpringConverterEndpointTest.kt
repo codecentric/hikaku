@@ -28,47 +28,15 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having implicit definition for all HTTP methods except TRACE is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = PUT,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = POST,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = DELETE,
-                                produces = setOf    (APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = PATCH,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", PUT, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", POST, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", DELETE, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", PATCH, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos/tags",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos/tags",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos/tags", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos/tags", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos/tags", OPTIONS)
                 )
 
@@ -90,17 +58,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit GET method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -121,17 +81,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class using GetMapping annotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -152,17 +104,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit POST method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = POST,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", POST, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -183,17 +127,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class using PostMapping annotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = POST,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", POST, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -214,17 +150,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit PUT method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = PUT,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", PUT, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -245,17 +173,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class using PutMapping annotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = PUT,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", PUT, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -276,17 +196,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit DELETE method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = DELETE,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", DELETE, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -307,17 +219,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class using DeleteMapping annotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = DELETE,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", DELETE, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -369,17 +273,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class using PatchMapping annotation is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = PATCH,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", PATCH, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -400,17 +296,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit HEAD method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -431,16 +319,8 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit OPTIONS method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = OPTIONS,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", OPTIONS, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -461,17 +341,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on class having explicit TRACE method definition is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = TRACE,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", TRACE, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -492,17 +364,9 @@ class SpringConverterEndpointTest {
             fun `RequestMapping annotation solely on function is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -527,17 +391,9 @@ class SpringConverterEndpointTest {
             fun `spring does not support multiple explicit annotations`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -558,17 +414,9 @@ class SpringConverterEndpointTest {
             fun `Mapping annotation solely on function is extracted correctly`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todos", OPTIONS),
-                        Endpoint(
-                                path = "/todos",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -592,17 +440,9 @@ class SpringConverterEndpointTest {
             fun `endpoint defined on both class using RequestMapping and on function using GetMapping creates a nested path`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
-                        Endpoint(
-                                path = "/todo/list",
-                                httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        ),
+                        Endpoint("/todo/list", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                         Endpoint("/todo/list", OPTIONS),
-                        Endpoint(
-                                path = "/todo/list",
-                                httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                        )
+                        Endpoint("/todo/list", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE))
                 )
 
                 //when
@@ -624,27 +464,11 @@ class SpringConverterEndpointTest {
         fun `multiple endpoints on a mapping annotation create multiple Endpoint objects`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todos", OPTIONS),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todo/list", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todo/list", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todo/list", OPTIONS)
             )
 
@@ -666,27 +490,11 @@ class SpringConverterEndpointTest {
         fun `multiple endpoints on a mapping annotation create multiple Endpoint objects`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todos", OPTIONS),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todo/list", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todo/list", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todo/list", OPTIONS)
             )
 
@@ -708,37 +516,13 @@ class SpringConverterEndpointTest {
         fun `multiple endpoints and http methods on a mapping annotation create multiple Endpoint objects`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todos", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todos", POST, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todos", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todos", OPTIONS),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
-                    Endpoint(
-                            path = "/todo/list",
-                            httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
-                    ),
+                    Endpoint("/todo/list", GET, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todo/list", POST, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
+                    Endpoint("/todo/list", HEAD, produces = setOf(APPLICATION_JSON_UTF8_VALUE)),
                     Endpoint("/todo/list", OPTIONS)
             )
 

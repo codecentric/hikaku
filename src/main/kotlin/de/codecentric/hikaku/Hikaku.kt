@@ -1,19 +1,11 @@
 package de.codecentric.hikaku
 
-import de.codecentric.hikaku.SupportedFeatures.Feature.*
+import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converter.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.matcher.EndpointMatchResult
-import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterName
-import de.codecentric.hikaku.matcher.HeaderParameterMatcher.matchHeaderParameterRequired
-import de.codecentric.hikaku.matcher.MatchResult
-import de.codecentric.hikaku.matcher.MatchResultGroup
-import de.codecentric.hikaku.matcher.PathParameterMatcher.matchPathParameter
-import de.codecentric.hikaku.matcher.PreCheckListSizeMatchResult
-import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterName
-import de.codecentric.hikaku.matcher.QueryParameterMatcher.matchQueryParameterRequired
+import de.codecentric.hikaku.reporter.MatchResult
 import de.codecentric.hikaku.reporter.Reporter
 import kotlin.test.fail
 
@@ -28,12 +20,11 @@ class Hikaku(
         private val implementation: EndpointConverter,
         var config: HikakuConfig = HikakuConfig()
 ) {
-    private val supportedFeatures = specification.supportedFeatures.intersect(implementation.supportedFeatures)
-    private val matchResults: MutableList<MatchResultGroup> = mutableListOf()
+    private val supportedFeatures = SupportedFeatures(specification.supportedFeatures.intersect(implementation.supportedFeatures))
 
     init {
         if (!javaClass.desiredAssertionStatus()) {
-            throw IllegalStateException("Unable to execute Hikaku tests. Always run Hikaku tests with vm-argument: -ea")
+            throw IllegalStateException("Unable to execute hikaku tests. Always run hikaku tests with vm-argument: -ea")
         }
     }
 
@@ -43,85 +34,67 @@ class Hikaku(
                 .filterNot { config.ignoreHttpMethodOptions && it.httpMethod == OPTIONS }
     }
 
-    private fun reportResult() {
-        config.reporter.report(matchResults)
+    private fun reportResult(matchResult: MatchResult) {
+        config.reporter.report(matchResult)
     }
 
     /**
-     * Calling this method creates a list of [MatchResult]s. It passes those to the [Reporter] defined in the configuration and call [assert] with the end result.
+     * Calling this method creates a [MatchResult]. It will be passed to the [Reporter] defined in the configuration and call [assert] with the end result.
      */
     fun match() {
         val specificationEndpoints = specification
                 .conversionResult
                 .applyConfig(config)
-                .sortedWith(compareBy(Endpoint::path, Endpoint::httpMethod))
+                .toSet()
 
         val implementationEndpoints = implementation
                 .conversionResult
                 .applyConfig(config)
-                .sortedWith(compareBy(Endpoint::path, Endpoint::httpMethod))
+                .toSet()
 
-        createMatchResults(specificationEndpoints, implementationEndpoints)
+        val notExpected = implementationEndpoints.toMutableSet()
+        val notFound = specificationEndpoints.toMutableSet()
 
-        reportResult()
+        specificationEndpoints.forEach { currentEndpoint ->
+            if (iterableContains(notExpected, currentEndpoint)) {
+                notExpected.removeIf(endpointMatches(currentEndpoint))
+                notFound.removeIf(endpointMatches(currentEndpoint))
+            }
+        }
 
-        if (!isMatch()) {
+        reportResult(
+                MatchResult(
+                        supportedFeatures,
+                        specificationEndpoints,
+                        implementationEndpoints,
+                        notFound,
+                        notExpected
+                )
+        )
+
+        if (notExpected.isNotEmpty() || notFound.isNotEmpty()) {
             fail("Specification does not match implementation.")
         }
     }
 
-    private fun isMatch(): Boolean {
-        return matchResults
-                .map { it.matches() }
-                .fold(true) { lh, rh -> lh && rh }
-    }
+    private fun endpointMatches(otherEndpoint: Endpoint): (Endpoint) -> Boolean {
+        return {
+            var matches = true
+            matches = matches && it.path == otherEndpoint.path
+            matches = matches && it.httpMethod == otherEndpoint.httpMethod
 
-    private fun createMatchResults(specificationEndpoints: List<Endpoint>, implementationEndpoints: List<Endpoint>) {
-        if (specificationEndpoints.size != implementationEndpoints.size) {
-            matchResults.add(
-                    PreCheckListSizeMatchResult(
-                        relatesTo = "Number of endpoints",
-                        specificationListSize = specificationEndpoints.size,
-                        implementationListSize = implementationEndpoints.size
-                    )
-            )
-            return
-        }
-
-        for (index in specificationEndpoints.indices) {
-            val specificationEndpoint = specificationEndpoints[index]
-            val implementationEndpoint = implementationEndpoints[index]
-
-            val httpMethodResultMatcher = MatchResult(
-                    relatesTo = "HTTP method",
-                    specificationValue = specificationEndpoint.httpMethod,
-                    implementationValue = implementationEndpoint.httpMethod
-            )
-
-            val pathResultMatcher = MatchResult(
-                    relatesTo = "Path",
-                    specificationValue = specificationEndpoint.path,
-                    implementationValue = implementationEndpoint.path
-            )
-
-            val additionalFeatures = supportedFeatures.flatMap {
-                when (it) {
-                    QueryParameterName -> matchQueryParameterName(specificationEndpoint, implementationEndpoint)
-                    QueryParameterRequired -> matchQueryParameterRequired(specificationEndpoint, implementationEndpoint)
-                    PathParameter -> matchPathParameter(specificationEndpoint, implementationEndpoint)
-                    HeaderParameterName -> matchHeaderParameterName(specificationEndpoint, implementationEndpoint)
-                    HeaderParameterRequired -> matchHeaderParameterRequired(specificationEndpoint, implementationEndpoint)
-                    Produces -> TODO()
+            supportedFeatures.forEach { feature ->
+                matches = when (feature) {
+                    Feature.QueryParameter -> matches && it.queryParameters == otherEndpoint.queryParameters
+                    Feature.PathParameter -> matches && it.pathParameters ==  otherEndpoint.pathParameters
+                    Feature.HeaderParameter -> matches && it.headerParameters == otherEndpoint.headerParameters
+                    Feature.Produces -> matches && it.produces == otherEndpoint.produces
                 }
             }
 
-            matchResults.add(
-                    EndpointMatchResult(
-                            httpMethodResultMatcher,
-                            pathResultMatcher,
-                            additionalFeatures
-                    )
-            )
+            matches
         }
     }
+
+    private fun iterableContains(notExpected: Set<Endpoint>, value: Endpoint) = notExpected.any(endpointMatches(value))
 }

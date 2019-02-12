@@ -32,10 +32,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     }
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameterName,
-            Feature.QueryParameterRequired,
-            Feature.HeaderParameterName,
-            Feature.HeaderParameterRequired,
+            Feature.QueryParameter,
+            Feature.HeaderParameter,
             Feature.PathParameter,
             Feature.Produces
     )

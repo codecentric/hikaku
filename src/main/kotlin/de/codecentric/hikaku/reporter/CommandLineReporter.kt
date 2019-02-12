@@ -1,67 +1,55 @@
 package de.codecentric.hikaku.reporter
 
-import de.codecentric.hikaku.matcher.EndpointMatchResult
-import de.codecentric.hikaku.matcher.MatchResult
-import de.codecentric.hikaku.matcher.MatchResultGroup
-import de.codecentric.hikaku.matcher.PreCheckListSizeMatchResult
+import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.SupportedFeatures.*
+import de.codecentric.hikaku.endpoints.Endpoint
 
 class CommandLineReporter: Reporter {
 
-    override fun report(endpointMatchResults: List<MatchResultGroup>) {
+    override fun report(endpointMatchResults: MatchResult) {
         val heading = "Hikaku test result:"
 
         println("\n")
         println(heading)
         println("#".repeat(heading.length))
 
-        endpointMatchResults.forEach {
-            when(it) {
-                is EndpointMatchResult -> printEndpointsMatchResult(it)
-                is PreCheckListSizeMatchResult -> printPreCheckMatchResult(it)
+        if (endpointMatchResults.notFound.isEmpty() && endpointMatchResults.notExpected.isEmpty()) {
+            println ("")
+            println ("✅ Test successful. Specification and implementation match.")
+        }
+
+
+        if (endpointMatchResults.notFound.isNotEmpty()) {
+            println("")
+            println("👀 Expected, but unable to find:")
+
+            endpointMatchResults.notFound.forEach {
+                printEndpoint(endpointMatchResults.supportedFeatures, it)
+            }
+        }
+
+        if (endpointMatchResults.notExpected.isNotEmpty()) {
+            println("")
+            println("👻 Unexpected, but found:")
+
+            endpointMatchResults.notExpected.forEach {
+                printEndpoint(endpointMatchResults.supportedFeatures, it)
             }
         }
     }
 
-    private fun printEndpointsMatchResult(endpointMatchResult: EndpointMatchResult) {
-        val httpMethodSpecification = endpointMatchResult.httpMethodMatchResult.specificationValue
-        val pathSpecification = endpointMatchResult.pathMatchResult.specificationValue
-        val headline = "$httpMethodSpecification $pathSpecification:"
+    private fun printEndpoint(supportedFeatures: SupportedFeatures, endpoint: Endpoint) {
+        var path = "< ${endpoint.httpMethod} ${endpoint.path}"
 
-        println("")
-        println(headline)
-        println("-".repeat(headline.length))
-        println("")
-
-        val httpMethodImplementation = endpointMatchResult.httpMethodMatchResult.implementationValue
-        val httpMethodMatches = createMatchEmoji(endpointMatchResult.httpMethodMatchResult.matches)
-
-        println("Expected http method ${dynamicAssertValue(httpMethodSpecification)} and found ${dynamicAssertValue(httpMethodImplementation)} $httpMethodMatches")
-
-        val pathImplementation = endpointMatchResult.pathMatchResult.implementationValue
-        val pathMatches = createMatchEmoji(endpointMatchResult.pathMatchResult.matches)
-
-        println("Expected path ${dynamicAssertValue(pathSpecification)} and found ${dynamicAssertValue(pathImplementation)} $pathMatches")
-        println("\n")
-
-        printGenericMatchResults(endpointMatchResult.matchResults)
-    }
-
-    private fun dynamicAssertValue(value: Any?) = "<$value>"
-
-    private fun printPreCheckMatchResult(preCheckListSizeMatchResult: PreCheckListSizeMatchResult) {
-        printGenericMatchResults(preCheckListSizeMatchResult.matchResults)
-    }
-
-    private fun printGenericMatchResults(matchResults: List<MatchResult<*>>) {
-        matchResults.forEach {
-            println("Expected ${it.relatesTo} ${dynamicAssertValue(it.specificationValue)} and found ${dynamicAssertValue(it.implementationValue)} ${createMatchEmoji(it.matches)}")
+        supportedFeatures.forEach {
+            path += when(it) {
+                Feature.QueryParameter -> " ${endpoint.queryParameters.joinToString(separator = ", ")}"
+                Feature.PathParameter -> " ${endpoint.pathParameters.joinToString(separator = ", ")}"
+                Feature.HeaderParameter -> " ${endpoint.headerParameters.joinToString(separator = ", ")}"
+                Feature.Produces -> " ${endpoint.produces.joinToString(separator = ", ")}"
+            }
         }
-    }
 
-    private fun createMatchEmoji(value: Boolean): String {
-        return when (value) {
-            true -> "✅"
-            false -> "❌"
-        }
+        println("$path>")
     }
 }

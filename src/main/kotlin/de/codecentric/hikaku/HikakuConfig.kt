@@ -3,7 +3,7 @@ package de.codecentric.hikaku
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.matcher.MatchResult
+import de.codecentric.hikaku.reporter.MatchResult
 import de.codecentric.hikaku.reporter.CommandLineReporter
 import de.codecentric.hikaku.reporter.Reporter
 

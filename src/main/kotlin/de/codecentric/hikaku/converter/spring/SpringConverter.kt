@@ -23,10 +23,10 @@ class SpringConverter(
 ) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameterName,
+            Feature.QueryParameter,
             Feature.PathParameter,
-            Feature.HeaderParameterName,
-            Feature.HeaderParameterRequired
+            Feature.HeaderParameter,
+            Feature.Produces
     )
 
     override fun convert(): Set<Endpoint> {

@@ -1,4 +1,4 @@
-# Hikaku (比較) - Config
+# Hikaku - Config
 
 The following is a list if configurations.
 

@@ -1,4 +1,4 @@
-# Hikaku (比較) - WADL
+# Hikaku - WADL
 
 ## Feature Support
 

@@ -1,13 +1,11 @@
-# Hikaku (比較) - Features
+# Hikaku - Features
 
 The following table gives an overview of all features and which converter supports which feature.
 The check for endpoint paths and http methods are base functions that every converter has to support. Those are not listed in the table below.
 
 | Feature Name | Description | [OpenApi Converter](openapi.md)| [Spring Converter](spring.md) | [WADL Converter](wadl.md) |
 | --- | --- | --- | --- | --- |
-| QueryParameterName |Name of a query parameter. Example: For `/todos?filter=all` the query parameter name is `filter`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
-| QueryParameterRequired | Flag indicating whether a particular query parameter is required or not. | YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
-| PathParameter | Name of a path parameter. Example: For `/todos/{id}` the path parameter name is `id`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
-| HeaderParameterName |Name of a header parameter. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
-| HeaderParameterRequired | Flag indicating whether a particular header parameter is required or not. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
-| Produces | Checks the supported media types of the response. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |  
+| QueryParameter | Name of a query parameter and whether the parameter is required or not. Example: `/todos?filter=all`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
+| PathParameter | Name of a path parameter. Example: `/todos/{id}`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
+| HeaderParameterName | Name of a header parameter and whether the parameter is required or not. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
+| Produces | Checks the supported media types of the response. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |

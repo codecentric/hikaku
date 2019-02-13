@@ -17,8 +17,6 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 Please refer to the list of [all features](docs/features.md). To check the feature support for each converter.
   
 ## Usage
-Hikaku uses built-in Kotlin assertions. That's why you always have to add the vm-argument `-ea` when you run the tests.
-
 Setting up a test with hikaku is very simple. You just instantiate the `Hikaku` class and provide an `EndpointConverter` for the specification and another one for the implementation. Optionally, you can also pass an instance of `HikakuConfig`. Check the list of options and default values of the [config](docs/config.md). Then you call `match()` on the `Hikaku` class.
 
 The match result will be send to a `Reporter` and the kotlin assertion is called afterwards so the test either succeeds or fails.

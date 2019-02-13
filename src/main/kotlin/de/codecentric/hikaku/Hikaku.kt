@@ -22,12 +22,6 @@ class Hikaku(
 ) {
     private val supportedFeatures = SupportedFeatures(specification.supportedFeatures.intersect(implementation.supportedFeatures))
 
-    init {
-        if (!javaClass.desiredAssertionStatus()) {
-            throw IllegalStateException("Unable to execute hikaku tests. Always run hikaku tests with vm-argument: -ea")
-        }
-    }
-
     private fun Set<Endpoint>.applyConfig(config: HikakuConfig): List<Endpoint> {
         return this.filterNot { config.ignorePaths.contains(it.path) }
                 .filterNot { config.ignoreHttpMethodHead && it.httpMethod == HEAD }
@@ -73,7 +67,7 @@ class Hikaku(
         )
 
         if (notExpected.isNotEmpty() || notFound.isNotEmpty()) {
-            fail("Specification does not match implementation.")
+            fail("Implementation does not match specification.")
         }
     }
 

@@ -100,6 +100,16 @@ You will find a list of spring specific features that are supported below.
 
 + Supports text/plain if the return value is a String and no produces definition has been set
 
+### Consumes
+
++ Supports RequestMapping annotation
+  + _Example:_ `@RequestMapping(consumes = "text/plain")`
+
++ Supports all HTTP method based mapping annotations (DeleteMapping, GetMapping, PatchMapping, PostMapping, PutMapping)
+  + _Example:_ `@GetMapping(consumes = "text/plain")`
+
++ Supports default value in case no consumes definition has been set
+
 ## Currently not supported
 
 + Checking whether or not to explode query parameter.
@@ -107,3 +117,7 @@ You will find a list of spring specific features that are supported below.
 
 + Query Parameter based on an object
   + _Example:_ `@RequestParam queryParam: MyObject`
+  
++ Produces using negated media type _Example:_ `@RequestParam(produces = "!text/plain")`
+
++ Consumes using negated media type _Example:_ `@RequestParam(produces = "!text/plain")`

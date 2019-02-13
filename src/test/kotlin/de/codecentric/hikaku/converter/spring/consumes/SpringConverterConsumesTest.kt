@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converter.spring.produces
+package de.codecentric.hikaku.converter.spring.consumes
 
 import de.codecentric.hikaku.converter.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
@@ -12,21 +12,21 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType.*
 
-class SpringConverterProducesTest {
+class SpringConverterConsumesTest {
 
     @Nested
     inner class RequestMappingAnnotationTests {
 
         @Nested
         inner class ClassLevelTests {
-
+            
             @Nested
             @WebMvcTest(RequestMappingOneMediaTypeIsInheritedByAllFunctionsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class OneMediaTypeIsInheritedByAllFunctionsTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `media type declared at class level using RequestMapping annotation is inherited by all functions`() {
                     //given
@@ -34,82 +34,82 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
-                            Endpoint("/todos/{id}", OPTIONS)
+                            Endpoint("/tags", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
-
+    
             @Nested
             @WebMvcTest(RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class MultipleMediaTypesAreInheritedByAllFunctionsTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `multiple media types declared at class level using RequestMapping annotation are inherited by all functions`() {
                     //given
@@ -117,70 +117,70 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
-                            Endpoint("/todos/{id}", OPTIONS)
+                            Endpoint("/tags", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
@@ -188,7 +188,7 @@ class SpringConverterProducesTest {
 
             @Nested
             @WebMvcTest(RequestMappingOnClassDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class DefinedOnClassUsingDefaultValueTest {
+            inner class DefaultValueTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -200,32 +200,32 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -239,45 +239,45 @@ class SpringConverterProducesTest {
             }
 
             @Nested
-            @WebMvcTest(RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(RequestMappingOnClassWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class NoConsumesInfoAndStringAsReturnValueTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
 
                 @Test
-                fun `no media type declared and kotlin String as request body will lead to plain text`() {
+                fun `no media type declared and kotlin String as request body will lead to accept all`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -291,14 +291,14 @@ class SpringConverterProducesTest {
             }
 
             @Nested
-            @WebMvcTest(RequestMappingOnClassWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class NoResponseBodyAnnotationTest {
+            @WebMvcTest(RequestMappingOnClassWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class NoRequestBodyAnnotationTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
 
                 @Test
-                fun `no ResponseBody annotation results in an empty produces list`() {
+                fun `no RequestBody annotation results in an empty produces list`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
                             Endpoint("/todos", GET),
@@ -318,17 +318,17 @@ class SpringConverterProducesTest {
                 }
             }
         }
-
+        
         @Nested
         inner class FunctionLevelTests {
-
+            
             @Nested
             @WebMvcTest(RequestMappingOneMediaTypeIsExtractedCorrectlyController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class OneMediaTypeIsExtractedCorrectlyTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `media type declared at function level using RequestMapping annotation is extracted correctly`() {
                     //given
@@ -336,51 +336,51 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
-
+    
             @Nested
             @WebMvcTest(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class MultipleMediaTypesAreExtractedCorrectlyTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `multiple media types declared at function level using RequestMapping annotation are extracted correctly`() {
                     //given
@@ -388,39 +388,39 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
@@ -428,7 +428,7 @@ class SpringConverterProducesTest {
 
             @Nested
             @WebMvcTest(RequestMappingOnFunctionDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class DefinedOnFunctionUsingDefaultValueTest {
+            inner class DefaultValueTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
@@ -440,32 +440,32 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -479,45 +479,45 @@ class SpringConverterProducesTest {
             }
 
             @Nested
-            @WebMvcTest(RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            @WebMvcTest(RequestMappingOnFunctionWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class NoConsumesInfoAndStringAsReturnValueTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
 
                 @Test
-                fun `no media type declared and kotlin String as request body will lead to plain text`() {
+                fun `no media type declared and kotlin String as request body will lead to accept all`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(ALL_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -531,14 +531,14 @@ class SpringConverterProducesTest {
             }
 
             @Nested
-            @WebMvcTest(RequestMappingOnFunctionWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class NoResponseBodyAnnotationTest {
+            @WebMvcTest(RequestMappingOnFunctionWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class NoRequestBodyAnnotationTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
 
                 @Test
-                fun `no ResponseBody annotation results in an empty produces list`() {
+                fun `no RequestBody annotation results in an empty produces list`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
                             Endpoint("/todos", GET),
@@ -558,17 +558,17 @@ class SpringConverterProducesTest {
                 }
             }
         }
-
+        
         @Nested
         inner class OverwriteTests {
-
+            
             @Nested
             @WebMvcTest(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class OneMediaTypeIsOverwrittenByDeclarationOnFunctionTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
                     //given
@@ -576,82 +576,82 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(TEXT_PLAIN_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE)
+                                    consumes = setOf(TEXT_PLAIN_VALUE)
                             ),
-                            Endpoint("/todos/{id}", OPTIONS)
+                            Endpoint("/tags", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
-
+    
             @Nested
             @WebMvcTest(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class MultipleMediaTypesAreOverwrittenByDeclarationOnFunctionTest {
-
+    
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-
+    
                 @Test
                 fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
                     //given
@@ -659,70 +659,70 @@ class SpringConverterProducesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/tags",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
                             ),
-                            Endpoint("/todos/{id}", OPTIONS)
+                            Endpoint("/tags", OPTIONS)
                     )
-
+    
                     //when
                     val implementation = SpringConverter(context)
-
+    
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
@@ -747,12 +747,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -779,12 +779,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -811,12 +811,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -830,25 +830,25 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(GetMappingWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
         inner class NoConsumesInfoAndStringAsReturnValueTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no media type declared and kotlin String as request body will lead to plain text`() {
+            fun `no media type declared and kotlin String as request body will lead to accept all`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -862,14 +862,14 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(GetMappingWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-        inner class NoResponseBodyAnnotationTest {
+        @WebMvcTest(GetMappingWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoRequestBodyAnnotationTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no ResponseBody annotation results in an empty produces list`() {
+            fun `no RequestBody annotation results in an empty produces list`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET),
@@ -903,12 +903,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -935,12 +935,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -967,12 +967,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -986,25 +986,25 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(DeleteMappingWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
         inner class NoConsumesInfoAndStringAsReturnValueTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no media type declared and kotlin String as request body will lead to plain text`() {
+            fun `no media type declared and kotlin String as request body will lead to accept all`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1018,14 +1018,14 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(DeleteMappingWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-        inner class NoResponseBodyAnnotationTest {
+        @WebMvcTest(DeleteMappingWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoRequestBodyAnnotationTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no ResponseBody annotation results in an empty produces list`() {
+            fun `no RequestBody annotation results in an empty produces list`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", DELETE),
@@ -1059,12 +1059,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1091,12 +1091,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1123,12 +1123,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1142,25 +1142,25 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(PatchMappingWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
         inner class NoConsumesInfoAndStringAsReturnValueTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no media type declared and kotlin String as request body will lead to plain text`() {
+            fun `no media type declared and kotlin String as request body will lead to accept all`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1174,14 +1174,14 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PatchMappingWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-        inner class NoResponseBodyAnnotationTest {
+        @WebMvcTest(PatchMappingWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoRequestBodyAnnotationTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no ResponseBody annotation results in an empty produces list`() {
+            fun `no RequestBody annotation results in an empty produces list`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", PATCH),
@@ -1215,12 +1215,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1247,12 +1247,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1279,12 +1279,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1298,25 +1298,25 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(PostMappingWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
         inner class NoConsumesInfoAndStringAsReturnValueTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no media type declared and kotlin String as request body will lead to plain text`() {
+            fun `no media type declared and kotlin String as request body will lead to accept all`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1330,14 +1330,14 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PostMappingWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-        inner class NoResponseBodyAnnotationTest {
+        @WebMvcTest(PostMappingWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoRequestBodyAnnotationTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no ResponseBody annotation results in an empty produces list`() {
+            fun `no RequestBody annotation results in an empty produces list`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", POST),
@@ -1371,12 +1371,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1403,12 +1403,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
+                                consumes = setOf(APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1435,12 +1435,12 @@ class SpringConverterProducesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1454,25 +1454,25 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        @WebMvcTest(PutMappingWithoutConsumesInfoAndStringAsRequestBodyValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
         inner class NoConsumesInfoAndStringAsReturnValueTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no media type declared and kotlin String as request body will lead to plain text`() {
+            fun `no media type declared and kotlin String as request body will lead to accept all`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(TEXT_PLAIN_VALUE)
+                                consumes = setOf(ALL_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1486,14 +1486,14 @@ class SpringConverterProducesTest {
         }
 
         @Nested
-        @WebMvcTest(PutMappingWithoutResponseBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-        inner class NoResponseBodyAnnotationTest {
+        @WebMvcTest(PutMappingWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoRequestBodyAnnotationTest {
 
             @Autowired
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `no ResponseBody annotation results in an empty produces list`() {
+            fun `no RequestBody annotation results in an empty produces list`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", PUT),

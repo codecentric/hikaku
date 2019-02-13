@@ -11,65 +11,65 @@ open class DummyApp
 @RestController
 @ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
-open class RequestMappingOneMediaTypeIsInheritedByAllMethodsController {
+open class RequestMappingOneMediaTypeIsInheritedByAllFunctionsController {
 
     @RequestMapping
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsInheritedByAllMethodsController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsInheritedByAllFunctionsController())
 
     @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsInheritedByAllMethodsController())
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsInheritedByAllFunctionsController())
 }
 
 @RestController
 @ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-open class RequestMappingMultipleMediaTypesAreInheritedByAllMethodsController {
+open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController {
 
     @RequestMapping
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreInheritedByAllMethodsController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController())
 
     @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreInheritedByAllMethodsController())
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController())
 }
 
 @RestController
 @ResponseBody
-open class RequestMappingOneMediaTypeIsExractedCorrectlyController {
+open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class RequestMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
-open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnMethodController {
+open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController {
 
     @RequestMapping(produces = [TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnMethodController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
 
     @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnMethodController())
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
 }
 
 @RestController
 @ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
-open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnMethodController {
+open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController {
 
     @RequestMapping(produces = [TEXT_PLAIN_VALUE, "application/pdf"])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnMethodController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
 
     @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnMethodController())
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
 }
 
 @RestController
@@ -83,43 +83,58 @@ open class RequestMappingOnClassDefaultValueController {
 
 @RestController
 @ResponseBody
-open class RequestMappingOnMethodDefaultValueController {
+open class RequestMappingOnFunctionDefaultValueController {
 
     @RequestMapping("/todos")
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOnMethodDefaultValueController())
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOnFunctionDefaultValueController())
 }
 
 @RestController
-@ResponseBody
-open class RequestMappingWithoutProducesInfoAndStringAsReturnValueDefinedOnFunctionController {
+@RequestMapping("/todos")
+open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
+
+    @RequestMapping
+    fun getAllTodos() { }
+}
+
+@RestController
+open class RequestMappingOnFunctionWithoutResponseBodyAnnotationController {
 
     @RequestMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() { }
 }
 
 @RestController
 @ResponseBody
 @RequestMapping("/todos")
-open class RequestMappingWithoutProducesInfoAndStringAsReturnValueDefinedOnClassController {
+open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueController {
 
     @RequestMapping
-    fun getAllTodos(): String = ""
+    fun getAllTodos() = ""
 }
 
 @RestController
 @ResponseBody
-open class GetMappingOneMediaTypeIsExractedCorrectlyController {
+open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyValueController {
+
+    @RequestMapping("/todos")
+    fun getAllTodos() = ""
+}
+
+@RestController
+@ResponseBody
+open class GetMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @GetMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(GetMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(GetMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class GetMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class GetMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @GetMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(GetMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(GetMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -132,26 +147,33 @@ open class GetMappingDefaultValueController {
 
 @RestController
 @ResponseBody
-open class GetMappingWithoutProducesInfoAndStringAsReturnValueController {
+open class GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @GetMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() = ""
+}
+
+@RestController
+open class GetMappingWithoutResponseBodyAnnotationController {
+
+    @GetMapping("/todos")
+    fun getAllTodos() { }
 }
 
 @RestController
 @ResponseBody
-open class DeleteMappingOneMediaTypeIsExractedCorrectlyController {
+open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class DeleteMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -164,26 +186,33 @@ open class DeleteMappingDefaultValueController {
 
 @RestController
 @ResponseBody
-open class DeleteMappingWithoutProducesInfoAndStringAsReturnValueController {
+open class DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @DeleteMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() = ""
+}
+
+@RestController
+open class DeleteMappingWithoutResponseBodyAnnotationController {
+
+    @DeleteMapping("/todos")
+    fun getAllTodos() { }
 }
 
 @RestController
 @ResponseBody
-open class PatchMappingOneMediaTypeIsExractedCorrectlyController {
+open class PatchMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PatchMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PatchMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PatchMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class PatchMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class PatchMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PatchMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PatchMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PatchMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -196,26 +225,33 @@ open class PatchMappingDefaultValueController {
 
 @RestController
 @ResponseBody
-open class PatchMappingWithoutProducesInfoAndStringAsReturnValueController {
+open class PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @PatchMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() = ""
+}
+
+@RestController
+open class PatchMappingWithoutResponseBodyAnnotationController {
+
+    @PatchMapping("/todos")
+    fun getAllTodos() { }
 }
 
 @RestController
 @ResponseBody
-open class PostMappingOneMediaTypeIsExractedCorrectlyController {
+open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PostMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PostMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PostMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class PostMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class PostMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PostMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PostMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PostMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -227,27 +263,34 @@ open class PostMappingDefaultValueController {
 }
 
 @RestController
-@ResponseBody
-open class PostMappingWithoutProducesInfoAndStringAsReturnValueController {
+open class PostMappingWithoutResponseBodyAnnotationController {
 
     @PostMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() { }
 }
 
 @RestController
 @ResponseBody
-open class PutMappingOneMediaTypeIsExractedCorrectlyController {
+open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
+
+    @PostMapping("/todos")
+    fun getAllTodos() = ""
+}
+
+@RestController
+@ResponseBody
+open class PutMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PutMapping("/todos", produces = [APPLICATION_XML_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PutMappingOneMediaTypeIsExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PutMappingOneMediaTypeIsExtractedCorrectlyController())
 }
 
 @RestController
 @ResponseBody
-open class PutMappingMultipleMediaTypesAreExractedCorrectlyController {
+open class PutMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PutMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(PutMappingMultipleMediaTypesAreExractedCorrectlyController())
+    fun getAllTodos() = ResponseEntity.status(200).body(PutMappingMultipleMediaTypesAreExtractedCorrectlyController())
 }
 
 @RestController
@@ -260,8 +303,15 @@ open class PutMappingDefaultValueController {
 
 @RestController
 @ResponseBody
-open class PutMappingWithoutProducesInfoAndStringAsReturnValueController {
+open class PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @PutMapping("/todos")
-    fun getAllTodos(): String = ""
+    fun getAllTodos() = ""
+}
+
+@RestController
+open class PutMappingWithoutResponseBodyAnnotationController {
+
+    @PutMapping("/todos")
+    fun getAllTodos() { }
 }

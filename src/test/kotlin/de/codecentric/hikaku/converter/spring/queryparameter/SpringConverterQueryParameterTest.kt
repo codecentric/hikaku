@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterQueryParameterTest {
@@ -31,8 +30,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -40,8 +38,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                                 QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 )
             )
 
@@ -68,8 +65,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -77,8 +73,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 )
             )
 
@@ -105,8 +100,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -114,8 +108,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", true)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 )
             )
 
@@ -156,8 +149,7 @@ class SpringConverterQueryParameterTest {
                             httpMethod = GET,
                             queryParameters = setOf(
                                 QueryParameter("tag", false)
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     ),
                     Endpoint("/todos", OPTIONS),
                     Endpoint(
@@ -165,8 +157,7 @@ class SpringConverterQueryParameterTest {
                             httpMethod = HEAD,
                             queryParameters = setOf(
                                 QueryParameter("tag", false)
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     )
             )
 
@@ -193,8 +184,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = GET,
                         queryParameters = setOf(
                             QueryParameter("tag", false)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 ),
                 Endpoint("/todos", OPTIONS),
                 Endpoint(
@@ -202,8 +192,7 @@ class SpringConverterQueryParameterTest {
                         httpMethod = HEAD,
                         queryParameters = setOf(
                             QueryParameter("tag", false)
-                        ),
-                        produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                        )
                 )
             )
 

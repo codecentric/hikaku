@@ -1053,7 +1053,7 @@ class HikakuTest {
                 val specificationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{organizationId}/{accountId}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/json",
@@ -1068,7 +1068,7 @@ class HikakuTest {
                 val implementationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{organizationId}/{accountId}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "plain/text",
@@ -1109,7 +1109,7 @@ class HikakuTest {
                 val specificationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/xml",
@@ -1125,7 +1125,7 @@ class HikakuTest {
                 val implementationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/json"
@@ -1165,7 +1165,7 @@ class HikakuTest {
                 val specificationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{accountId}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/xml",
@@ -1180,7 +1180,7 @@ class HikakuTest {
                 val implementationDummyConverter = object : EndpointConverter {
                     override val conversionResult: Set<Endpoint> = setOf(
                             Endpoint(
-                                    path = "/todos/{id}",
+                                    path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/json"
@@ -1188,6 +1188,175 @@ class HikakuTest {
                             )
                     )
                     override val supportedFeatures = SupportedFeatures(Feature.Produces)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(matchResult: MatchResult) {
+                        this.matchResult = matchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = reporter
+                        )
+                )
+
+                //when
+                assertFailsWith<AssertionFailedError> {
+                    hikaku.match()
+                }
+            }
+        }
+
+        @Nested
+        inner class ConsumesTests {
+
+            @Test
+            fun `media types in random order match if the feature is supported by both converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "application/json",
+                                            "plain/text"
+                                    )
+                            )
+
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Consumes)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "plain/text",
+                                            "application/json"
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Consumes)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(matchResult: MatchResult) {
+                        this.matchResult = matchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = reporter
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `produces is skipped if the feature is not supported by one of the converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "application/xml",
+                                            "plain/text"
+                                    )
+                            )
+
+                    )
+
+                    override val supportedFeatures = SupportedFeatures()
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "application/json"
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Consumes)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(matchResult: MatchResult) {
+                        this.matchResult = matchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = reporter
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `media types don't match`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "application/xml",
+                                            "plain/text"
+                                    )
+                            )
+
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Consumes)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    consumes = setOf(
+                                            "application/json"
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Consumes)
                 }
 
                 val reporter = object : Reporter {

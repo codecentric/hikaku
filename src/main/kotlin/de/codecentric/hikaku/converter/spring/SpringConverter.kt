@@ -8,8 +8,6 @@ import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import org.springframework.context.ApplicationContext
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
-import org.springframework.http.MediaType.TEXT_PLAIN_VALUE
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
@@ -26,7 +24,8 @@ class SpringConverter(
             Feature.QueryParameter,
             Feature.PathParameter,
             Feature.HeaderParameter,
-            Feature.Produces
+            Feature.Produces,
+            Feature.Consumes
     )
 
     override fun convert(): Set<Endpoint> {
@@ -51,7 +50,8 @@ class SpringConverter(
                     queryParameters = mappingEntry.value.queryParameter(),
                     pathParameters = mappingEntry.value.pathParameter(),
                     headerParameters = mappingEntry.value.headerParameter(),
-                    produces = extractProducesMediaType(mappingEntry)
+                    produces = mappingEntry.produces(),
+                    consumes = mappingEntry.consumes()
             )
         }
         .toMutableSet()
@@ -67,20 +67,6 @@ class SpringConverter(
         }
 
         return endpoints
-    }
-
-    private fun extractProducesMediaType(mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>): Set<String> {
-        val produces = mappingEntry.key.produces()
-
-        if (produces.isEmpty()) {
-            if (mappingEntry.value.method.returnType == String::class.java) {
-                return setOf(TEXT_PLAIN_VALUE)
-            }
-
-            return setOf(APPLICATION_JSON_UTF8_VALUE)
-        }
-
-        return produces
     }
 
     private fun removeRegex(path: String): String {

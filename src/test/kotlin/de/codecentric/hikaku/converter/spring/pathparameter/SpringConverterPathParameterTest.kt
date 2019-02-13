@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterPathParameterTest {
@@ -31,8 +30,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                 PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -40,8 +38,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                 PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     )
             )
 
@@ -68,8 +65,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -77,8 +73,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     )
             )
 
@@ -105,8 +100,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = GET,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     ),
                     Endpoint("/todos/{id}", OPTIONS),
                     Endpoint(
@@ -114,8 +108,7 @@ class SpringConverterPathParameterTest {
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     )
             )
 
@@ -156,16 +149,14 @@ class SpringConverterPathParameterTest {
                             httpMethod = OPTIONS,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     ),
                     Endpoint(
                             path = "/todos/{id}",
                             httpMethod = HEAD,
                             pathParameters = setOf(
                                     PathParameter("id")
-                            ),
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            )
                     )
             )
 

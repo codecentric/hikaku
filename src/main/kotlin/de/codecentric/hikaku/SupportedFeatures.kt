@@ -18,7 +18,9 @@ class SupportedFeatures(
         PathParameter,
         /** Checks the equality of the names of header parameters. */
         HeaderParameter,
-        /** Checks if a header parameter is required. */
-        Produces
+        /** Checks supported media type of responses. */
+        Produces,
+        /** Checks supported media type of requests. */
+        Consumes
     }
 }

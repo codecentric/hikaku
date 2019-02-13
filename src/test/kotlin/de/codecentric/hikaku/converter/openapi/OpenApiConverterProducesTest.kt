@@ -14,7 +14,11 @@ class OpenApiConverterProducesTest {
         //given
         val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_inline.yaml").toURI())
         val implementation = setOf(
-                Endpoint("/todos/query", GET, produces = setOf("application/json"))
+                Endpoint(
+                        path = "/todos/query",
+                        httpMethod = GET,
+                        produces = setOf("application/json")
+                )
         )
 
         //when
@@ -44,7 +48,11 @@ class OpenApiConverterProducesTest {
         //given
         val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_responses_ref.yaml").toURI())
         val implementation = setOf(
-                Endpoint("/todos", GET, produces = setOf("application/xml"))
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        produces = setOf("application/xml")
+                )
         )
 
         //when
@@ -59,7 +67,11 @@ class OpenApiConverterProducesTest {
         //given
         val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_with_default.yaml").toURI())
         val implementation = setOf(
-                Endpoint("/todos/query", GET, produces = setOf("application/json", "plain/text"))
+                Endpoint(
+                        path = "/todos/query",
+                        httpMethod = GET,
+                        produces = setOf("application/json", "plain/text")
+                )
         )
 
         //when

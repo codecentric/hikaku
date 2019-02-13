@@ -4,6 +4,9 @@ import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.endpoints.Endpoint
 
+
+private const val SEPARATOR = ", "
+
 class CommandLineReporter: Reporter {
 
     override fun report(endpointMatchResults: MatchResult) {
@@ -20,8 +23,7 @@ class CommandLineReporter: Reporter {
 
 
         if (endpointMatchResults.notFound.isNotEmpty()) {
-            println("")
-            println("👀 Expected, but unable to find:")
+            println("\n👀 Expected, but unable to find:")
 
             endpointMatchResults.notFound.forEach {
                 printEndpoint(endpointMatchResults.supportedFeatures, it)
@@ -29,8 +31,7 @@ class CommandLineReporter: Reporter {
         }
 
         if (endpointMatchResults.notExpected.isNotEmpty()) {
-            println("")
-            println("👻 Unexpected, but found:")
+            println("\n👻 Unexpected, but found:")
 
             endpointMatchResults.notExpected.forEach {
                 printEndpoint(endpointMatchResults.supportedFeatures, it)
@@ -43,10 +44,11 @@ class CommandLineReporter: Reporter {
 
         supportedFeatures.forEach {
             path += when(it) {
-                Feature.QueryParameter -> " ${endpoint.queryParameters.joinToString(separator = ", ")}"
-                Feature.PathParameter -> " ${endpoint.pathParameters.joinToString(separator = ", ")}"
-                Feature.HeaderParameter -> " ${endpoint.headerParameters.joinToString(separator = ", ")}"
-                Feature.Produces -> " ${endpoint.produces.joinToString(separator = ", ")}"
+                Feature.QueryParameter -> " ${endpoint.queryParameters.joinToString(separator = SEPARATOR)}"
+                Feature.PathParameter -> " ${endpoint.pathParameters.joinToString(separator = SEPARATOR)}"
+                Feature.HeaderParameter -> " ${endpoint.headerParameters.joinToString(separator = SEPARATOR)}"
+                Feature.Produces -> " ${endpoint.produces.joinToString(separator = SEPARATOR)}"
+                Feature.Consumes -> " ${endpoint.consumes.joinToString(separator = SEPARATOR)}"
             }
         }
 

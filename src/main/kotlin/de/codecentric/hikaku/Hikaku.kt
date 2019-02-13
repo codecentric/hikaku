@@ -83,6 +83,7 @@ class Hikaku(
                     Feature.PathParameter -> matches && it.pathParameters ==  otherEndpoint.pathParameters
                     Feature.HeaderParameter -> matches && it.headerParameters == otherEndpoint.headerParameters
                     Feature.Produces -> matches && it.produces == otherEndpoint.produces
+                    Feature.Consumes -> matches && it.consumes == otherEndpoint.consumes
                 }
             }
 

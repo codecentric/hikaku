@@ -25,7 +25,7 @@ plugins {
 apply plugin: 'kotlin'
 
 group = 'de.codecentric.hikaku'
-version = '0.0.1-SNAPSHOT'
+version = '1.1.0-SNAPSHOT'
 archivesBaseName = 'hikaku'
 sourceCompatibility = jvmVersion
 targetCompatibility = jvmVersion

@@ -7,6 +7,6 @@ The check for endpoint paths and http methods are base functions that every conv
 | --- | --- | --- | --- | --- |
 | QueryParameter | Name of a query parameter and whether the parameter is required or not. Example: `/todos?filter=all`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
 | PathParameter | Name of a path parameter. Example: `/todos/{id}`| YES _(1.0.0)_ | YES _(1.0.0)_ | YES _(1.1.0)_ |
-| HeaderParameterName | Name of a header parameter and whether the parameter is required or not. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
+| HeaderParameter | Name of a header parameter and whether the parameter is required or not. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
 | Produces | Checks the supported media types of the response. | YES _(1.1.0)_ | YES _(1.1.0)_ | YES _(1.1.0)_ |
 | Consumes | Checks the supported media types of the request. | NO | YES _(1.1.0)_ | YES _(1.1.0)_ |

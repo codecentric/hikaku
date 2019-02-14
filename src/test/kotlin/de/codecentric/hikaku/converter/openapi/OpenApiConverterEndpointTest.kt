@@ -11,7 +11,7 @@ class OpenApiConverterEndpointTest {
     @Test
     fun `extract two different paths`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/endpoints/endpoints_two_different_paths.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/endpoints/endpoints_two_different_paths.yaml").toURI())
         val implementation = setOf(
                 Endpoint("/todos", GET),
                 Endpoint("/tags", GET)
@@ -27,7 +27,7 @@ class OpenApiConverterEndpointTest {
     @Test
     fun `extract two paths of which one is nested`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/endpoints/endpoints_two_nested_paths.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/endpoints/endpoints_two_nested_paths.yaml").toURI())
         val implementation = setOf(
                 Endpoint("/todos", GET),
                 Endpoint("/todos/query", GET)
@@ -43,7 +43,7 @@ class OpenApiConverterEndpointTest {
     @Test
     fun `extract all http methods`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/endpoints/endpoints_all_http_methods.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/endpoints/endpoints_all_http_methods.yaml").toURI())
         val implementation = setOf(
                 Endpoint("/todos", GET),
                 Endpoint("/todos", POST),

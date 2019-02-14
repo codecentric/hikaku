@@ -14,7 +14,7 @@ class OpenApiConverterInvalidInputTest {
         @Test
         fun `empty string as specification throws an exception`() {
             //given
-            val file = Paths.get(OpenApiConverterInvalidInputTest::class.java.classLoader.getResource("openapi/empty_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("openapi/empty_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
@@ -25,7 +25,7 @@ class OpenApiConverterInvalidInputTest {
         @Test
         fun `specification string consisting solely of whitespaces throws an exception`() {
             //given
-            val file = Paths.get(OpenApiConverterInvalidInputTest::class.java.classLoader.getResource("openapi/whitespace_only_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("openapi/whitespace_only_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
@@ -123,7 +123,7 @@ class OpenApiConverterInvalidInputTest {
         @Test
         fun `OpenAPI yaml file containing syntax error throws IllegalStateException, because OpenAPI object will be null (The parser is extremely fault tolerant)`() {
             //given
-            val file = Paths.get(OpenApiConverterInvalidInputTest::class.java.classLoader.getResource("openapi/syntax_error.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("openapi/syntax_error.yaml").toURI())
             val converter = OpenApiConverter(file)
 
             //when

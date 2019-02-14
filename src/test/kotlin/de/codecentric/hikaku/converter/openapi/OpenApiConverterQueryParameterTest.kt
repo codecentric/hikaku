@@ -10,7 +10,7 @@ class OpenApiConverterQueryParameterTest {
     @Test
     fun `check that query parameter are extracted correctly`() {
         //given
-        val file = Paths.get(OpenApiConverterQueryParameterTest::class.java.classLoader.getResource("openapi/query_parameter.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/query_parameter.yaml").toURI())
         val queryParameters = setOf(
                 QueryParameter("tag", false),
                 QueryParameter("limit", true)

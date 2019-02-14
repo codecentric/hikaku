@@ -35,7 +35,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             Feature.QueryParameter,
             Feature.HeaderParameter,
             Feature.PathParameter,
-            Feature.Produces
+            Feature.Produces,
+            Feature.Consumes
     )
 
     private val xPath = XPathFactory
@@ -76,7 +77,8 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                             queryParameters = extractQueryParameters(method),
                             headerParameters = extractHeaderParameters(method),
                             pathParameters = extractPathParameters(method),
-                            produces = extractResponseMediaTypes(method)
+                            produces = extractResponseMediaTypes(method),
+                            consumes = extractConsumesMediaTypes(method)
                     )
             )
         }
@@ -84,9 +86,12 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         return endpoints
     }
 
-    private fun extractResponseMediaTypes(method: Node): Set<String> {
-        val representations = xPath.evaluate("//representation", method.childNodes, NODESET) as NodeList
+    private fun extractResponseMediaTypes(method: Node) = extractMediaTypes(method, "response")
 
+    private fun extractConsumesMediaTypes(method: Node) = extractMediaTypes(method, "request")
+
+    private fun extractMediaTypes(method: Node, xmlBaseElement: String): Set<String> {
+        val representations = xPath.evaluate("//$xmlBaseElement/representation", method.childNodes, NODESET) as NodeList
         val mediaTypes: MutableSet<String> = mutableSetOf()
 
         for (i in 0 until representations.length) {
@@ -98,26 +103,28 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     }
 
     private fun extractPathParameters(method: Node): Set<PathParameter> {
-        return extractParameter(method, "template").entries
+        return extractParameter(method, "template")
+                .entries
                 .map { PathParameter(it.key) }
                 .toSet()
     }
 
     private fun extractQueryParameters(method: Node): Set<QueryParameter> {
-        return extractParameter(method, "query").entries
+        return extractParameter(method, "query")
+                .entries
                 .map { QueryParameter(it.key, it.value) }
                 .toSet()
     }
 
     private fun extractHeaderParameters(method: Node): Set<HeaderParameter> {
-        return extractParameter(method, "header").entries
+        return extractParameter(method, "header")
+                .entries
                 .map { HeaderParameter(it.key, it.value) }
                 .toSet()
     }
 
     private fun extractParameter(method: Node, style: String): Map<String, Boolean> {
         val parameters = xPath.evaluate("//param[@style=\"$style\"]", method.childNodes, NODESET) as NodeList
-
         val parameterMap: MutableMap<String, Boolean> = mutableMapOf()
 
         for (i in 0 until parameters.length) {

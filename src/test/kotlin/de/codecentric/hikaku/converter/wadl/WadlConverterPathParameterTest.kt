@@ -11,7 +11,7 @@ class WadlConverterPathParameterTest {
     @Test
     fun `check that path parameter are extracted correctly`() {
         //given
-        val file = Paths.get(WadlConverterPathParameterTest::class.java.classLoader.getResource("wadl/path_parameter.wadl").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("wadl/path_parameter.wadl").toURI())
         val pathParameter = PathParameter("id")
 
         //when

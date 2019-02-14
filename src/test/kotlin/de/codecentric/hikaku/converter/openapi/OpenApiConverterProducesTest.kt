@@ -12,7 +12,7 @@ class OpenApiConverterProducesTest {
     @Test
     fun `inline declaration`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_inline.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_inline.yaml").toURI())
         val implementation = setOf(
                 Endpoint(
                         path = "/todos/query",
@@ -31,7 +31,7 @@ class OpenApiConverterProducesTest {
     @Test
     fun `no content-type`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_no_content_type.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_no_content_type.yaml").toURI())
         val implementation = setOf(
                 Endpoint("/todos", DELETE)
         )
@@ -46,7 +46,7 @@ class OpenApiConverterProducesTest {
     @Test
     fun `response is declared in components section`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_responses_ref.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_responses_ref.yaml").toURI())
         val implementation = setOf(
                 Endpoint(
                         path = "/todos",
@@ -65,7 +65,7 @@ class OpenApiConverterProducesTest {
     @Test
     fun `produces having a default value`() {
         //given
-        val file = Paths.get(OpenApiConverterEndpointTest::class.java.classLoader.getResource("openapi/produces/produces_with_default.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_with_default.yaml").toURI())
         val implementation = setOf(
                 Endpoint(
                         path = "/todos/query",

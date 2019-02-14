@@ -16,7 +16,7 @@ class WadlConverterInvalidInputTest {
         @Test
         fun `empty string as specification throws an exception`() {
             //given
-            val file = Paths.get(WadlConverterInvalidInputTest::class.java.classLoader.getResource("wadl/empty_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("wadl/empty_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
@@ -27,7 +27,7 @@ class WadlConverterInvalidInputTest {
         @Test
         fun `specification string consisting solely of whitespaces throws an exception`() {
             //given
-            val file = Paths.get(WadlConverterInvalidInputTest::class.java.classLoader.getResource("wadl/whitespace_only_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("wadl/whitespace_only_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
@@ -97,7 +97,7 @@ class WadlConverterInvalidInputTest {
         @Test
         fun `WADL file containing syntax error throws SAXParseException`() {
             //given
-            val file = Paths.get(WadlConverterInvalidInputTest::class.java.classLoader.getResource("wadl/syntax_error.wadl").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("wadl/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
             //when

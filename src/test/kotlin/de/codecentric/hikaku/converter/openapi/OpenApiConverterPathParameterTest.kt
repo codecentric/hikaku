@@ -10,7 +10,7 @@ class OpenApiConverterPathParameterTest {
     @Test
     fun `check that path parameter are extracted correctly`() {
         //given
-        val file = Paths.get(OpenApiConverterPathParameterTest::class.java.classLoader.getResource("openapi/path_parameter.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/path_parameter.yaml").toURI())
         val pathParameter = PathParameter("id")
 
         //when

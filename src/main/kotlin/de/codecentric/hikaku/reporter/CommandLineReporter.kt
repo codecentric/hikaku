@@ -7,6 +7,9 @@ import de.codecentric.hikaku.endpoints.Endpoint
 
 private const val SEPARATOR = ", "
 
+/**
+ * Simply prints the result to stdout.
+ */
 class CommandLineReporter: Reporter {
 
     override fun report(endpointMatchResults: MatchResult) {

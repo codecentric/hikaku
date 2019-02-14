@@ -110,6 +110,8 @@ You will find a list of spring specific features that are supported below.
 
 + Supports default value in case no consumes definition has been set
 
++ Supports `*/*` if the return value is a String and no consumes definition has been set
+
 ## Currently not supported
 
 + Checking whether or not to explode query parameter.

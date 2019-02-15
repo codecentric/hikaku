@@ -15,7 +15,7 @@ class OpenApiConverterProducesTest {
         val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_inline.yaml").toURI())
         val implementation = setOf(
                 Endpoint(
-                        path = "/todos/query",
+                        path = "/todos",
                         httpMethod = GET,
                         produces = setOf("application/json")
                 )
@@ -46,7 +46,7 @@ class OpenApiConverterProducesTest {
     @Test
     fun `response is declared in components section`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_responses_ref.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("openapi/produces/produces_response_in_components.yaml").toURI())
         val implementation = setOf(
                 Endpoint(
                         path = "/todos",

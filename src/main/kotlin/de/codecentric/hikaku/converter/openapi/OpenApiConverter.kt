@@ -39,7 +39,8 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
             Feature.QueryParameter,
             Feature.PathParameter,
             Feature.HeaderParameter,
-            Feature.Produces
+            Feature.Produces,
+            Feature.Consumes
     )
 
     override fun convert(): Set<Endpoint> {
@@ -75,20 +76,49 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
                 queryParameters = queryParameters,
                 pathParameters = pathParameters,
                 headerParameters = headerParameters,
-                produces = extractProduceContentTypes(operation)
+                produces = extractProduceMediaTypes(operation),
+                consumes = extractConsumesMediaTypes(operation)
         )
     }
 
-    private fun extractProduceContentTypes(operation: Operation?): Set<String> {
+    private fun extractConsumesMediaTypes(operation: Operation?): Set<String> {
+        return operation?.requestBody
+                ?.content
+                ?.keys
+                .orEmpty()
+                .union(extractConsumesFromComponents(operation))
+                .toSet()
+    }
+
+    private fun extractConsumesFromComponents(operation: Operation?): Set<String> {
+        return operation?.requestBody
+                ?.`$ref`
+                ?.let {
+                    Regex("#/components/requestBodies/(?<key>.+)")
+                            .find(it)
+                            ?.groups
+                            ?.get("key")
+                            ?.value
+                }
+                ?.let {
+                    openApi.components
+                            .requestBodies[it]
+                            ?.content
+                            ?.keys
+                }
+                .orEmpty()
+    }
+
+    private fun extractProduceMediaTypes(operation: Operation?): Set<String> {
         return operation?.responses
                 ?.flatMap {
                     it.value
-                        ?.content
-                        ?.keys
-                        .orEmpty()
+                            ?.content
+                            ?.keys
+                            .orEmpty()
                 }
-                ?.union(extractResponsesFromComponents(operation))
                 .orEmpty()
+                .union(extractResponsesFromComponents(operation))
                 .toSet()
     }
 

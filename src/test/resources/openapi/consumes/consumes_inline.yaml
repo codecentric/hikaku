@@ -4,15 +4,16 @@ info:
   title: Todo List
 paths:
   /todos:
-    get:
+    post:
       description: ''
+      requestBody:
+        content:
+          'application/xml':
+            schema:
+              $ref: '#/components/schemas/Todo'
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Todo'
 components:
   schemas:
     Todo:

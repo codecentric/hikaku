@@ -25,8 +25,18 @@ The match result will be send to a `Reporter` and the kotlin assertion is called
 ### Example
 
 In this example our project consists of an OpenAPI specification and a Spring implementation. The specification does not contain the _/error_ endpoints created by spring, so we want to omit those.
+So we first add the dependencies for the converters, that we want to use. In this case `hikaku-opeanapi` and `hikaku-spring`.
+
+```
+dependencies {
+    testImplementation: "de.codecentric.hikaku:hikaku-openapi:$hikakuVersion"
+    testImplementation: "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
+}
+```
 
 #### Kotlin
+
+And now we can create the test case:
 
 ```
 @RunWith(SpringRunner::class)

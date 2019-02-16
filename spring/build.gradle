@@ -1,0 +1,28 @@
+buildscript {
+  ext {
+    springBootVersion = '2.1.3.RELEASE'
+  }
+}
+
+group = 'de.codecentric.hikaku'
+archivesBaseName = 'hikaku-spring'
+
+dependencies {
+  api 'org.springframework:spring-webmvc:5.1.5.RELEASE'
+  implementation project(':core')
+
+  testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+  testImplementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      pom.project {
+        name 'hikaku-spring'
+
+        description "A library to test if the implementation of a REST-API meets its specification. This module contains a converter for spring-mvc implementations."
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ class WadlConverterInvalidInputTest {
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                de.codecentric.hikaku.converter.openapi.OpenApiConverter(file)
+                de.codecentric.hikaku.converter.wadl.WadlConverter(file)
             }
         }
 
@@ -31,7 +31,7 @@ class WadlConverterInvalidInputTest {
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                de.codecentric.hikaku.converter.openapi.OpenApiConverter(file)
+                de.codecentric.hikaku.converter.wadl.WadlConverter(file)
             }
         }
     }

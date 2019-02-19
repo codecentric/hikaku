@@ -29,7 +29,7 @@ class Hikaku(
     }
 
     private fun reportResult(matchResult: MatchResult) {
-        config.reporter.report(matchResult)
+        config.reporter.forEach { it.report(matchResult) }
     }
 
     /**

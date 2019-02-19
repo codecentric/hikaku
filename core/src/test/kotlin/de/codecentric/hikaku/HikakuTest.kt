@@ -8,12 +8,12 @@ import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
 import de.codecentric.hikaku.reporter.MatchResult
-import de.codecentric.hikaku.reporter.NoOperationReporter
 import de.codecentric.hikaku.reporter.Reporter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.opentest4j.AssertionFailedError
+import java.lang.IllegalStateException
 import kotlin.test.assertFailsWith
 
 class HikakuTest {
@@ -41,10 +41,7 @@ class HikakuTest {
 
             val hikaku = Hikaku(
                     specificationDummyConverter,
-                    implementationDummyConverter,
-                    HikakuConfig(
-                            reporter = NoOperationReporter()
-                    )
+                    implementationDummyConverter
             )
 
             //when
@@ -78,8 +75,8 @@ class HikakuTest {
             val reporter = object : Reporter {
                 lateinit var matchResult: MatchResult
 
-                override fun report(matchResult: MatchResult) {
-                    this.matchResult = matchResult
+                override fun report(endpointMatchResult: MatchResult) {
+                    this.matchResult = endpointMatchResult
                 }
             }
 
@@ -87,7 +84,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -157,8 +154,8 @@ class HikakuTest {
             val reporter = object : Reporter {
                 lateinit var matchResult: MatchResult
 
-                override fun report(matchResult: MatchResult) {
-                    this.matchResult = matchResult
+                override fun report(endpointMatchResult: MatchResult) {
+                    this.matchResult = endpointMatchResult
                 }
             }
 
@@ -166,7 +163,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -252,8 +249,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -261,7 +258,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -307,8 +304,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -316,7 +313,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -361,8 +358,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -370,7 +367,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -421,8 +418,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -430,7 +427,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -476,8 +473,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -485,7 +482,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -531,8 +528,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -540,7 +537,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -583,8 +580,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -592,7 +589,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -638,8 +635,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -647,7 +644,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -693,8 +690,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -702,7 +699,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -751,8 +748,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -760,7 +757,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -806,8 +803,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -815,7 +812,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -861,8 +858,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -870,7 +867,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -913,8 +910,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -922,7 +919,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -968,8 +965,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -977,7 +974,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1023,8 +1020,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1032,7 +1029,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1081,8 +1078,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1090,7 +1087,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1137,8 +1134,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1146,7 +1143,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1192,8 +1189,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1201,7 +1198,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1250,8 +1247,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1259,7 +1256,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1306,8 +1303,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1315,7 +1312,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1361,8 +1358,8 @@ class HikakuTest {
                 val reporter = object : Reporter {
                     lateinit var matchResult: MatchResult
 
-                    override fun report(matchResult: MatchResult) {
-                        this.matchResult = matchResult
+                    override fun report(endpointMatchResult: MatchResult) {
+                        this.matchResult = endpointMatchResult
                     }
                 }
 
@@ -1370,7 +1367,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = reporter
+                                reporter = listOf(reporter)
                         )
                 )
 
@@ -1406,8 +1403,8 @@ class HikakuTest {
             val reporter = object : Reporter {
                 lateinit var matchResult: MatchResult
 
-                override fun report(matchResult: MatchResult) {
-                    this.matchResult = matchResult
+                override fun report(endpointMatchResult: MatchResult) {
+                    this.matchResult = endpointMatchResult
                 }
             }
 
@@ -1416,7 +1413,7 @@ class HikakuTest {
                     dummyConverter,
                     HikakuConfig(
                             ignoreHttpMethodHead = true,
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -1449,8 +1446,8 @@ class HikakuTest {
             val reporter = object : Reporter {
                 lateinit var matchResult: MatchResult
 
-                override fun report(matchResult: MatchResult) {
-                    this.matchResult = matchResult
+                override fun report(endpointMatchResult: MatchResult) {
+                    this.matchResult = endpointMatchResult
                 }
             }
 
@@ -1459,7 +1456,7 @@ class HikakuTest {
                     dummyConverter,
                     HikakuConfig(
                             ignoreHttpMethodOptions = true,
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -1494,8 +1491,8 @@ class HikakuTest {
             val reporter = object : Reporter {
                 lateinit var matchResult: MatchResult
 
-                override fun report(matchResult: MatchResult) {
-                    this.matchResult = matchResult
+                override fun report(endpointMatchResult: MatchResult) {
+                    this.matchResult = endpointMatchResult
                 }
             }
 
@@ -1504,7 +1501,7 @@ class HikakuTest {
                     implementationDummyConverter,
                     HikakuConfig(
                             ignorePaths = setOf("/error"),
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -1534,7 +1531,7 @@ class HikakuTest {
             val reporter = object : Reporter {
                 var hasBeenCalled: Boolean = false
 
-                override fun report(matchResult: MatchResult) {
+                override fun report(endpointMatchResult: MatchResult) {
                     hasBeenCalled = true
                 }
             }
@@ -1543,7 +1540,7 @@ class HikakuTest {
                     dummyConverter,
                     dummyConverter,
                     HikakuConfig(
-                            reporter = reporter
+                            reporter = listOf(reporter)
                     )
             )
 
@@ -1552,6 +1549,49 @@ class HikakuTest {
 
             //then
             assertThat(reporter.hasBeenCalled).isTrue()
+        }
+
+        @Test
+        fun `MatchResult can be passed to multiple Reporter`() {
+            //given
+            val dummyConverter = object : EndpointConverter {
+                override val conversionResult: Set<Endpoint> = setOf(
+                        Endpoint("/todos")
+                )
+                override val supportedFeatures = SupportedFeatures()
+            }
+
+
+            val firstReporter = object : Reporter {
+                var hasBeenCalled: Boolean = false
+
+                override fun report(endpointMatchResult: MatchResult) {
+                    hasBeenCalled = true
+                }
+            }
+
+            val secondReporter = object : Reporter {
+                var hasBeenCalled: Boolean = false
+
+                override fun report(endpointMatchResult: MatchResult) {
+                    hasBeenCalled = true
+                }
+            }
+
+            val hikaku = Hikaku(
+                    dummyConverter,
+                    dummyConverter,
+                    HikakuConfig(
+                            reporter = listOf(firstReporter, secondReporter)
+                    )
+            )
+
+            //when
+            hikaku.match()
+
+            //then
+            assertThat(firstReporter.hasBeenCalled).isTrue()
+            assertThat(secondReporter.hasBeenCalled).isTrue()
         }
     }
 }

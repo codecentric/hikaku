@@ -76,7 +76,7 @@ class HikakuTest {
                 lateinit var matchResult: MatchResult
 
                 override fun report(endpointMatchResult: MatchResult) {
-                    this.matchResult = endpointMatchResult
+                    matchResult = endpointMatchResult
                 }
             }
 
@@ -155,7 +155,7 @@ class HikakuTest {
                 lateinit var matchResult: MatchResult
 
                 override fun report(endpointMatchResult: MatchResult) {
-                    this.matchResult = endpointMatchResult
+                    matchResult = endpointMatchResult
                 }
             }
 
@@ -250,7 +250,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -305,7 +305,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -359,7 +359,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -419,7 +419,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -474,7 +474,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -529,7 +529,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -581,7 +581,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -636,7 +636,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -691,7 +691,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -749,7 +749,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -804,7 +804,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -859,7 +859,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -911,7 +911,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -966,7 +966,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1021,7 +1021,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1079,7 +1079,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1135,7 +1135,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1190,7 +1190,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1248,7 +1248,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1304,7 +1304,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1359,7 +1359,7 @@ class HikakuTest {
                     lateinit var matchResult: MatchResult
 
                     override fun report(endpointMatchResult: MatchResult) {
-                        this.matchResult = endpointMatchResult
+                        matchResult = endpointMatchResult
                     }
                 }
 
@@ -1404,7 +1404,7 @@ class HikakuTest {
                 lateinit var matchResult: MatchResult
 
                 override fun report(endpointMatchResult: MatchResult) {
-                    this.matchResult = endpointMatchResult
+                    matchResult = endpointMatchResult
                 }
             }
 
@@ -1447,7 +1447,7 @@ class HikakuTest {
                 lateinit var matchResult: MatchResult
 
                 override fun report(endpointMatchResult: MatchResult) {
-                    this.matchResult = endpointMatchResult
+                    matchResult = endpointMatchResult
                 }
             }
 
@@ -1492,7 +1492,7 @@ class HikakuTest {
                 lateinit var matchResult: MatchResult
 
                 override fun report(endpointMatchResult: MatchResult) {
-                    this.matchResult = endpointMatchResult
+                    matchResult = endpointMatchResult
                 }
             }
 

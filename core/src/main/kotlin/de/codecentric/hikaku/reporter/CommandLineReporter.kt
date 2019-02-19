@@ -12,32 +12,32 @@ private const val SEPARATOR = ", "
  */
 class CommandLineReporter: Reporter {
 
-    override fun report(endpointMatchResults: MatchResult) {
+    override fun report(endpointMatchResult: MatchResult) {
         val heading = "Hikaku test result:"
 
         println("\n")
         println(heading)
         println("#".repeat(heading.length))
 
-        if (endpointMatchResults.notFound.isEmpty() && endpointMatchResults.notExpected.isEmpty()) {
+        if (endpointMatchResult.notFound.isEmpty() && endpointMatchResult.notExpected.isEmpty()) {
             println ("")
             println ("✅ Test successful. Specification and implementation match.")
         }
 
 
-        if (endpointMatchResults.notFound.isNotEmpty()) {
+        if (endpointMatchResult.notFound.isNotEmpty()) {
             println("\n👀 Expected, but unable to find:")
 
-            endpointMatchResults.notFound.forEach {
-                printEndpoint(endpointMatchResults.supportedFeatures, it)
+            endpointMatchResult.notFound.forEach {
+                printEndpoint(endpointMatchResult.supportedFeatures, it)
             }
         }
 
-        if (endpointMatchResults.notExpected.isNotEmpty()) {
+        if (endpointMatchResult.notExpected.isNotEmpty()) {
             println("\n👻 Unexpected, but found:")
 
-            endpointMatchResults.notExpected.forEach {
-                printEndpoint(endpointMatchResults.supportedFeatures, it)
+            endpointMatchResult.notExpected.forEach {
+                printEndpoint(endpointMatchResult.supportedFeatures, it)
             }
         }
     }

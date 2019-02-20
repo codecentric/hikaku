@@ -380,3 +380,10 @@ open class MultipleHttpMethodMappingAnnotationsController {
     @DeleteMapping("/todos")
     fun tdos() { }
 }
+
+@RestController
+open class HttpMethodsForDefaultErrorEndpointController {
+
+    @GetMapping("/todos")
+    fun todos() { }
+}

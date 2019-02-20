@@ -1,8 +1,7 @@
 package de.codecentric.hikaku.converter.openapi
 
 import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.HttpMethod.*
+import de.codecentric.hikaku.endpoints.HttpMethod.POST
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths

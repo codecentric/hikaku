@@ -49,3 +49,10 @@ open class QueryParameterOptionalBecauseOfDefaultValueController {
     @GetMapping("/todos")
     fun getAllTodos(@RequestParam(name = "tag", defaultValue = "mytag") variable: String) { }
 }
+
+@RestController
+open class QueryParameterOnDefaultErrorEndpointController {
+
+    @GetMapping("/todos")
+    fun getAllTodos(@RequestParam(value = "tag", required = false) variable: String) { }
+}

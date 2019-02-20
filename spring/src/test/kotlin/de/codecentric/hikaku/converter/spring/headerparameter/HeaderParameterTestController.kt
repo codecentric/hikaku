@@ -49,3 +49,11 @@ open class HeaderParameterOptionalBecauseOfDefaultValueController {
     @GetMapping("/todos")
     fun getAllTodos(@RequestHeader(name = "tracker-id", defaultValue = "unknown") variable: Boolean) { }
 }
+
+
+@RestController
+open class HeaderParameterOnDefaultErrorEndpointController {
+
+    @GetMapping("/todos")
+    fun getAllTodos(@RequestHeader(value = "use-cache") variable: Boolean) { }
+}

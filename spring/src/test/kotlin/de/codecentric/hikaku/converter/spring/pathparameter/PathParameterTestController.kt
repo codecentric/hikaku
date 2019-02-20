@@ -48,3 +48,11 @@ open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
     @RequestMapping("/todos/{id}", method = [OPTIONS])
     fun getSpecificTodoItem(@PathVariable id: Int) { }
 }
+
+@RestController
+@RequestMapping("/todos")
+open class PathParameterOnDefaultErrorEndpointController {
+
+    @GetMapping("/{id}")
+    fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) { }
+}

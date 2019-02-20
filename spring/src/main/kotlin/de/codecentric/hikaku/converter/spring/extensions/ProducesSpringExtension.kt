@@ -24,7 +24,9 @@ fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String> {
             .kotlinFunction
             ?.findAnnotation<ResponseBody>() != null
 
-    if (!isResponseBodyAnnotationOnClass && !isResponseBodyAnnotationOnFunction) {
+    val isErrorPath = this.key.patternsCondition.patterns.contains("/error")
+
+    if (!isErrorPath && !isResponseBodyAnnotationOnClass && !isResponseBodyAnnotationOnFunction) {
         return emptySet()
     }
 

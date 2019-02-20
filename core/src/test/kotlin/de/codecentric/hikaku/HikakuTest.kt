@@ -13,7 +13,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.opentest4j.AssertionFailedError
-import java.lang.IllegalStateException
 import kotlin.test.assertFailsWith
 
 class HikakuTest {

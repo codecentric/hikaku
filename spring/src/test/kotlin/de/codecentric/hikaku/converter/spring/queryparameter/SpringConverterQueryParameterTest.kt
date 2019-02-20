@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType
 import kotlin.test.assertFailsWith
 
 class SpringConverterQueryParameterTest {
@@ -194,6 +195,103 @@ class SpringConverterQueryParameterTest {
                             QueryParameter("tag", false)
                         )
                 )
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+        }
+    }
+
+    @Nested
+    @WebMvcTest(QueryParameterOnDefaultErrorEndpointController::class)
+    inner class QueryParameterOnDefaultErrorEndpointTest {
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `query parameters are not added to default error endpoint`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                    Endpoint(
+                            path = "/todos",
+                            httpMethod = GET,
+                            queryParameters = setOf(
+                                    QueryParameter("tag")
+                            )
+                    ),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint(
+                            path = "/todos",
+                            httpMethod = HEAD,
+                            queryParameters = setOf(
+                                    QueryParameter("tag")
+                            )
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(MediaType.TEXT_HTML_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS)
             )
 
             //when

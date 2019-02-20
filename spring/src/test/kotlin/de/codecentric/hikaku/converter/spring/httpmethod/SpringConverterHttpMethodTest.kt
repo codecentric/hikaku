@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.http.MediaType.TEXT_HTML_VALUE
 
 class HttpMethodTestController {
 
@@ -1201,6 +1203,91 @@ class HttpMethodTestController {
                 //then
                 assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
             }
+        }
+    }
+
+    @Nested
+    @WebMvcTest(HttpMethodsForDefaultErrorEndpointController::class)
+    inner class HttpMethodsForDefaultErrorEndpointTest {
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `all http methods are provided by the default error endpoint`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                    Endpoint("/todos", GET),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint("/todos", HEAD),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS)
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 }

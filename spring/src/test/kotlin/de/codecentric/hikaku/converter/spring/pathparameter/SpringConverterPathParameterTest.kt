@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.http.MediaType.TEXT_HTML_VALUE
 import kotlin.test.assertFailsWith
 
 class SpringConverterPathParameterTest {
@@ -158,6 +160,103 @@ class SpringConverterPathParameterTest {
                                     PathParameter("id")
                             )
                     )
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+        }
+    }
+
+    @Nested
+    @WebMvcTest(PathParameterOnDefaultErrorEndpointController::class)
+    inner class PathParameterOnDefaultErrorEndpointTest {
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `path parameters are not added to default error endpoint`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                    Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = GET,
+                            pathParameters = setOf(
+                                    PathParameter("id")
+                            )
+                    ),
+                    Endpoint("/todos/{id}", OPTIONS),
+                    Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = HEAD,
+                            pathParameters = setOf(
+                                    PathParameter("id")
+                            )
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS)
             )
 
             //when

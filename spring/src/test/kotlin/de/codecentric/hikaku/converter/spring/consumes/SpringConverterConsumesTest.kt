@@ -558,176 +558,6 @@ class SpringConverterConsumesTest {
                 }
             }
         }
-        
-        @Nested
-        inner class OverwriteTests {
-            
-            @Nested
-            @WebMvcTest(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class OneMediaTypeIsOverwrittenByDeclarationOnFunctionTest {
-    
-                @Autowired
-                lateinit var context: ConfigurableApplicationContext
-    
-                @Test
-                fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
-                    //given
-                    val specification: Set<Endpoint> = setOf(
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = GET,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = POST,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = HEAD,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = PUT,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = PATCH,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = DELETE,
-                                    consumes = setOf(APPLICATION_XML_VALUE)
-                            ),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = GET,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = POST,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = HEAD,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = PUT,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = PATCH,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = DELETE,
-                                    consumes = setOf(TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint("/tags", OPTIONS)
-                    )
-    
-                    //when
-                    val implementation = SpringConverter(context)
-    
-                    //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
-                }
-            }
-    
-            @Nested
-            @WebMvcTest(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class MultipleMediaTypesAreOverwrittenByDeclarationOnFunctionTest {
-    
-                @Autowired
-                lateinit var context: ConfigurableApplicationContext
-    
-                @Test
-                fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
-                    //given
-                    val specification: Set<Endpoint> = setOf(
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = GET,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = POST,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = HEAD,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = PUT,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = PATCH,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/todos",
-                                    httpMethod = DELETE,
-                                    consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
-                            ),
-                            Endpoint("/todos", OPTIONS),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = GET,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = POST,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = HEAD,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = PUT,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = PATCH,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint(
-                                    path = "/tags",
-                                    httpMethod = DELETE,
-                                    consumes = setOf("application/pdf", TEXT_PLAIN_VALUE)
-                            ),
-                            Endpoint("/tags", OPTIONS)
-                    )
-    
-                    //when
-                    val implementation = SpringConverter(context)
-    
-                    //then
-                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
-                }
-            }
-        }
     }
 
     @Nested
@@ -1507,6 +1337,590 @@ class SpringConverterConsumesTest {
                 //then
                 assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
             }
+        }
+    }
+
+    @Nested
+    inner class OverwriteTests {
+
+        @Nested
+        @WebMvcTest(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = GET,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = POST,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PUT,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PATCH,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = DELETE,
+                                consumes = setOf(APPLICATION_XML_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = GET,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = POST,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = PUT,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = PATCH,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = DELETE,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/tags", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `media type declared at class level using RequestMapping is overwritten by a declaration at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = GET,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = POST,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PUT,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PATCH,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = DELETE,
+                                consumes = setOf(APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = GET,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = POST,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = HEAD,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = PUT,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = PATCH,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/tags",
+                                httpMethod = DELETE,
+                                consumes = setOf(APPLICATION_PDF_VALUE, TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/tags", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(GetMappingOneMediaTypeIsOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class GetMappingOneMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = GET,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(DeleteMappingOneMediaTypeIsOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class DeleteMappingOneMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = DELETE,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PatchMappingOneMediaTypeIsOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PatchMappingOneMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PATCH,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PostMappingOneMediaTypeIsOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PostMappingOneMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = POST,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PutMappingOneMediaTypeIsOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PutMappingOneMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PUT,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(GetMappingMultipleMediaTypesAreOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class GetMappingMultipleMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = GET,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(DeleteMappingMultipleMediaTypesAreOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class DeleteMappingMultipleMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = DELETE,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PatchMappingMultipleMediaTypesAreOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PatchMappingMultipleMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PATCH,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PostMappingMultipleMediaTypesAreOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PostMappingMultipleMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = POST,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PutMappingMultipleMediaTypesAreOverwrittenController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class PutMappingMultipleMediaTypeIsOverwrittenTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `mime type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = PUT,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint(
+                                path = "/todos",
+                                httpMethod = HEAD,
+                                consumes = setOf(TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE)
+                        ),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+    }
+
+    @Nested
+    @WebMvcTest(ErrorEndpointController::class)
+    inner class MediaTypeIsNotAddedToDefaultErrorEndpoint {
+
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `error endpoint does not provide the same mime type`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                    Endpoint(
+                            path = "/todos",
+                            httpMethod = GET,
+                            consumes = setOf(APPLICATION_PDF_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/todos",
+                            httpMethod = HEAD,
+                            consumes = setOf(APPLICATION_PDF_VALUE)
+                    ),
+                    Endpoint("/todos", OPTIONS),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = GET,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = POST,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = HEAD,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PUT,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = PATCH,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint(
+                            path = "/error",
+                            httpMethod = DELETE,
+                            produces = setOf(TEXT_HTML_VALUE)
+                    ),
+                    Endpoint("/error", OPTIONS)
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
 }

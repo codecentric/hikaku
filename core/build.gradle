@@ -5,9 +5,8 @@ uploadArchives {
   repositories {
     mavenDeployer {
       pom.project {
-        name 'hikaku-core'
-
-        description "A library to test if the implementation of a REST-API meets its specification. This module contains the core elements which can be used to create additional converters and reporters."
+        name = 'hikaku-core'
+        description = 'A library to test if the implementation of a REST-API meets its specification. This module contains the core elements which can be used to create additional converters and reporters.'
       }
     }
   }

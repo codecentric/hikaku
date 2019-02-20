@@ -61,12 +61,12 @@ subprojects {
     }
 
     task javadocJar(type: Jar) {
-        classifier = 'javadoc'
+        archiveClassifier = 'javadoc'
         from javadoc
     }
 
     task sourcesJar(type: Jar) {
-        classifier = 'sources'
+        archiveClassifier = 'sources'
         from sourceSets.main.allSource
     }
 
@@ -92,28 +92,28 @@ subprojects {
                 }
 
                 pom.project {
-                    packaging 'jar'
+                    packaging = 'jar'
 
-                    url 'https://github.com/codecentric/hikaku'
+                    url ='https://github.com/codecentric/hikaku'
 
                     scm {
-                        connection 'scm:git:git://github.com/codecentric/hikaku.git'
-                        developerConnection 'scm:git:ssh://git@github.com:codecentric/hikaku.git'
-                        url 'https://github.com/codecentric/hikaku'
+                        connection = 'scm:git:git://github.com/codecentric/hikaku.git'
+                        developerConnection = 'scm:git:ssh://git@github.com:codecentric/hikaku.git'
+                        url = 'https://github.com/codecentric/hikaku'
                     }
 
                     licenses {
                         license {
-                            name 'Apache License, Version 2.0'
-                            url 'http://www.apache.org/licenses/LICENSE-2.0'
+                            name = 'Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0'
                         }
                     }
 
                     developers {
                         developer {
-                            id 'cc-jhr'
-                            name 'Jannes Heinrich'
-                            email 'jannes.heinrich@codecentric.de'
+                            id = 'cc-jhr'
+                            name = 'Jannes Heinrich'
+                            email = 'jannes.heinrich@codecentric.de'
                         }
                     }
                 }

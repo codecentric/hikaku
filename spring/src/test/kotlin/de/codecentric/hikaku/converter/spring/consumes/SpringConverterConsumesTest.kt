@@ -1517,7 +1517,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1549,7 +1549,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1581,7 +1581,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1613,7 +1613,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1645,7 +1645,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1677,7 +1677,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by GetMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1709,7 +1709,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by DeleteMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1741,7 +1741,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PatchMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1773,7 +1773,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PostMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1805,7 +1805,7 @@ class SpringConverterConsumesTest {
             lateinit var context: ConfigurableApplicationContext
 
             @Test
-            fun `mime type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
+            fun `media type declared at class level using RequestMapping is overwritten by PutMapping at function level`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint(
@@ -1838,7 +1838,7 @@ class SpringConverterConsumesTest {
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `error endpoint does not provide the same mime type`() {
+        fun `error endpoint does not provide the same media type`() {
             //given
             val specification: Set<Endpoint> = setOf(
                     Endpoint(

@@ -79,10 +79,7 @@ public class SpecificationTest {
     SpringConverter springConverter = new SpringConverter(springContext);
 
     HikakuConfig hikakuConfig = new HikakuConfig(
-        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT)),
-        false,
-        false,
-        new CommandLineReporter()
+        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT))
     );
     
     new Hikaku(

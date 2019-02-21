@@ -3,9 +3,9 @@ package de.codecentric.hikaku.reporter
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.endpoints.Endpoint
-
-
-private const val SEPARATOR = ", "
+import de.codecentric.hikaku.endpoints.HeaderParameter
+import de.codecentric.hikaku.endpoints.PathParameter
+import de.codecentric.hikaku.endpoints.QueryParameter
 
 /**
  * Simply prints the result to stdout.
@@ -18,6 +18,10 @@ class CommandLineReporter: Reporter {
         println("\n")
         println(heading)
         println("#".repeat(heading.length))
+
+        val features = endpointMatchResult.supportedFeatures.joinToString(separator = ", ")
+        println("The following features were used for matching: $features")
+
 
         if (endpointMatchResult.notFound.isEmpty() && endpointMatchResult.notExpected.isEmpty()) {
             println ("")
@@ -47,14 +51,35 @@ class CommandLineReporter: Reporter {
 
         supportedFeatures.forEach {
             path += when(it) {
-                Feature.QueryParameter -> " ${endpoint.queryParameters.joinToString(separator = SEPARATOR)}"
-                Feature.PathParameter -> " ${endpoint.pathParameters.joinToString(separator = SEPARATOR)}"
-                Feature.HeaderParameter -> " ${endpoint.headerParameters.joinToString(separator = SEPARATOR)}"
-                Feature.Produces -> " ${endpoint.produces.joinToString(separator = SEPARATOR)}"
-                Feature.Consumes -> " ${endpoint.consumes.joinToString(separator = SEPARATOR)}"
+                Feature.QueryParameter -> listQueryParameters(endpoint.queryParameters)
+                Feature.PathParameter -> listPathParameters(endpoint.pathParameters)
+                Feature.HeaderParameter -> listHeaderParameter(endpoint.headerParameters)
+                Feature.Consumes -> listRequestMediaTypes(endpoint.consumes)
+                Feature.Produces -> listResponseMediaTypes(endpoint.produces)
             }
         }
 
-        println("$path>")
+        println("$path >")
     }
+
+    private fun listQueryParameters(queryParameters: Set<QueryParameter>) =
+            "  QueryParameters[${queryParameters.joinToString {
+                "${it.parameterName} (${if(it.required) "required" else "optional"})"
+            }}]"
+
+    private fun listPathParameters(pathParameters: Set<PathParameter>) =
+            "  PathParameters[${pathParameters.joinToString {
+                it.parameterName
+            }}]"
+
+    private fun listHeaderParameter(headerParameters: Set<HeaderParameter>) =
+            "  HeaderParameters[${headerParameters.joinToString {
+                "${it.parameterName} (${if(it.required) "required" else "optional"})"
+            }}]"
+
+    private fun listRequestMediaTypes(requestMediaTypes: Set<String>) =
+            "  Consumes[${requestMediaTypes.joinToString()}]"
+
+    private fun listResponseMediaTypes(responseMediaTypes: Set<String>) =
+            "  Produces[${responseMediaTypes.joinToString()}]"
 }

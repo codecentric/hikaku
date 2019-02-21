@@ -15,6 +15,7 @@ The aim of this project is to meet this need and offer a mechanism to check spec
   + [Spring MVC 5.1.X](docs/spring.md)
   
 Please refer to the list of [all features](docs/features.md). To check the feature support for each converter.
+It is possible that not every converter supports every feature. Only the intersection of the features of two `EndpointConverter`s is used for the matching. Please keep that in mind regarding the equality of implementation and specification.
   
 ## Usage
 

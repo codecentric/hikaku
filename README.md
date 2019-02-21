@@ -40,7 +40,6 @@ dependencies {
 And now we can create the test case:
 
 ```
-@RunWith(SpringRunner::class)
 @SpringBootTest
 class SpecificationTest {
 
@@ -66,7 +65,6 @@ class SpecificationTest {
 Same example in Java:
 
 ```
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpecificationTest {
 

@@ -28,7 +28,7 @@ The match result is sent to one or multiple `Reporter`. If the test fails kotlin
 There is an artifact for each converter. So we need one dependency for the specification and one for the implementation. In this example our project consists of an OpenAPI specification and a Spring implementation. The specification does not contain the _/error_ endpoints created by spring, so we want to omit those.
 First add the dependencies for the converters, that we want to use. In this case `hikaku-openapi` and `hikaku-spring`.
 
-```
+```gradle
 dependencies {
     testImplementation: "de.codecentric.hikaku:hikaku-openapi:$hikakuVersion"
     testImplementation: "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
@@ -39,7 +39,7 @@ dependencies {
 
 And now we can create the test case:
 
-```
+```kotlin
 @SpringBootTest
 class SpecificationTest {
 
@@ -64,7 +64,7 @@ class SpecificationTest {
 
 Same example in Java:
 
-```
+```java
 @SpringBootTest
 public class SpecificationTest {
 

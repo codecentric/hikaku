@@ -9,7 +9,7 @@ archivesBaseName = 'hikaku-spring'
 
 dependencies {
   api 'org.springframework:spring-webmvc:5.1.5.RELEASE'
-  implementation project(':core')
+  api project(':core')
 
   testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testImplementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"

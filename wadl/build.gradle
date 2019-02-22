@@ -2,7 +2,7 @@ group = 'de.codecentric.hikaku'
 archivesBaseName = 'hikaku-wadl'
 
 dependencies {
-  implementation project(':core')
+  api project(':core')
 }
 
 uploadArchives {

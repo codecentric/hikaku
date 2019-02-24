@@ -1,4 +1,4 @@
-# Hikaku - Features
+# hikaku - Features
 
 The following table gives an overview of all features and which converter supports which feature.
 The check for endpoint paths and http methods are base functions that every converter has to support. Those are not listed in the table below.

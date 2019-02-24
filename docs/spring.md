@@ -1,4 +1,4 @@
-# Hikaku - Spring
+# hikaku - Spring
 
 Supports Spring MVC 5.1.X.
 

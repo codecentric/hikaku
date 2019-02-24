@@ -1,4 +1,4 @@
-# Hikaku - WADL
+# hikaku - WADL
 
 ## Feature Support
 

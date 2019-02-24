@@ -1,4 +1,4 @@
-# Hikaku - OpenAPI
+# hikaku - OpenAPI
 
 Supports OpenAPI 3.0.X
 

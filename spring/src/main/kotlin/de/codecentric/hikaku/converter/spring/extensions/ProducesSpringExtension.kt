@@ -10,7 +10,7 @@ import kotlin.reflect.full.instanceParameter
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.reflect.jvm.kotlinFunction
 
-fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String> {
+internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String> {
     val isResponseBodyAnnotationOnClass = this.value
             .method
             .kotlinFunction

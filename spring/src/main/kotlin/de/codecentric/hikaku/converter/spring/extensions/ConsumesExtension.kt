@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.reflect.jvm.kotlinFunction
 
-fun Map.Entry<RequestMappingInfo, HandlerMethod>.consumes(): Set<String> {
+internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.consumes(): Set<String> {
     val providesRequestBodyAnnotation = this.value
             .method
             .kotlinFunction

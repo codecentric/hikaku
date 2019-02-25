@@ -13,7 +13,7 @@ import de.codecentric.hikaku.endpoints.QueryParameter
 class CommandLineReporter: Reporter {
 
     override fun report(endpointMatchResult: MatchResult) {
-        val heading = "Hikaku test result:"
+        val heading = "hikaku test result:"
 
         println("\n")
         println(heading)

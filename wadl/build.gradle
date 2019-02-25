@@ -10,7 +10,7 @@ uploadArchives {
     mavenDeployer {
       pom.project {
         name = 'hikaku-wadl'
-        description = 'A library to test if the implementation of a REST-API meets its specification. This module contains a converter for WADL files.'
+        description = 'A library that tests if the implementation of a REST-API meets its specification. This module contains a converter for WADL files.'
       }
     }
   }

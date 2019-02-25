@@ -8,7 +8,7 @@ import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
 
 /**
- * Simply prints the result to stdout.
+ * Simply prints the result to [System.out].
  */
 class CommandLineReporter: Reporter {
 

@@ -3,7 +3,7 @@ package de.codecentric.hikaku
 import de.codecentric.hikaku.converter.EndpointConverter
 
 /**
- * A list of features supported by an [EndpointConverter]
+ * A list of features supported by an [EndpointConverter].
  */
 class SupportedFeatures(
     private val supportedFeatures: Set<Feature> = emptySet()
@@ -12,11 +12,11 @@ class SupportedFeatures(
     constructor(vararg feature: Feature): this(feature.toSet())
 
     enum class Feature {
-        /** Checks the equality of the names of query parameters. */
+        /** Checks the equality of query parameters. */
         QueryParameter,
-        /** Checks the equality of the names of path parameters. */
+        /** Checks the equality of path parameters. */
         PathParameter,
-        /** Checks the equality of the names of header parameters. */
+        /** Checks the equality of header parameters. */
         HeaderParameter,
         /** Checks supported media type of responses. */
         Produces,

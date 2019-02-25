@@ -47,7 +47,7 @@ class SpecificationTest {
     lateinit var springContext: ApplicationContext
 
     @Test
-    fun `compare specification and implementation`() {
+    fun `specification matches implementation`() {
         Hikaku(
                 specification = OpenApiConverter(Paths.get("openapi.yaml")),
                 implementation = SpringConverter(springContext),
@@ -59,6 +59,8 @@ class SpecificationTest {
     }
 }
 ```
+
+A complete sample project can be found [here](https://github.com/cc-jhr/hikaku-sample).
 
 #### Java
 
@@ -72,7 +74,7 @@ public class SpecificationTest {
   private ApplicationContext springContext;
 
   @Test
-  public void compare_specification_and_implementation() {
+  public void specification_matches_implementation() {
     OpenApiConverter openApiConverter = OpenApiConverter.usingPath(Paths.get("openapi.json"));
     SpringConverter springConverter = new SpringConverter(springContext);
 

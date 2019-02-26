@@ -14,6 +14,7 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 
 + **Specifications**
   + [OpenAPI 3.0.X](docs/openapi.md)
+  + [RAML 1.X](docs/raml.md)
   + [WADL](docs/wadl.md)
 + **Implementations**
   + [Spring MVC 5.1.X](docs/spring.md)

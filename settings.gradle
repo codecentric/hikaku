@@ -4,5 +4,6 @@ include(
         'core',
         'openapi',
         'spring',
-        'wadl'
+        'wadl',
+        'raml'
 )

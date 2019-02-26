@@ -20,7 +20,7 @@ class CommandLineReporter : Reporter {
         println("#".repeat(heading.length))
 
         val features = endpointMatchResult.supportedFeatures.joinToString(separator = ", ")
-        println("The following features were used for matching: $features")
+        println("The following features were used for matching: HttpMethod, Path, $features")
 
 
         if (endpointMatchResult.notFound.isEmpty() && endpointMatchResult.notExpected.isEmpty()) {

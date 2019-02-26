@@ -9,121 +9,72 @@ import kotlin.test.assertFailsWith
 class OpenApiConverterInvalidInputTest {
 
     @Nested
-    inner class EmptyFileTest {
+    inner class PathObjectTests {
 
         @Test
-        fun `empty string as specification throws an exception`() {
+        fun `empty file returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("empty_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(file)
+                OpenApiConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `specification string consisting solely of whitespaces throws an exception`() {
+        fun `file consisting solely of whitespaces returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("whitespace_only_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(file)
+                OpenApiConverter(file).conversionResult
             }
         }
-    }
-
-    @Nested
-    inner class NonExistingFileTest {
-
-        @Test
-        fun `non-existing json file provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(File("test-file-which-does-not-exist.json"))
-            }
-        }
-
-        @Test
-        fun `non-existing yaml file provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(File("test-file-which-does-not-exist.yaml"))
-            }
-        }
-
-        @Test
-        fun `non-existing yml file provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(File("test-file-which-does-not-exist.yml"))
-            }
-        }
-
-        @Test
-        fun `non-existing json file provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(Paths.get("test-file-which-does-not-exist.json"))
-            }
-        }
-
-        @Test
-        fun `non-existing yaml file provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(Paths.get("test-file-which-does-not-exist.yaml"))
-            }
-        }
-
-        @Test
-        fun `non-existing yml file provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(Paths.get("test-file-which-does-not-exist.yml"))
-            }
-        }
-    }
-
-    @Nested
-    inner class InvalidFileExtensionTest {
-
-        @Test
-        fun `existing file with invalid file extension provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(File("./README.md"))
-            }
-        }
-
-
-        @Test
-        fun `existing file with invalid file extension provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(Paths.get("./README.md"))
-            }
-        }
-    }
-
-    @Nested
-    inner class NotRegularFileTest {
-
-        @Test
-        fun `Path which is a directory throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(Files.createTempDirectory("tmp"))
-            }
-        }
-
-        @Test
-        fun `File which is a directory throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                OpenApiConverter(createTempDir())
-            }
-        }
-    }
-
-    @Nested
-    inner class SyntaxErrorTest {
 
         @Test
         fun `OpenAPI yaml file containing syntax error throws IllegalStateException, because OpenAPI object will be null (The parser is extremely fault tolerant)`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("syntax_error.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI())
+            val converter = OpenApiConverter(file)
+
+            //when
+            assertFailsWith<IllegalStateException> {
+                converter.conversionResult
+            }
+        }
+    }
+
+    @Nested
+    inner class FileObjectTests {
+
+        @Test
+        fun `empty file returns an empty list`() {
+            //given
+            val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
+
+            //when
+            assertFailsWith<IllegalArgumentException> {
+                OpenApiConverter(file).conversionResult
+            }
+        }
+
+        @Test
+        fun `file consisting solely of whitespaces returns an empty list`() {
+            //given
+                val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
+
+            //when
+            assertFailsWith<IllegalArgumentException> {
+                OpenApiConverter(file).conversionResult
+            }
+        }
+
+        @Test
+        fun `OpenAPI yaml file containing syntax error throws IllegalStateException, because OpenAPI object will be null (The parser is extremely fault tolerant)`() {
+            //given
+            val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI())
             val converter = OpenApiConverter(file)
 
             //when

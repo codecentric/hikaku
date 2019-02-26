@@ -5,6 +5,7 @@ import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.wadl.extensions.getAttribute
 import de.codecentric.hikaku.endpoints.*
+import de.codecentric.hikaku.extensions.checkFileValidity
 import org.w3c.dom.Node
 import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
@@ -142,7 +143,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         @JvmStatic
         @JvmName("usingPath")
         operator fun invoke(wadlFile: Path): WadlConverter {
-            checkIfFileIsValid(wadlFile)
+           wadlFile.checkFileValidity(".wadl")
 
             val expectedFileContentBuilder = StringBuilder()
 
@@ -156,26 +157,10 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             return WadlConverter(expectedFileContentBuilder.toString())
         }
 
-        private fun checkIfFileIsValid(wadlFile: Path) {
-            if (!Files.exists(wadlFile)) {
-                throw IllegalArgumentException("Given WADL file does not exist.")
-            }
-
-            if (!Files.isRegularFile(wadlFile)) {
-                throw IllegalArgumentException("Given WADL file is not a regular file.")
-            }
-
-            if (!isValidFileExtension(wadlFile)) {
-                throw IllegalArgumentException("Given WADL file is not of type *.wadl.")
-            }
-        }
-
         @JvmStatic
         @JvmName("usingFile")
         operator fun invoke(wadlFile: File): WadlConverter {
             return WadlConverter(wadlFile.toPath())
         }
-
-        private fun isValidFileExtension(wadlFile: Path) = wadlFile.fileName.toString().endsWith(".wadl")
     }
 }

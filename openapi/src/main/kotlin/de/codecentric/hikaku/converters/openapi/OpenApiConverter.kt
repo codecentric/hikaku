@@ -12,12 +12,13 @@ import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.endpoints.*
+import de.codecentric.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
 import java.nio.charset.StandardCharsets.UTF_8
-import java.nio.file.Files
+import java.nio.file.Files.*
 import java.nio.file.Path
 
 /**
@@ -147,39 +148,17 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
         @JvmStatic
         @JvmName("usingPath")
         operator fun invoke(openApiSpecification: Path): OpenApiConverter {
-            checkFileValidity(openApiSpecification)
+            openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
 
-            val expectedFileContent = Files.readAllLines(openApiSpecification, UTF_8).joinToString("\n")
+            val expectedFileContent = readAllLines(openApiSpecification, UTF_8).joinToString("\n")
 
             return OpenApiConverter(expectedFileContent)
-        }
-
-        private fun checkFileValidity(openApiSpecification: Path) {
-            if (!Files.exists(openApiSpecification)) {
-                throw IllegalArgumentException("Given specification file does not exist.")
-            }
-
-            if (!Files.isRegularFile(openApiSpecification)) {
-                throw IllegalArgumentException("Given specification file is not a regular file.")
-            }
-
-            if (!isValidFileExtension(openApiSpecification)) {
-                throw IllegalArgumentException("Given file is not of type *.json, *.yaml or *.yml.")
-            }
         }
 
         @JvmStatic
         @JvmName("usingFile")
         operator fun invoke(openApiSpecification: File): OpenApiConverter {
             return OpenApiConverter(openApiSpecification.toPath())
-        }
-
-        private fun isValidFileExtension(openApiSpecification: Path): Boolean {
-            val fileName = openApiSpecification.fileName.toString()
-
-            return fileName.endsWith(".json")
-                    || fileName.endsWith(".yaml")
-                    || fileName.endsWith(".yml")
         }
     }
 }

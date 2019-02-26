@@ -4,100 +4,78 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.xml.sax.SAXParseException
 import java.io.File
-import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.test.assertFailsWith
 
 class WadlConverterInvalidInputTest {
 
     @Nested
-    inner class EmptyFileTest {
+    inner class PathObjectTests {
 
         @Test
-        fun `empty string as specification throws an exception`() {
+        fun `empty file returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("empty_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                de.codecentric.hikaku.converters.wadl.WadlConverter(file)
+                WadlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `specification string consisting solely of whitespaces throws an exception`() {
+        fun `file consisting solely of whitespaces returns an empty list`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("whitespace_only_file.yaml").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
             //when
             assertFailsWith<IllegalArgumentException> {
-                de.codecentric.hikaku.converters.wadl.WadlConverter(file)
-            }
-        }
-    }
-
-    @Nested
-    inner class NonExistingFileTest {
-
-        @Test
-        fun `non-existing WADL file provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(File("test-file-which-does-not-exist.wadl"))
+                WadlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `non-existing WADL file provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(Paths.get("test-file-which-does-not-exist.wadl"))
-            }
-        }
-    }
-
-    @Nested
-    inner class NotRegularFileTest {
-
-        @Test
-        fun `Path which is a directory`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(Files.createTempDirectory("tmp"))
-            }
-        }
-
-        @Test
-        fun `File which is a directory`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(createTempDir())
-            }
-        }
-    }
-
-    @Nested
-    inner class InvalidFileExtensionTest {
-
-        @Test
-        fun `existing file with invalid file extension provided as File throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(File("./README.md"))
-            }
-        }
-
-
-        @Test
-        fun `existing file with invalid file extension provided as Path throws an exception`() {
-            assertFailsWith<IllegalArgumentException> {
-                WadlConverter(Paths.get("./README.md"))
-            }
-        }
-    }
-
-    @Nested
-    inner class SyntaxErrorTest {
-
-        @Test
-        fun `WADL file containing syntax error throws SAXParseException`() {
+        fun `file containing syntax error throws SAXParseException`() {
             //given
-            val file = Paths.get(this::class.java.classLoader.getResource("syntax_error.wadl").toURI())
+            val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
+            val converter = WadlConverter(file)
+
+            //when
+            assertFailsWith<SAXParseException> {
+                converter.conversionResult
+            }
+        }
+    }
+
+    @Nested
+    inner class FileObjectTests {
+
+        @Test
+        fun `empty file returns an empty list`() {
+            //given
+            val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
+
+            //when
+            assertFailsWith<IllegalArgumentException> {
+                WadlConverter(file).conversionResult
+            }
+        }
+
+        @Test
+        fun `file consisting solely of whitespaces returns an empty list`() {
+            //given
+            val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
+
+            //when
+            assertFailsWith<IllegalArgumentException> {
+                WadlConverter(file).conversionResult
+            }
+        }
+
+        @Test
+        fun `file containing syntax error throws SAXParseException`() {
+            //given
+            val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
             //when

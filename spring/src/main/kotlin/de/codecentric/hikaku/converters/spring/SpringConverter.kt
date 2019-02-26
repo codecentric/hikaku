@@ -16,9 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  * Extracts and converts [Endpoint]s from a spring [ApplicationContext].
  * @param applicationContext Spring application context
  */
-class SpringConverter(
-        private val applicationContext: ApplicationContext
-) : AbstractEndpointConverter() {
+class SpringConverter(private val applicationContext: ApplicationContext) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,

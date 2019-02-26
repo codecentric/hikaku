@@ -1,14 +1,14 @@
 package de.codecentric.hikaku
 
 import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converter.EndpointConverter
+import de.codecentric.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HeaderParameter
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
-import de.codecentric.hikaku.reporter.MatchResult
-import de.codecentric.hikaku.reporter.Reporter
+import de.codecentric.hikaku.reporters.MatchResult
+import de.codecentric.hikaku.reporters.Reporter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

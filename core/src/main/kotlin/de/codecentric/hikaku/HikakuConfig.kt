@@ -3,9 +3,9 @@ package de.codecentric.hikaku
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.reporter.CommandLineReporter
-import de.codecentric.hikaku.reporter.MatchResult
-import de.codecentric.hikaku.reporter.Reporter
+import de.codecentric.hikaku.reporters.CommandLineReporter
+import de.codecentric.hikaku.reporters.MatchResult
+import de.codecentric.hikaku.reporters.Reporter
 
 /**
  * Configuration for [Hikaku] class. It lets you partially control the matching process.

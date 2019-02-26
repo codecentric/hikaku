@@ -1,12 +1,12 @@
 package de.codecentric.hikaku
 
 import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converter.EndpointConverter
+import de.codecentric.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-import de.codecentric.hikaku.reporter.MatchResult
-import de.codecentric.hikaku.reporter.Reporter
+import de.codecentric.hikaku.reporters.MatchResult
+import de.codecentric.hikaku.reporters.Reporter
 import kotlin.test.fail
 
 /**

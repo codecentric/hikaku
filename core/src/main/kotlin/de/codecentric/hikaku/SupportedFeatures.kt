@@ -1,6 +1,6 @@
 package de.codecentric.hikaku
 
-import de.codecentric.hikaku.converter.EndpointConverter
+import de.codecentric.hikaku.converters.EndpointConverter
 
 /**
  * A list of features supported by an [EndpointConverter].

@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/codecentric/hikaku.svg?branch=master)](https://travis-ci.org/codecentric/hikaku)
+[![Build Status](https://api.travis-ci.org/codecentric/hikaku.svg?branch=master)](https://travis-ci.org/codecentric/hikaku) [![Maven Central Version](https://img.shields.io/maven-central/v/de.codecentric.hikaku/hikaku-core.svg)](https://search.maven.org/search?q=g:de.codecentric.hikaku)
 # hikaku
 
 Hikaku (比較) is japanese and means "comparison". This library tests if a REST-API implementation meets it's specification.

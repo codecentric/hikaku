@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: test api
+/todos:
+  displayName: Todos
+  post:
+    displayName: create a new todo
+  /{id}:
+    get:
+        displayName: get todo

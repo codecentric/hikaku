@@ -2,6 +2,7 @@ package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
 import de.codecentric.hikaku.converters.raml.extensions.httpMethod
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.extensions.checkFileValidity
@@ -49,7 +50,8 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
             endpoints += resource.methods().map {
                     Endpoint(
                             path = resource.resourcePath(),
-                            httpMethod = it.httpMethod()
+                            httpMethod = it.httpMethod(),
+                            queryParameters = it.hikakuQueryParameters()
                     )
             }
         }

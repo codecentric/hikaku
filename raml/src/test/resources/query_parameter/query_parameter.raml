@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: test api
+version: v3
+/todos:
+  displayName: Todos
+  get:
+    displayName: Get all todos
+    queryParameters:
+      tag:
+        displayName: Tag
+        type: string
+        description: Filter todos by a given tag
+        example: Mary Roach
+        required: false
+      limit:
+        displayName: Limit
+        type: number
+        description: Limit results in response
+        example: 25
+        required: true

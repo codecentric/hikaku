@@ -8,12 +8,12 @@ import java.nio.file.Paths
 class OpenApiConverterHeaderParameterTest {
 
     @Test
-    fun `check that header parameter are extracted correctly`() {
+    fun `extract an optional and a required header parameter`() {
         //given
         val file = Paths.get(this::class.java.classLoader.getResource("header_parameter.yaml").toURI())
         val headerParameters = setOf(
                 HeaderParameter("x-b3-traceid", false),
-                HeaderParameter("use-cache", true)
+                HeaderParameter("allow-cache", true)
         )
 
         //when

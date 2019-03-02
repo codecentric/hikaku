@@ -13,7 +13,7 @@ paths:
           description: "Trace id."
           schema:
             type: string
-        - name: use-cache
+        - name: allow-cache
           in: header
           required: true
           description: "Whether or to use cached data."

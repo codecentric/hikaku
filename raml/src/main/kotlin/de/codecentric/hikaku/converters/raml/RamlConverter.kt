@@ -2,6 +2,7 @@ package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.raml.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
 import de.codecentric.hikaku.converters.raml.extensions.httpMethod
 import de.codecentric.hikaku.converters.raml.extensions.pathParameters
@@ -53,7 +54,8 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
                             path = resource.resourcePath(),
                             httpMethod = it.httpMethod(),
                             queryParameters = it.hikakuQueryParameters(),
-                            pathParameters = it.resource()?.pathParameters().orEmpty()
+                            pathParameters = it.resource()?.pathParameters().orEmpty(),
+                            headerParameters = it?.hikakuHeaderParameters().orEmpty()
                     )
             }
         }

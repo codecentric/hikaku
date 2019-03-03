@@ -11,6 +11,9 @@ import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParamet
 import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
 import de.codecentric.hikaku.SupportedFeatures.Feature
+import de.codecentric.hikaku.converters.openapi.extensions.hikakuHeaderParameters
+import de.codecentric.hikaku.converters.openapi.extensions.hikakuPathParameters
+import de.codecentric.hikaku.converters.openapi.extensions.hikakuQueryParameters
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.OpenAPI
@@ -58,29 +61,15 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
             path: String,
             httpMethod: HttpMethod,
             operation: Operation?
-    ): Endpoint {
-        val queryParameters = mutableSetOf<QueryParameter>()
-        val pathParameters = mutableSetOf<PathParameter>()
-        val headerParameters = mutableSetOf<HeaderParameter>()
-
-        operation?.parameters?.forEach {
-            when (it) {
-                is OpenApiQueryParameter -> queryParameters += QueryParameter(it.name, it.required)
-                is OpenApiPathParameter -> pathParameters += PathParameter(it.name)
-                is OpenApiHeaderParameter -> headerParameters += HeaderParameter(it.name, it.required)
-            }
-        }
-
-        return Endpoint(
-                path = path,
-                httpMethod = httpMethod,
-                queryParameters = queryParameters,
-                pathParameters = pathParameters,
-                headerParameters = headerParameters,
-                produces = extractProduceMediaTypes(operation),
-                consumes = extractConsumesMediaTypes(operation)
-        )
-    }
+    ) = Endpoint(
+            path = path,
+            httpMethod = httpMethod,
+            queryParameters = operation.hikakuQueryParameters(),
+            pathParameters = operation.hikakuPathParameters(),
+            headerParameters = operation.hikakuHeaderParameters(),
+            produces = extractProduceMediaTypes(operation),
+            consumes = extractConsumesMediaTypes(operation)
+    )
 
     private fun extractConsumesMediaTypes(operation: Operation?): Set<String> {
         return operation?.requestBody

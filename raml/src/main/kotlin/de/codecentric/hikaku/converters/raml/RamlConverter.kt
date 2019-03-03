@@ -1,6 +1,7 @@
 package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.raml.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
@@ -19,7 +20,11 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
         ramlSpecification.checkFileValidity(".raml")
     }
 
-    override val supportedFeatures = SupportedFeatures()
+    override val supportedFeatures = SupportedFeatures(
+            Feature.QueryParameter,
+            Feature.PathParameter,
+            Feature.HeaderParameter
+    )
 
     override fun convert(): Set<Endpoint> {
         val ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)

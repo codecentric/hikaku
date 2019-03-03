@@ -7,7 +7,7 @@ import org.springframework.web.method.HandlerMethod
 import kotlin.reflect.KParameter
 import kotlin.reflect.jvm.kotlinFunction
 
-internal fun HandlerMethod.queryParameter(): Set<QueryParameter> {
+internal fun HandlerMethod.hikakuQueryParameters(): Set<QueryParameter> {
     val method = this.method.kotlinFunction ?: return emptySet()
 
     return method.parameters

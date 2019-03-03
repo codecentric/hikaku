@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
 
-internal fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
-    return this.methods
+internal fun RequestMappingInfo.hikakuHttpMethods(): Set<HttpMethod> {
+    return this.methodsCondition.methods
             .map {
                 when (it) {
                     RequestMethod.GET -> HttpMethod.GET
@@ -22,5 +22,3 @@ internal fun RequestMethodsRequestCondition.httpMethods(): Set<HttpMethod> {
             }
             .toSet()
 }
-
-internal fun RequestMappingInfo.httpMethods() = this.methodsCondition.httpMethods()

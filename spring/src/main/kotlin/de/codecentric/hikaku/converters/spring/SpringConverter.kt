@@ -45,9 +45,9 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
             Endpoint(
                     path = cleanedPath,
                     httpMethod = it,
-                    queryParameters = mappingEntry.value.queryParameter(),
-                    pathParameters = mappingEntry.value.pathParameter(),
-                    headerParameters = mappingEntry.value.headerParameter(),
+                    queryParameters = mappingEntry.value.hikakuQueryParameters(),
+                    pathParameters = mappingEntry.value.hikakuPathParameters(),
+                    headerParameters = mappingEntry.value.hikakuHeaderParameters(),
                     produces = mappingEntry.produces(),
                     consumes = mappingEntry.consumes()
             )
@@ -76,7 +76,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
     }
 
     private fun extractAvailableHttpMethods(mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>): Set<HttpMethod> {
-        val httpMethods = mappingEntry.key.httpMethods()
+        val httpMethods = mappingEntry.key.hikakuHttpMethods()
 
         // Spring adds all http methods except for trace if no http method has been set explicitly
         // OPTIONS is a special case. If it's not added manually it has to be added without any path or query parameters

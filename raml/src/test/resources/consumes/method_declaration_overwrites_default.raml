@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: test api
+version: v3
+mediaType: [application/json, application/xml]
+/todos:
+  displayName: Todos
+  get:
+    displayName: Get all todos
+    body:
+      text/plain:
+        type: string

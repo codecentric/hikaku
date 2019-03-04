@@ -22,3 +22,10 @@ internal fun Method.hikakuHeaderParameters(): Set<HeaderParameter> {
             }
             .toSet()
 }
+
+internal fun Method.requestMediaTypes(): Set<String> {
+    return this.body().map {
+        it.name()
+    }
+    .toSet()
+}

@@ -4,10 +4,7 @@ import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.converters.raml.extensions.hikakuHeaderParameters
-import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
-import de.codecentric.hikaku.converters.raml.extensions.hikakuHttpMethod
-import de.codecentric.hikaku.converters.raml.extensions.hikakuPathParameters
+import de.codecentric.hikaku.converters.raml.extensions.*
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.extensions.checkFileValidity
 import org.raml.v2.api.RamlModelBuilder
@@ -67,7 +64,8 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
                             httpMethod = it.hikakuHttpMethod(),
                             queryParameters = it.hikakuQueryParameters(),
                             pathParameters = it.resource()?.hikakuPathParameters().orEmpty(),
-                            headerParameters = it?.hikakuHeaderParameters().orEmpty()
+                            headerParameters = it?.hikakuHeaderParameters().orEmpty(),
+                            consumes = it.requestMediaTypes()
                     )
             }
         }

@@ -78,7 +78,7 @@ public class SpecificationTest {
 
   @Test
   public void specification_matches_implementation() {
-    OpenApiConverter openApiConverter = OpenApiConverter.usingPath(Paths.get("openapi.json"));
+    OpenApiConverter openApiConverter = new OpenApiConverter(Paths.get("openapi.json"));
     SpringConverter springConverter = new SpringConverter(springContext);
 
     HikakuConfig hikakuConfig = new HikakuConfig(

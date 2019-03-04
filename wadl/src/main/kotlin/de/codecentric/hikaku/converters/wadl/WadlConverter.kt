@@ -27,6 +27,9 @@ import javax.xml.xpath.XPathFactory
  */
 class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
+    constructor(wadlFile: File): this(wadlFile.toPath())
+    constructor(wadlFile: Path): this(readFileContent(wadlFile))
+
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
             Feature.HeaderParameter,
@@ -143,18 +146,6 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     }
 
     companion object {
-        @JvmStatic
-        @JvmName("usingPath")
-        operator fun invoke(wadlFile: Path): WadlConverter {
-            return WadlConverter(readFileContent(wadlFile))
-        }
-
-        @JvmStatic
-        @JvmName("usingFile")
-        operator fun invoke(wadlFile: File): WadlConverter {
-            return WadlConverter(wadlFile.toPath())
-        }
-
         private fun readFileContent(wadlFile: Path): String {
             val fileContentBuilder = StringBuilder()
 

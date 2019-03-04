@@ -31,6 +31,9 @@ class OpenApiConverter private constructor(private val specificationContent: Str
 
     private lateinit var openApi: OpenAPI
 
+    constructor(openApiSpecification: File): this(openApiSpecification.toPath())
+    constructor(openApiSpecification: Path): this(readFileContent(openApiSpecification))
+
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
             Feature.PathParameter,
@@ -135,18 +138,6 @@ class OpenApiConverter private constructor(private val specificationContent: Str
     }
 
     companion object {
-        @JvmStatic
-        @JvmName("usingPath")
-        operator fun invoke(openApiSpecification: Path): OpenApiConverter {
-            return OpenApiConverter(readFileContent(openApiSpecification))
-        }
-
-        @JvmStatic
-        @JvmName("usingFile")
-        operator fun invoke(openApiSpecification: File): OpenApiConverter {
-            return OpenApiConverter(openApiSpecification.toPath())
-        }
-
         private fun readFileContent(openApiSpecification: Path): String {
             try {
                 openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")

@@ -11,15 +11,14 @@ import de.codecentric.hikaku.converters.raml.extensions.hikakuPathParameters
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.extensions.checkFileValidity
 import org.raml.v2.api.RamlModelBuilder
+import org.raml.v2.api.RamlModelResult
 import org.raml.v2.api.model.v10.resources.Resource
 import java.io.File
 import java.nio.file.Path
 
-class RamlConverter private constructor(private val ramlSpecification: File) : AbstractEndpointConverter()  {
+class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConverter()  {
 
-    init {
-        ramlSpecification.checkFileValidity(".raml")
-    }
+    constructor(ramlSpecification: Path) : this(ramlSpecification.toFile())
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
@@ -28,22 +27,21 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
     )
 
     override fun convert(): Set<Endpoint> {
+        val ramlParserResult: RamlModelResult?
+
         try {
-            return parseRaml()
+            ramlSpecification.checkFileValidity(".raml")
+            ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)
         } catch(throwable: Throwable) {
             throw SpecificationParserException(throwable)
         }
-    }
-
-    private fun parseRaml(): Set<Endpoint> {
-        val ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)
 
         if (ramlParserResult.isVersion08) {
-            throw IllegalArgumentException("Unsupported RAML version")
+            throw SpecificationParserException("Unsupported RAML version")
         }
 
         if (ramlParserResult.hasErrors()) {
-            throw IllegalArgumentException(ramlParserResult.validationResults.joinToString("\n"))
+            throw SpecificationParserException(ramlParserResult.validationResults.joinToString("\n"))
         }
 
         return ramlParserResult.apiV10?.resources()?.let { resourceList ->
@@ -75,19 +73,5 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
         }
 
         return endpoints
-    }
-
-    companion object {
-        @JvmStatic
-        @JvmName("usingPath")
-        operator fun invoke(ramlSpecification: Path): RamlConverter {
-            return RamlConverter(ramlSpecification.toFile())
-        }
-
-        @JvmStatic
-        @JvmName("usingFile")
-        operator fun invoke(ramlSpecification: File): RamlConverter {
-            return RamlConverter(ramlSpecification)
-        }
     }
 }

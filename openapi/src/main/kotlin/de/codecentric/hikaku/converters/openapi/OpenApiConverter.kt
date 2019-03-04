@@ -9,7 +9,7 @@ import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParamet
 import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
 import de.codecentric.hikaku.SupportedFeatures.Feature
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuPathParameters
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuQueryParameters
@@ -24,8 +24,6 @@ import java.nio.file.Path
 
 /**
  * Extracts and converts [Endpoint]s from OpenAPI 3.0.X document. Either a *.yaml*, *.yml* or a *.json* file.
- *
- * In Java invoke via: `OpenApiConverter.usingPath(Paths.get("");` or `OpenApiConverter.usingFile(new File("");`
  */
 class OpenApiConverter private constructor(private val specificationContent: String) : AbstractEndpointConverter() {
 
@@ -46,7 +44,7 @@ class OpenApiConverter private constructor(private val specificationContent: Str
         try {
             return parseOpenApi()
         } catch (throwable: Throwable) {
-            throw SpecificationParserException(throwable)
+            throw EndpointConverterException(throwable)
         }
     }
 
@@ -142,13 +140,13 @@ class OpenApiConverter private constructor(private val specificationContent: Str
             try {
                 openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
             } catch (throwable: Throwable) {
-                throw SpecificationParserException(throwable)
+                throw EndpointConverterException(throwable)
             }
 
             val fileContent = readAllLines(openApiSpecification, UTF_8).joinToString("\n")
 
             if (fileContent.isBlank()) {
-                throw SpecificationParserException("Given OpenAPI file is blank.")
+                throw EndpointConverterException("Given OpenAPI file is blank.")
             }
 
             return fileContent

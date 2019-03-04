@@ -3,7 +3,7 @@ package de.codecentric.hikaku.converters.raml
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.raml.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuHttpMethod
@@ -33,15 +33,15 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
             ramlSpecification.checkFileValidity(".raml")
             ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)
         } catch(throwable: Throwable) {
-            throw SpecificationParserException(throwable)
+            throw EndpointConverterException(throwable)
         }
 
         if (ramlParserResult.isVersion08) {
-            throw SpecificationParserException("Unsupported RAML version")
+            throw EndpointConverterException("Unsupported RAML version")
         }
 
         if (ramlParserResult.hasErrors()) {
-            throw SpecificationParserException(ramlParserResult.validationResults.joinToString("\n"))
+            throw EndpointConverterException(ramlParserResult.validationResults.joinToString("\n"))
         }
 
         return ramlParserResult.apiV10?.resources()?.let { resourceList ->

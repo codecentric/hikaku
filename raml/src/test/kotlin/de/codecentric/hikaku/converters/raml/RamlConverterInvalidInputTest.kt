@@ -1,6 +1,6 @@
 package de.codecentric.hikaku.converters.raml
 
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -18,7 +18,7 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -29,7 +29,7 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -40,7 +40,7 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/invalid_raml_version.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -52,7 +52,7 @@ class RamlConverterInvalidInputTest {
             val converter = RamlConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }
@@ -67,7 +67,7 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -78,7 +78,7 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -89,7 +89,7 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/invalid_raml_version.raml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -101,7 +101,7 @@ class RamlConverterInvalidInputTest {
             val converter = RamlConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }

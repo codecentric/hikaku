@@ -3,7 +3,7 @@ package de.codecentric.hikaku.converters.wadl
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.wadl.extensions.getAttribute
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.extensions.checkFileValidity
@@ -21,9 +21,6 @@ import javax.xml.xpath.XPathFactory
 
 /**
  * Extracts and converts [Endpoint]s from a *.wadl* file.
- *
- * In Java invoke via: `WadlConverter.usingPath(Paths.get("specification.wadl");`
- * or `WadlConverter.usingFile(new File("specification.wadl");`
  */
 class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
@@ -46,7 +43,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         try {
             return parseWadl()
         } catch (throwable: Throwable) {
-            throw SpecificationParserException(throwable)
+            throw EndpointConverterException(throwable)
         }
     }
 
@@ -159,13 +156,13 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                                     .append("\n")
                         }
             } catch (throwable: Throwable) {
-                throw SpecificationParserException(throwable)
+                throw EndpointConverterException(throwable)
             }
 
             val fileContent = fileContentBuilder.toString()
 
             if (fileContent.isBlank()) {
-                throw SpecificationParserException("Given WADL is blank.")
+                throw EndpointConverterException("Given WADL is blank.")
             }
 
             return fileContent

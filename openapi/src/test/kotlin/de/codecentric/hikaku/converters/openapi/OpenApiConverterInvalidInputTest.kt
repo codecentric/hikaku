@@ -1,9 +1,8 @@
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.openapi.OpenApiConverter
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File
-import java.nio.file.Files
 import java.nio.file.Paths
 import kotlin.test.assertFailsWith
 
@@ -18,7 +17,7 @@ class OpenApiConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -29,7 +28,7 @@ class OpenApiConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -41,7 +40,7 @@ class OpenApiConverterInvalidInputTest {
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }
@@ -56,7 +55,7 @@ class OpenApiConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -67,7 +66,7 @@ class OpenApiConverterInvalidInputTest {
                 val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -79,7 +78,7 @@ class OpenApiConverterInvalidInputTest {
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }

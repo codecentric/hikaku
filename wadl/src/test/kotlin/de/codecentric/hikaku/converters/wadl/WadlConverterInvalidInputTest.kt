@@ -1,9 +1,8 @@
 package de.codecentric.hikaku.converters.wadl
 
-import de.codecentric.hikaku.converters.SpecificationParserException
+import de.codecentric.hikaku.converters.EndpointConverterException
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.xml.sax.SAXParseException
 import java.io.File
 import java.nio.file.Paths
 import kotlin.test.assertFailsWith
@@ -19,7 +18,7 @@ class WadlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -30,7 +29,7 @@ class WadlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -42,7 +41,7 @@ class WadlConverterInvalidInputTest {
             val converter = WadlConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }
@@ -57,7 +56,7 @@ class WadlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -68,7 +67,7 @@ class WadlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -80,7 +79,7 @@ class WadlConverterInvalidInputTest {
             val converter = WadlConverter(file)
 
             //when
-            assertFailsWith<SpecificationParserException> {
+            assertFailsWith<EndpointConverterException> {
                 converter.conversionResult
             }
         }

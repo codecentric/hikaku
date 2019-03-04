@@ -5,6 +5,8 @@ version: v3
   displayName: Todos
   get:
     displayName: Get all todos
-    body:
-      text/plain:
-        type: string
+    responses:
+      200:
+        body:
+          text/plain:
+            type: string

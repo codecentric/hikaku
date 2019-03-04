@@ -29,3 +29,10 @@ internal fun Method.requestMediaTypes(): Set<String> {
     }
     .toSet()
 }
+
+internal fun Method.responseMediaTypes(): Set<String> {
+    return this.responses().flatMap {response ->
+        response.body().map { it.name() }
+    }
+    .toSet()
+}

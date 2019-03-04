@@ -70,7 +70,7 @@ class OpenApiConverterProducesTest {
                 Endpoint(
                         path = "/todos/query",
                         httpMethod = GET,
-                        produces = setOf("application/json", "plain/text")
+                        produces = setOf("application/json", "text/plain")
                 )
         )
 

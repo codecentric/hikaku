@@ -1052,7 +1052,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/json",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 
@@ -1066,7 +1066,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     produces = setOf(
-                                            "plain/text",
+                                            "text/plain",
                                             "application/json"
                                     )
                             )
@@ -1108,7 +1108,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/xml",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 
@@ -1164,7 +1164,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     produces = setOf(
                                             "application/xml",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 
@@ -1221,7 +1221,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     consumes = setOf(
                                             "application/json",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 
@@ -1235,7 +1235,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     consumes = setOf(
-                                            "plain/text",
+                                            "text/plain",
                                             "application/json"
                                     )
                             )
@@ -1277,7 +1277,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     consumes = setOf(
                                             "application/xml",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 
@@ -1333,7 +1333,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     consumes = setOf(
                                             "application/xml",
-                                            "plain/text"
+                                            "text/plain"
                                     )
                             )
 

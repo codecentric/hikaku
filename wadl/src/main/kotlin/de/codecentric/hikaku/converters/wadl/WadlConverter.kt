@@ -3,6 +3,7 @@ package de.codecentric.hikaku.converters.wadl
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.SpecificationParserException
 import de.codecentric.hikaku.converters.wadl.extensions.getAttribute
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.extensions.checkFileValidity
@@ -26,12 +27,6 @@ import javax.xml.xpath.XPathFactory
  */
 class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
-    init {
-        if (wadl.isBlank()) {
-            throw IllegalArgumentException("Given WADL is blank.")
-        }
-    }
-
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
             Feature.HeaderParameter,
@@ -45,6 +40,14 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             .newXPath()
 
     override fun convert(): Set<Endpoint> {
+        try {
+            return parseWadl()
+        } catch (throwable: Throwable) {
+            throw SpecificationParserException(throwable)
+        }
+    }
+
+    private fun parseWadl(): Set<Endpoint> {
         val doc = DocumentBuilderFactory
                 .newInstance()
                 .newDocumentBuilder()
@@ -52,7 +55,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
         val resources = xPath.evaluate("//resource", doc, NODESET) as NodeList
 
-        val endpoints: MutableSet<Endpoint> = mutableSetOf()
+        val endpoints = mutableSetOf<Endpoint>()
 
         for (index in 0 until resources.length) {
             endpoints.addAll(createEndpoints(resources.item(index)))
@@ -143,24 +146,38 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         @JvmStatic
         @JvmName("usingPath")
         operator fun invoke(wadlFile: Path): WadlConverter {
-           wadlFile.checkFileValidity(".wadl")
-
-            val expectedFileContentBuilder = StringBuilder()
-
-            Files.readAllLines(wadlFile, UTF_8)
-                    .map { line ->
-                        expectedFileContentBuilder
-                                .append(line)
-                                .append("\n")
-                    }
-
-            return WadlConverter(expectedFileContentBuilder.toString())
+            return WadlConverter(readFileContent(wadlFile))
         }
 
         @JvmStatic
         @JvmName("usingFile")
         operator fun invoke(wadlFile: File): WadlConverter {
             return WadlConverter(wadlFile.toPath())
+        }
+
+        private fun readFileContent(wadlFile: Path): String {
+            val fileContentBuilder = StringBuilder()
+
+            try {
+                wadlFile.checkFileValidity(".wadl")
+
+                Files.readAllLines(wadlFile, UTF_8)
+                        .map { line ->
+                            fileContentBuilder
+                                    .append(line)
+                                    .append("\n")
+                        }
+            } catch (throwable: Throwable) {
+                throw SpecificationParserException(throwable)
+            }
+
+            val fileContent = fileContentBuilder.toString()
+
+            if (fileContent.isBlank()) {
+                throw SpecificationParserException("Given WADL is blank.")
+            }
+
+            return fileContent
         }
     }
 }

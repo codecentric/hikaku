@@ -1,5 +1,6 @@
 package de.codecentric.hikaku.converters.wadl
 
+import de.codecentric.hikaku.converters.SpecificationParserException
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.xml.sax.SAXParseException
@@ -18,7 +19,7 @@ class WadlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -29,19 +30,19 @@ class WadlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 WadlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `file containing syntax error throws SAXParseException`() {
+        fun `file containing syntax error`() {
             //given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
             //when
-            assertFailsWith<SAXParseException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }
@@ -56,7 +57,7 @@ class WadlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.wadl").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 WadlConverter(file).conversionResult
             }
         }
@@ -67,19 +68,19 @@ class WadlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.wadl").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 WadlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `file containing syntax error throws SAXParseException`() {
+        fun `file containing syntax error`() {
             //given
             val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.wadl").toURI())
             val converter = WadlConverter(file)
 
             //when
-            assertFailsWith<SAXParseException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }

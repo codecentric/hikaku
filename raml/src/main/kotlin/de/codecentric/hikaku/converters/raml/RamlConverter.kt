@@ -3,6 +3,7 @@ package de.codecentric.hikaku.converters.raml
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.SpecificationParserException
 import de.codecentric.hikaku.converters.raml.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuQueryParameters
 import de.codecentric.hikaku.converters.raml.extensions.hikakuHttpMethod
@@ -27,6 +28,14 @@ class RamlConverter private constructor(private val ramlSpecification: File) : A
     )
 
     override fun convert(): Set<Endpoint> {
+        try {
+            return parseRaml()
+        } catch(throwable: Throwable) {
+            throw SpecificationParserException(throwable)
+        }
+    }
+
+    private fun parseRaml(): Set<Endpoint> {
         val ramlParserResult = RamlModelBuilder().buildApi(ramlSpecification)
 
         if (ramlParserResult.isVersion08) {

@@ -1,5 +1,6 @@
 package de.codecentric.hikaku.converters.raml
 
+import de.codecentric.hikaku.converters.SpecificationParserException
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -17,7 +18,7 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -28,7 +29,7 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -39,19 +40,19 @@ class RamlConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/invalid_raml_version.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `file containing syntax error throws IllegalArgumentException`() {
+        fun `file containing syntax error throws SpecificationParserException`() {
             //given
             val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.raml").toURI())
             val converter = RamlConverter(file)
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }
@@ -66,7 +67,7 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -77,7 +78,7 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
@@ -88,19 +89,19 @@ class RamlConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/invalid_raml_version.raml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 RamlConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `file containing syntax error throws IllegalArgumentException`() {
+        fun `file containing syntax error`() {
             //given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.raml").toURI())
             val converter = RamlConverter(file)
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }

@@ -1,3 +1,4 @@
+import de.codecentric.hikaku.converters.SpecificationParserException
 import de.codecentric.hikaku.converters.openapi.OpenApiConverter
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -17,7 +18,7 @@ class OpenApiConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -28,19 +29,19 @@ class OpenApiConverterInvalidInputTest {
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 OpenApiConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `OpenAPI yaml file containing syntax error throws IllegalStateException, because OpenAPI object will be null (The parser is extremely fault tolerant)`() {
+        fun `OpenAPI yaml file containing syntax error`() {
             //given
             val file = Paths.get(this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI())
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<IllegalStateException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }
@@ -55,7 +56,7 @@ class OpenApiConverterInvalidInputTest {
             val file = File(this::class.java.classLoader.getResource("invalid_input/empty_file.yaml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 OpenApiConverter(file).conversionResult
             }
         }
@@ -66,19 +67,19 @@ class OpenApiConverterInvalidInputTest {
                 val file = File(this::class.java.classLoader.getResource("invalid_input/whitespaces_only_file.yaml").toURI())
 
             //when
-            assertFailsWith<IllegalArgumentException> {
+            assertFailsWith<SpecificationParserException> {
                 OpenApiConverter(file).conversionResult
             }
         }
 
         @Test
-        fun `OpenAPI yaml file containing syntax error throws IllegalStateException, because OpenAPI object will be null (The parser is extremely fault tolerant)`() {
+        fun `OpenAPI yaml file containing syntax error`() {
             //given
             val file = File(this::class.java.classLoader.getResource("invalid_input/syntax_error.yaml").toURI())
             val converter = OpenApiConverter(file)
 
             //when
-            assertFailsWith<IllegalStateException> {
+            assertFailsWith<SpecificationParserException> {
                 converter.conversionResult
             }
         }

@@ -5,16 +5,14 @@ import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.openapi.extensions.httpMethods
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.PathParameter
-import de.codecentric.hikaku.endpoints.QueryParameter
 import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParameter
 import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
 import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
 import de.codecentric.hikaku.SupportedFeatures.Feature
+import de.codecentric.hikaku.converters.SpecificationParserException
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuHeaderParameters
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuPathParameters
 import de.codecentric.hikaku.converters.openapi.extensions.hikakuQueryParameters
-import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.Operation
@@ -29,15 +27,9 @@ import java.nio.file.Path
  *
  * In Java invoke via: `OpenApiConverter.usingPath(Paths.get("");` or `OpenApiConverter.usingFile(new File("");`
  */
-class OpenApiConverter private constructor(private val openApiSpecification: String) : AbstractEndpointConverter() {
+class OpenApiConverter private constructor(private val specificationContent: String) : AbstractEndpointConverter() {
 
     private lateinit var openApi: OpenAPI
-
-    init {
-        if (openApiSpecification.isBlank()) {
-            throw IllegalArgumentException("Given specification is blank.")
-        }
-    }
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
@@ -48,13 +40,22 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
     )
 
     override fun convert(): Set<Endpoint> {
-        openApi = OpenAPIV3Parser().readContents(openApiSpecification, null, null).openAPI
+        try {
+            return parseOpenApi()
+        } catch (throwable: Throwable) {
+            throw SpecificationParserException(throwable)
+        }
+    }
+
+    private fun parseOpenApi(): Set<Endpoint> {
+        openApi = OpenAPIV3Parser().readContents(specificationContent, null, null).openAPI
 
         return openApi.paths.flatMap { (path, pathItem) ->
             pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
                 createEndpoint(path, httpMethod, operation)
             }
-        }.toSet()
+        }
+        .toSet()
     }
 
     private fun createEndpoint(
@@ -137,17 +138,29 @@ class OpenApiConverter private constructor(private val openApiSpecification: Str
         @JvmStatic
         @JvmName("usingPath")
         operator fun invoke(openApiSpecification: Path): OpenApiConverter {
-            openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
-
-            val expectedFileContent = readAllLines(openApiSpecification, UTF_8).joinToString("\n")
-
-            return OpenApiConverter(expectedFileContent)
+            return OpenApiConverter(readFileContent(openApiSpecification))
         }
 
         @JvmStatic
         @JvmName("usingFile")
         operator fun invoke(openApiSpecification: File): OpenApiConverter {
             return OpenApiConverter(openApiSpecification.toPath())
+        }
+
+        private fun readFileContent(openApiSpecification: Path): String {
+            try {
+                openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
+            } catch (throwable: Throwable) {
+                throw SpecificationParserException(throwable)
+            }
+
+            val fileContent = readAllLines(openApiSpecification, UTF_8).joinToString("\n")
+
+            if (fileContent.isBlank()) {
+                throw SpecificationParserException("Given OpenAPI file is blank.")
+            }
+
+            return fileContent
         }
     }
 }

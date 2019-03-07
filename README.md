@@ -91,3 +91,7 @@ public class SpecificationTest {
   }
 }
 ```
+
+#### More Info
+
+[Spotting mismatches between your spec and your REST-API with hikaku](https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/)

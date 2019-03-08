@@ -1,15 +1,15 @@
-package de.codecentric.hikaku.converter.spring.produces
+package de.codecentric.hikaku.converter.spring.produces.restcontroller
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.MediaType.*
 import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 @SpringBootApplication
 open class DummyApp
 
 @RestController
-@ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
 open class RequestMappingOneMediaTypeIsInheritedByAllFunctionsController {
 
@@ -21,7 +21,6 @@ open class RequestMappingOneMediaTypeIsInheritedByAllFunctionsController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
 open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController {
 
@@ -33,7 +32,6 @@ open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController 
 }
 
 @RestController
-@ResponseBody
 open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -41,7 +39,6 @@ open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -49,7 +46,6 @@ open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
 open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController {
 
@@ -61,7 +57,6 @@ open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionControl
 }
 
 @RestController
-@ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController {
 
@@ -73,7 +68,6 @@ open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunction
 }
 
 @RestController
-@ResponseBody
 @RequestMapping("/todos")
 open class RequestMappingOnClassDefaultValueController {
 
@@ -82,7 +76,6 @@ open class RequestMappingOnClassDefaultValueController {
 }
 
 @RestController
-@ResponseBody
 open class RequestMappingOnFunctionDefaultValueController {
 
     @RequestMapping("/todos")
@@ -91,22 +84,6 @@ open class RequestMappingOnFunctionDefaultValueController {
 
 @RestController
 @RequestMapping("/todos")
-open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
-
-    @RequestMapping
-    fun getAllTodos() { }
-}
-
-@RestController
-open class RequestMappingOnFunctionWithoutResponseBodyAnnotationController {
-
-    @RequestMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
-@RequestMapping("/todos")
 open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueController {
 
     @RequestMapping
@@ -114,7 +91,6 @@ open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueC
 }
 
 @RestController
-@ResponseBody
 open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyValueController {
 
     @RequestMapping("/todos")
@@ -122,7 +98,6 @@ open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyVal
 }
 
 @RestController
-@ResponseBody
 open class GetMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @GetMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -130,7 +105,6 @@ open class GetMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class GetMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @GetMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -138,7 +112,6 @@ open class GetMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class GetMappingDefaultValueController {
 
     @GetMapping("/todos")
@@ -146,7 +119,6 @@ open class GetMappingDefaultValueController {
 }
 
 @RestController
-@ResponseBody
 open class GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @GetMapping("/todos")
@@ -154,14 +126,6 @@ open class GetMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 }
 
 @RestController
-open class GetMappingWithoutResponseBodyAnnotationController {
-
-    @GetMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
 open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -169,7 +133,6 @@ open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @DeleteMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -177,7 +140,6 @@ open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class DeleteMappingDefaultValueController {
 
     @DeleteMapping("/todos")
@@ -185,7 +147,6 @@ open class DeleteMappingDefaultValueController {
 }
 
 @RestController
-@ResponseBody
 open class DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @DeleteMapping("/todos")
@@ -193,14 +154,6 @@ open class DeleteMappingWithoutProducesInfoAndStringAsResponseBodyValueControlle
 }
 
 @RestController
-open class DeleteMappingWithoutResponseBodyAnnotationController {
-
-    @DeleteMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
 open class PatchMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PatchMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -208,7 +161,6 @@ open class PatchMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PatchMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PatchMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -216,7 +168,6 @@ open class PatchMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PatchMappingDefaultValueController {
 
     @PatchMapping("/todos")
@@ -224,7 +175,6 @@ open class PatchMappingDefaultValueController {
 }
 
 @RestController
-@ResponseBody
 open class PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @PatchMapping("/todos")
@@ -232,14 +182,6 @@ open class PatchMappingWithoutProducesInfoAndStringAsResponseBodyValueController
 }
 
 @RestController
-open class PatchMappingWithoutResponseBodyAnnotationController {
-
-    @PatchMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
 open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PostMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -247,7 +189,6 @@ open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PostMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PostMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -255,7 +196,6 @@ open class PostMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PostMappingDefaultValueController {
 
     @PostMapping("/todos")
@@ -263,14 +203,6 @@ open class PostMappingDefaultValueController {
 }
 
 @RestController
-open class PostMappingWithoutResponseBodyAnnotationController {
-
-    @PostMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
 open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @PostMapping("/todos")
@@ -278,7 +210,6 @@ open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController 
 }
 
 @RestController
-@ResponseBody
 open class PutMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PutMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -286,7 +217,6 @@ open class PutMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PutMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PutMapping("/todos", produces = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -294,7 +224,6 @@ open class PutMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @RestController
-@ResponseBody
 open class PutMappingDefaultValueController {
 
     @PutMapping("/todos")
@@ -302,7 +231,6 @@ open class PutMappingDefaultValueController {
 }
 
 @RestController
-@ResponseBody
 open class PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 
     @PutMapping("/todos")
@@ -310,14 +238,6 @@ open class PutMappingWithoutProducesInfoAndStringAsResponseBodyValueController {
 }
 
 @RestController
-open class PutMappingWithoutResponseBodyAnnotationController {
-
-    @PutMapping("/todos")
-    fun getAllTodos() { }
-}
-
-@RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class GetMappingOneMediaTypeIsOverwrittenController {
 
@@ -326,7 +246,6 @@ open class GetMappingOneMediaTypeIsOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class DeleteMappingOneMediaTypeIsOverwrittenController {
 
@@ -335,7 +254,6 @@ open class DeleteMappingOneMediaTypeIsOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class PatchMappingOneMediaTypeIsOverwrittenController {
 
@@ -344,7 +262,6 @@ open class PatchMappingOneMediaTypeIsOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class PostMappingOneMediaTypeIsOverwrittenController {
 
@@ -353,7 +270,6 @@ open class PostMappingOneMediaTypeIsOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class PutMappingOneMediaTypeIsOverwrittenController {
 
@@ -362,7 +278,6 @@ open class PutMappingOneMediaTypeIsOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class GetMappingMultipleMediaTypesAreOverwrittenController {
 
@@ -371,7 +286,6 @@ open class GetMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 
@@ -380,7 +294,6 @@ open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 
@@ -389,7 +302,6 @@ open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class PostMappingMultipleMediaTypesAreOverwrittenController {
 
@@ -398,7 +310,6 @@ open class PostMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
 open class PutMappingMultipleMediaTypesAreOverwrittenController {
 
@@ -407,7 +318,6 @@ open class PutMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @RestController
-@ResponseBody
 open class ErrorEndpointController {
 
     @GetMapping("/todos", produces = [APPLICATION_XML_VALUE])

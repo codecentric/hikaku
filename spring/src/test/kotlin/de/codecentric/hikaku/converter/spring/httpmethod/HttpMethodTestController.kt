@@ -1,13 +1,14 @@
 package de.codecentric.hikaku.converter.spring.httpmethod
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.bind.annotation.RequestMethod.*
 
 @SpringBootApplication
 open class DummyApp
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [GET])
 open class RequestMappingDefinedOnClassWithExplicitGetMethodController {
 
@@ -15,14 +16,14 @@ open class RequestMappingDefinedOnClassWithExplicitGetMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitGetMethodController {
 
     @RequestMapping("/todos", method = [GET])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [POST])
 open class RequestMappingDefinedOnClassWithExplicitPostMethodController {
 
@@ -30,14 +31,14 @@ open class RequestMappingDefinedOnClassWithExplicitPostMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitPostMethodController {
 
     @RequestMapping("/todos", method = [POST])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [HEAD])
 open class RequestMappingDefinedOnClassWithExplicitHeadMethodController {
 
@@ -45,14 +46,14 @@ open class RequestMappingDefinedOnClassWithExplicitHeadMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitHeadMethodController {
 
     @RequestMapping("/todos", method = [HEAD])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [PUT])
 open class RequestMappingDefinedOnClassWithExplicitPutMethodController {
 
@@ -60,14 +61,14 @@ open class RequestMappingDefinedOnClassWithExplicitPutMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitPutMethodController {
 
     @RequestMapping("/todos", method = [PUT])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [PATCH])
 open class RequestMappingDefinedOnClassWithExplicitPatchMethodController {
 
@@ -75,14 +76,14 @@ open class RequestMappingDefinedOnClassWithExplicitPatchMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitPatchMethodController {
 
     @RequestMapping("/todos", method = [PATCH])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [DELETE])
 open class RequestMappingDefinedOnClassWithExplicitDeleteMethodController {
 
@@ -90,14 +91,14 @@ open class RequestMappingDefinedOnClassWithExplicitDeleteMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitDeleteMethodController {
 
     @RequestMapping("/todos", method = [DELETE])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [TRACE])
 open class RequestMappingDefinedOnClassWithExplicitTraceMethodController {
 
@@ -105,14 +106,14 @@ open class RequestMappingDefinedOnClassWithExplicitTraceMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitTraceMethodController {
 
     @RequestMapping("/todos", method = [TRACE])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [OPTIONS])
 open class RequestMappingDefinedOnClassWithExplicitOptionsMethodController {
 
@@ -120,14 +121,14 @@ open class RequestMappingDefinedOnClassWithExplicitOptionsMethodController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionWithExplicitOptionsMethodController {
 
     @RequestMapping("/todos", method = [OPTIONS])
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class RequestMappingDefinedOnClassNoHttpMethodDefinedController {
 
@@ -135,14 +136,14 @@ open class RequestMappingDefinedOnClassNoHttpMethodDefinedController {
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingDefinedOnFunctionNoHttpMethodDefinedController {
 
     @RequestMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [PUT])
 open class RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsController {
 
@@ -150,7 +151,7 @@ open class RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsContro
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [GET])
 open class RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsAndDifferentPathsController {
 
@@ -161,7 +162,7 @@ open class RequestMappingDefinedOnClassAndFunctionWithDifferentHttpMethodsAndDif
     fun todos() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [PUT, PATCH, TRACE])
 open class RequestMappingDefinedOnClassWithMultipleMethodsController {
 
@@ -169,7 +170,7 @@ open class RequestMappingDefinedOnClassWithMultipleMethodsController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [PUT, PATCH, TRACE])
 open class RequestMappingDefinedOnFunctionWithMultipleMethodsController {
 
@@ -177,7 +178,7 @@ open class RequestMappingDefinedOnFunctionWithMultipleMethodsController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [POST])
 open class RequestMappingWithPostAndGetMappingInCombinationController {
 
@@ -185,7 +186,7 @@ open class RequestMappingWithPostAndGetMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [POST])
 open class RequestMappingWithPostAndDeleteMappingInCombinationController {
 
@@ -193,7 +194,7 @@ open class RequestMappingWithPostAndDeleteMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [POST])
 open class RequestMappingWithPostAndPatchMappingInCombinationController {
 
@@ -201,7 +202,7 @@ open class RequestMappingWithPostAndPatchMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [TRACE])
 open class RequestMappingWithTraceAndPostMappingInCombinationController {
 
@@ -209,7 +210,7 @@ open class RequestMappingWithTraceAndPostMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos", method = [POST])
 open class RequestMappingWithPostAndPutMappingInCombinationController {
 
@@ -217,7 +218,7 @@ open class RequestMappingWithPostAndPutMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class EmptyRequestMappingAndGetMappingInCombinationController {
 
@@ -225,7 +226,7 @@ open class EmptyRequestMappingAndGetMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class EmptyRequestMappingAndDeleteMappingInCombinationController {
 
@@ -233,7 +234,7 @@ open class EmptyRequestMappingAndDeleteMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class EmptyRequestMappingAndPatchMappingInCombinationController {
 
@@ -241,7 +242,7 @@ open class EmptyRequestMappingAndPatchMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class EmptyRequestMappingAndPostMappingInCombinationController {
 
@@ -249,7 +250,7 @@ open class EmptyRequestMappingAndPostMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class EmptyRequestMappingAndPutMappingInCombinationController {
 
@@ -257,7 +258,7 @@ open class EmptyRequestMappingAndPutMappingInCombinationController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingFirstAndGetMappingBothOnFunctionController {
 
     @RequestMapping("/todos")
@@ -265,7 +266,7 @@ open class RequestMappingFirstAndGetMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class GetMappingFirstAndRequestMappingBothOnFunctionController {
 
     @GetMapping
@@ -273,7 +274,7 @@ open class GetMappingFirstAndRequestMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingFirstAndDeleteMappingBothOnFunctionController {
 
     @RequestMapping("/todos")
@@ -281,7 +282,7 @@ open class RequestMappingFirstAndDeleteMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class DeleteMappingFirstAndRequestMappingBothOnFunctionController {
 
     @DeleteMapping
@@ -289,7 +290,7 @@ open class DeleteMappingFirstAndRequestMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingFirstAndPatchMappingBothOnFunctionController {
 
     @RequestMapping("/todos")
@@ -297,7 +298,7 @@ open class RequestMappingFirstAndPatchMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class PatchMappingFirstAndRequestMappingBothOnFunctionController {
 
     @PatchMapping
@@ -305,7 +306,7 @@ open class PatchMappingFirstAndRequestMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingFirstAndPostMappingBothOnFunctionController {
 
     @RequestMapping("/todos")
@@ -313,7 +314,7 @@ open class RequestMappingFirstAndPostMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class PostMappingFirstAndRequestMappingBothOnFunctionController {
 
     @PostMapping
@@ -321,7 +322,7 @@ open class PostMappingFirstAndRequestMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class RequestMappingFirstAndPutMappingBothOnFunctionController {
 
     @RequestMapping("/todos")
@@ -329,7 +330,7 @@ open class RequestMappingFirstAndPutMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class PutMappingFirstAndRequestMappingBothOnFunctionController {
 
     @PutMapping
@@ -337,42 +338,42 @@ open class PutMappingFirstAndRequestMappingBothOnFunctionController {
     fun todo() { }
 }
 
-@RestController
+@Controller
 open class GetMappingController {
 
     @GetMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class DeleteMappingController {
 
     @DeleteMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class PatchMappingController {
 
     @PatchMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class PostMappingController {
 
     @PostMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class PutMappingController {
 
     @PutMapping("/todos")
     fun todos() { }
 }
 
-@RestController
+@Controller
 open class MultipleHttpMethodMappingAnnotationsController {
 
     @GetMapping("/todos")
@@ -381,7 +382,7 @@ open class MultipleHttpMethodMappingAnnotationsController {
     fun tdos() { }
 }
 
-@RestController
+@Controller
 open class HttpMethodsForDefaultErrorEndpointController {
 
     @GetMapping("/todos")

@@ -1,6 +1,7 @@
 package de.codecentric.hikaku.converter.spring.pathparameter
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @SpringBootApplication
 open class DummyApp
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class PathParameterNamedByVariableController {
 
@@ -18,7 +19,7 @@ open class PathParameterNamedByVariableController {
     fun getSpecificTodoItem(@PathVariable id: Int) { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class PathParameterNamedByValueAttributeController {
 
@@ -26,7 +27,7 @@ open class PathParameterNamedByValueAttributeController {
     fun getSpecificTodoItem(@PathVariable(value = "id") variable: Int) { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class PathParameterNamedByNameAttributeController {
 
@@ -34,7 +35,7 @@ open class PathParameterNamedByNameAttributeController {
     fun getSpecificTodoItem(@PathVariable(name = "id") variable: Int) { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class PathParameterHavingBothValueAndNameAttributeController {
 
@@ -42,14 +43,14 @@ open class PathParameterHavingBothValueAndNameAttributeController {
     fun getSpecificTodoItem(@PathVariable(value = "valueAttribute", name = "nameAttribute") variable: Int) { }
 }
 
-@RestController
+@Controller
 open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
 
     @RequestMapping("/todos/{id}", method = [OPTIONS])
     fun getSpecificTodoItem(@PathVariable id: Int) { }
 }
 
-@RestController
+@Controller
 @RequestMapping("/todos")
 open class PathParameterOnDefaultErrorEndpointController {
 

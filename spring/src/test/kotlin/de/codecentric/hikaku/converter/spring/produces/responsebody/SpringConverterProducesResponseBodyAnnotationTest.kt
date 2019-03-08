@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converter.spring.produces
+package de.codecentric.hikaku.converter.spring.produces.responsebody
 
 import de.codecentric.hikaku.converter.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType.*
 
-class SpringConverterProducesTest {
+class SpringConverterProducesResponseBodyAnnotationTest {
 
     @Nested
     inner class RequestMappingAnnotationTests {

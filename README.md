@@ -97,4 +97,5 @@ public class SpecificationTest {
 #### More Info
 
 * **Blog (english):** [Spotting mismatches between your spec and your REST-API with hikaku](https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/)
-* **Sample project** [A complete sample project](https://github.com/cc-jhr/hikaku-sample).
+* **Blog (german):** [ Abweichungen zwischen Spezifikation und REST-API mit hikaku erkennen](https://blog.codecentric.de/2019/03/abweichungen-zwischen-rest-api-spezifikation-erkennen/)
+* **Sample project** [A complete sample project](https://github.com/cc-jhr/hikaku-sample)

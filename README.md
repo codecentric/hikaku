@@ -1,5 +1,9 @@
-[![Build Status](https://api.travis-ci.org/codecentric/hikaku.svg?branch=master)](https://travis-ci.org/codecentric/hikaku) [![Maven Central Version](https://img.shields.io/maven-central/v/de.codecentric.hikaku/hikaku-core.svg)](https://search.maven.org/search?q=g:de.codecentric.hikaku)
 # hikaku
+[![Build Status](https://api.travis-ci.org/codecentric/hikaku.svg?branch=master)](https://travis-ci.org/codecentric/hikaku) [![Maven Central Version](https://img.shields.io/maven-central/v/de.codecentric.hikaku/hikaku-core.svg)](https://search.maven.org/search?q=g:de.codecentric.hikaku)
+
+<p align="center">
+  <img src="docs/images/hikaku-logo-small.png">
+</p>
 
 Hikaku (比較) is japanese and means "comparison". This library tests if a REST-API implementation meets it's specification.
 
@@ -60,8 +64,6 @@ class SpecificationTest {
 }
 ```
 
-A complete sample project can be found [here](https://github.com/cc-jhr/hikaku-sample).
-
 #### Java
 
 Same example in Java:
@@ -94,4 +96,5 @@ public class SpecificationTest {
 
 #### More Info
 
-[Spotting mismatches between your spec and your REST-API with hikaku](https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/)
+* **Blog (english):** [Spotting mismatches between your spec and your REST-API with hikaku](https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/)
+* **Sample project** [A complete sample project](https://github.com/cc-jhr/hikaku-sample).

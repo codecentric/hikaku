@@ -5,7 +5,7 @@
   <img src="docs/images/hikaku-logo-small.png">
 </p>
 
-Hikaku (比較) is japanese and means "comparison". This library tests if a REST-API implementation meets it's specification.
+Hikaku (比較) is japanese and means "comparison". This library tests if a REST-API implementation meets its specification.
 
 If you create your REST-API contract-first without using any type of generation, you have to make sure that specification and implementation don't diverge.
 The aim of this project is to meet this need and offer a mechanism to check specification and implementation for equality without having to create requests which are fired against a mock server. So this library won't check the behavior of the API, but the structural correctness.

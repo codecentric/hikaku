@@ -8,19 +8,34 @@ import java.nio.file.Paths
 class OpenApiConverterQueryParameterTest {
 
     @Test
-    fun `check that query parameter are extracted correctly`() {
+    fun `query parameter inline declaration on Operation object`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter/query_parameter_inline.yaml").toURI())
         val queryParameters = setOf(
                 QueryParameter("tag", false),
                 QueryParameter("limit", true)
         )
 
         //when
-        val specification = OpenApiConverter(file)
+        val result = OpenApiConverter(file).conversionResult.toList()[0].queryParameters
 
         //then
-        val resultingQueryParameters = specification.conversionResult.toList()[0].queryParameters
-        assertThat(resultingQueryParameters).containsExactlyInAnyOrderElementsOf(queryParameters)
+        assertThat(result).containsExactlyInAnyOrderElementsOf(queryParameters)
+    }
+
+    @Test
+    fun `one query parameter declared inline and one parameter referenced from parameters section in components`() {
+        //given
+        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter/query_parameter_in_components.yaml").toURI())
+        val queryParameters = setOf(
+                QueryParameter("tag", false),
+                QueryParameter("limit", true)
+        )
+
+        //when
+        val result = OpenApiConverter(file).conversionResult.toList()[0].queryParameters
+
+        //then
+        assertThat(result).containsExactlyInAnyOrderElementsOf(queryParameters)
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestHeader
-import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
 open class DummyApp
@@ -13,21 +12,21 @@ open class DummyApp
 open class HeaderParameterNamedByVariableController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader useCache: Boolean) { }
+    fun getAllTodos(@RequestHeader allowCache: Boolean) { }
 }
 
 @Controller
 open class HeaderParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(value = "use-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) { }
 }
 
 @Controller
 open class HeaderParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(name = "use-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(name = "allow-cache") variable: Boolean) { }
 }
 
 @Controller
@@ -41,7 +40,7 @@ open class HeaderParameterHavingBothNameAndValueAttributeController {
 open class HeaderParameterOptionalController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(name = "use-cache", required = false) variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(name = "allow-cache", required = false) variable: Boolean) { }
 }
 
 @Controller
@@ -56,5 +55,5 @@ open class HeaderParameterOptionalBecauseOfDefaultValueController {
 open class HeaderParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")
-    fun getAllTodos(@RequestHeader(value = "use-cache") variable: Boolean) { }
+    fun getAllTodos(@RequestHeader(value = "allow-cache") variable: Boolean) { }
 }

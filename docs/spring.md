@@ -71,13 +71,13 @@ You will find a list of spring specific features that are supported below.
 ### Header parameters
 
 + Supports parameter name using variable name
-  + _Example:_ `@RequestHeader useCache: String`
+  + _Example:_ `@RequestHeader allowCache: String`
 
 + Supports parameter name defined by 'value'
-  + _Example:_ `@RequestParam(value = "use-cache") otherName: String`
+  + _Example:_ `@RequestParam(value = "allow-cache") otherName: String`
 
 + Supports parameter name defined by alias 'name'
-  + _Example:_ `@RequestHeader(name = "use-cache") otherName: String`
+  + _Example:_ `@RequestHeader(name = "allow-cache") otherName: String`
 
 + Throw an exception in case both 'value' and 'name' are set.
   + _Example:_ `@RequestHeader(value = "param", name = "other") foo: String`

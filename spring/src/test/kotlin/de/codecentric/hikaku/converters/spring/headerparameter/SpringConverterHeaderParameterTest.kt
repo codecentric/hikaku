@@ -31,7 +31,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = GET,
                         headerParameters = setOf(
-                            HeaderParameter("useCache", true)
+                            HeaderParameter("allowCache", true)
                         )
                 ),
                 Endpoint("/todos", OPTIONS),
@@ -39,7 +39,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = HEAD,
                         headerParameters = setOf(
-                                HeaderParameter("useCache", true)
+                                HeaderParameter("allowCache", true)
                         )
                 )
             )
@@ -66,7 +66,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = GET,
                         headerParameters = setOf(
-                            HeaderParameter("use-cache", true)
+                            HeaderParameter("allow-cache", true)
                         )
                 ),
                 Endpoint("/todos", OPTIONS),
@@ -74,7 +74,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = HEAD,
                         headerParameters = setOf(
-                            HeaderParameter("use-cache", true)
+                            HeaderParameter("allow-cache", true)
                         )
                 )
             )
@@ -101,7 +101,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = GET,
                         headerParameters = setOf(
-                            HeaderParameter("use-cache", true)
+                            HeaderParameter("allow-cache", true)
                         )
                 ),
                 Endpoint("/todos", OPTIONS),
@@ -109,7 +109,7 @@ class SpringConverterHeaderParameterTest {
                         path = "/todos",
                         httpMethod = HEAD,
                         headerParameters = setOf(
-                            HeaderParameter("use-cache", true)
+                            HeaderParameter("allow-cache", true)
                         )
                 )
             )
@@ -150,7 +150,7 @@ class SpringConverterHeaderParameterTest {
                             path = "/todos",
                             httpMethod = GET,
                             headerParameters = setOf(
-                                HeaderParameter("use-cache", false)
+                                HeaderParameter("allow-cache", false)
                             )
                     ),
                     Endpoint("/todos", OPTIONS),
@@ -158,7 +158,7 @@ class SpringConverterHeaderParameterTest {
                             path = "/todos",
                             httpMethod = HEAD,
                             headerParameters = setOf(
-                                HeaderParameter("use-cache", false)
+                                HeaderParameter("allow-cache", false)
                             )
                     )
             )
@@ -221,7 +221,7 @@ class SpringConverterHeaderParameterTest {
                             path = "/todos",
                             httpMethod = GET,
                             headerParameters = setOf(
-                                    HeaderParameter("use-cache", true)
+                                    HeaderParameter("allow-cache", true)
                             )
                     ),
                     Endpoint("/todos", OPTIONS),
@@ -229,7 +229,7 @@ class SpringConverterHeaderParameterTest {
                             path = "/todos",
                             httpMethod = HEAD,
                             headerParameters = setOf(
-                                    HeaderParameter("use-cache", true)
+                                    HeaderParameter("allow-cache", true)
                             )
                     ),
                     Endpoint(

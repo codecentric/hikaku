@@ -8,18 +8,32 @@ import java.nio.file.Paths
 class OpenApiConverterPathParameterTest {
 
     @Test
-    fun `check that path parameter are extracted correctly`() {
+    fun `path parameter inline declaration on Operation object`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("path_parameter.yaml").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("path_parameter/path_parameter_inline.yaml").toURI())
         val pathParameter = PathParameter("id")
 
         //when
-        val specification = OpenApiConverter(file)
+        val result = OpenApiConverter(file).conversionResult.toList()
 
         //then
-        val resultingEndpoints = specification.conversionResult.toList()
-        assertThat(resultingEndpoints[0].pathParameters).containsExactly(pathParameter)
-        assertThat(resultingEndpoints[1].pathParameters).containsExactly(pathParameter)
-        assertThat(resultingEndpoints[2].pathParameters).containsExactly(pathParameter)
+        assertThat(result[0].pathParameters).containsExactly(pathParameter)
+        assertThat(result[1].pathParameters).containsExactly(pathParameter)
+        assertThat(result[2].pathParameters).containsExactly(pathParameter)
+    }
+
+    @Test
+    fun `one path parameter declared inline and two parameters referenced from parameters section in components`() {
+        //given
+        val file = Paths.get(this::class.java.classLoader.getResource("path_parameter/path_parameter_in_components.yaml").toURI())
+        val pathParameter = PathParameter("id")
+
+        //when
+        val result = OpenApiConverter(file).conversionResult.toList()
+
+        //then
+        assertThat(result[0].pathParameters).containsExactly(pathParameter)
+        assertThat(result[1].pathParameters).containsExactly(pathParameter)
+        assertThat(result[2].pathParameters).containsExactly(pathParameter)
     }
 }

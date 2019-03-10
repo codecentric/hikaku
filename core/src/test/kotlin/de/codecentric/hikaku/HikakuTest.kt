@@ -722,7 +722,7 @@ class HikakuTest {
                                     httpMethod = GET,
                                     headerParameters = setOf(
                                             HeaderParameter("x-b3-traceid"),
-                                            HeaderParameter("use-cache")
+                                            HeaderParameter("allow-cache")
                                     )
                             )
 
@@ -736,7 +736,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache"),
+                                            HeaderParameter("allow-cache"),
                                             HeaderParameter("x-b3-traceid")
                                     )
                             )
@@ -777,7 +777,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache")
+                                            HeaderParameter("allow-cache")
                                     )
                             )
 
@@ -832,7 +832,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache")
+                                            HeaderParameter("cache")
                                     )
                             )
 
@@ -885,7 +885,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache", true)
+                                            HeaderParameter("allow-cache", true)
                                     )
                             )
 
@@ -899,7 +899,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache", true)
+                                            HeaderParameter("allow-cache", true)
                                     )
                             )
                     )
@@ -939,7 +939,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache")
+                                            HeaderParameter("allow-cache")
                                     )
                             )
 
@@ -994,7 +994,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache", true)
+                                            HeaderParameter("allow-cache", true)
                                     )
                             )
 
@@ -1009,7 +1009,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("use-cache", false)
+                                            HeaderParameter("allow-cache", false)
                                     )
                             )
                     )

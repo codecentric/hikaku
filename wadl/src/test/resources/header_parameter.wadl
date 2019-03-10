@@ -7,7 +7,7 @@
       <method name="GET" id="getAllTodos">
         <request>
           <param name="x-b3-traceid" type="xsd:string" style="header" required="false"/>
-          <param name="use-cache" type="xsd:boolean" style="header" required="true"/>
+          <param name="allow-cache" type="xsd:boolean" style="header" required="true"/>
         </request>
         <response status="200"/>
       </method>

@@ -6,15 +6,18 @@ import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
+import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.instanceParameter
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.reflect.jvm.kotlinFunction
 
 internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String> {
-    val isErrorPath = this.key.patternsCondition.patterns.contains("/error")
+    val isNotErrorPath = !this.key.patternsCondition.patterns.contains("/error")
+    val hasNoResponseBodyAnnotation = !this.value.providesResponseBodyAnnotation()
+    val hasNoRestControllerAnnotation = !this.value.providesRestControllerAnnotation()
 
-    if (!isErrorPath && !this.value.providesResponseBodyAnnotation() && !this.value.providesRestControllerAnnotation()) {
+    if (isNotErrorPath && ((hasNoResponseBodyAnnotation && hasNoRestControllerAnnotation) || this.value.method.hasNoReturnType())) {
         return emptySet()
     }
 
@@ -41,6 +44,8 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
         setOf(APPLICATION_JSON_UTF8_VALUE)
     }
 }
+
+private fun Method.hasNoReturnType() = this.returnType.name == "void" || this.returnType.name == "java.lang.Void"
 
 private fun HandlerMethod.providesRestControllerAnnotation() = this.method
         .kotlinFunction

@@ -317,6 +317,34 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnClassNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class NoProducesInfoAndNoReturnTypeTest {
+
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `no media type declared and no return type results in produces being empty`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                            Endpoint("/todos", GET),
+                            Endpoint("/todos", PUT),
+                            Endpoint("/todos", POST),
+                            Endpoint("/todos", DELETE),
+                            Endpoint("/todos", PATCH),
+                            Endpoint("/todos", HEAD),
+                            Endpoint("/todos", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
         }
 
         @Nested
@@ -557,6 +585,34 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnFunctionNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class NoProducesInfoAndNoReturnTypeTest {
+
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `no media type declared and no return type results in produces being empty`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                            Endpoint("/todos", GET),
+                            Endpoint("/todos", PUT),
+                            Endpoint("/todos", POST),
+                            Endpoint("/todos", DELETE),
+                            Endpoint("/todos", PATCH),
+                            Endpoint("/todos", HEAD),
+                            Endpoint("/todos", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
         }
     }
 
@@ -700,6 +756,30 @@ class SpringConverterProducesResponseBodyAnnotationTest {
 
             @Test
             fun `no ResponseBody annotation results in an empty produces list`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(GetMappingNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoProducesInfoAndNoReturnTypeTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `no media type declared and no return type results in produces being empty`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET),
@@ -870,6 +950,30 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                 assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
             }
         }
+
+        @Nested
+        @WebMvcTest(DeleteMappingNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoProducesInfoAndNoReturnTypeTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `no media type declared and no return type results in produces being empty`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint("/todos", DELETE),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
     }
 
     @Nested
@@ -1012,6 +1116,30 @@ class SpringConverterProducesResponseBodyAnnotationTest {
 
             @Test
             fun `no ResponseBody annotation results in an empty produces list`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint("/todos", PATCH),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PatchMappingNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoProducesInfoAndNoReturnTypeTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `no media type declared and no return type results in produces being empty`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", PATCH),
@@ -1182,6 +1310,30 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                 assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
             }
         }
+
+        @Nested
+        @WebMvcTest(PostMappingNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoProducesInfoAndNoReturnTypeTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `no media type declared and no return type results in produces being empty`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint("/todos", POST),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
     }
 
     @Nested
@@ -1324,6 +1476,30 @@ class SpringConverterProducesResponseBodyAnnotationTest {
 
             @Test
             fun `no ResponseBody annotation results in an empty produces list`() {
+                //given
+                val specification: Set<Endpoint> = setOf(
+                        Endpoint("/todos", PUT),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
+                )
+
+                //when
+                val implementation = SpringConverter(context)
+
+                //then
+                assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+            }
+        }
+
+        @Nested
+        @WebMvcTest(PutMappingNoProducesInfoAndNoReturnTypeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+        inner class NoProducesInfoAndNoReturnTypeTest {
+
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `no media type declared and no return type results in produces being empty`() {
                 //given
                 val specification: Set<Endpoint> = setOf(
                         Endpoint("/todos", PUT),

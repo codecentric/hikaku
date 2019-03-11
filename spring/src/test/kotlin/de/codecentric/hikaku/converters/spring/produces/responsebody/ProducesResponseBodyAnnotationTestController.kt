@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*
 @SpringBootApplication
 open class DummyApp
 
+data class Todo(val description: String = "")
+
 @Controller
 @ResponseBody
 @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -35,6 +37,40 @@ open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController 
 
 @Controller
 @ResponseBody
+@RequestMapping("/todos")
+open class RequestMappingOnClassDefaultValueController {
+
+    @RequestMapping
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOnClassDefaultValueController())
+}
+
+@Controller
+@ResponseBody
+@RequestMapping("/todos")
+open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueController {
+
+    @RequestMapping
+    fun getAllTodos() = ""
+}
+
+@Controller
+@RequestMapping("/todos")
+open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
+
+    @RequestMapping
+    fun getAllTodos() { }
+}
+
+@RestController
+@RequestMapping("/todos")
+open class RequestMappingOnClassNoProducesInfoAndNoReturnTypeController {
+
+    @RequestMapping
+    fun todos() { }
+}
+
+@Controller
+@ResponseBody
 open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
@@ -51,39 +87,6 @@ open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
 @Controller
 @ResponseBody
-@RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
-open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController {
-
-    @RequestMapping(produces = [TEXT_PLAIN_VALUE])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
-
-    @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
-}
-
-@Controller
-@ResponseBody
-@RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
-open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController {
-
-    @RequestMapping(produces = [TEXT_PLAIN_VALUE, "application/pdf"])
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
-
-    @RequestMapping("/{id}")
-    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
-}
-
-@Controller
-@ResponseBody
-@RequestMapping("/todos")
-open class RequestMappingOnClassDefaultValueController {
-
-    @RequestMapping
-    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOnClassDefaultValueController())
-}
-
-@Controller
-@ResponseBody
 open class RequestMappingOnFunctionDefaultValueController {
 
     @RequestMapping("/todos")
@@ -91,11 +94,11 @@ open class RequestMappingOnFunctionDefaultValueController {
 }
 
 @Controller
-@RequestMapping("/todos")
-open class RequestMappingOnClassWithoutResponseBodyAnnotationController {
+@ResponseBody
+open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyValueController {
 
-    @RequestMapping
-    fun getAllTodos() { }
+    @RequestMapping("/todos")
+    fun getAllTodos() = ""
 }
 
 @Controller
@@ -105,21 +108,12 @@ open class RequestMappingOnFunctionWithoutResponseBodyAnnotationController {
     fun getAllTodos() { }
 }
 
-@Controller
-@ResponseBody
+@RestController
 @RequestMapping("/todos")
-open class RequestMappingWithoutProducesOnClassInfoAndStringAsResponseBodyValueController {
+open class RequestMappingOnFunctionNoProducesInfoAndNoReturnTypeController {
 
     @RequestMapping
-    fun getAllTodos() = ""
-}
-
-@Controller
-@ResponseBody
-open class RequestMappingWithoutProducesOnFunctionInfoAndStringAsResponseBodyValueController {
-
-    @RequestMapping("/todos")
-    fun getAllTodos() = ""
+    fun todos() { }
 }
 
 @Controller
@@ -161,6 +155,13 @@ open class GetMappingWithoutResponseBodyAnnotationController {
     fun getAllTodos() { }
 }
 
+@RestController
+open class GetMappingNoProducesInfoAndNoReturnTypeController {
+
+    @GetMapping("/todos")
+    fun todos() { }
+}
+
 @Controller
 @ResponseBody
 open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
@@ -198,6 +199,13 @@ open class DeleteMappingWithoutResponseBodyAnnotationController {
 
     @DeleteMapping("/todos")
     fun getAllTodos() { }
+}
+
+@RestController
+open class DeleteMappingNoProducesInfoAndNoReturnTypeController {
+
+    @DeleteMapping("/todos")
+    fun todos() { }
 }
 
 @Controller
@@ -239,6 +247,13 @@ open class PatchMappingWithoutResponseBodyAnnotationController {
     fun getAllTodos() { }
 }
 
+@RestController
+open class PatchMappingNoProducesInfoAndNoReturnTypeController {
+
+    @PatchMapping("/todos")
+    fun todos() { }
+}
+
 @Controller
 @ResponseBody
 open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
@@ -276,6 +291,13 @@ open class PostMappingWithoutProducesInfoAndStringAsResponseBodyValueController 
 
     @PostMapping("/todos")
     fun getAllTodos() = ""
+}
+
+@RestController
+open class PostMappingNoProducesInfoAndNoReturnTypeController {
+
+    @PostMapping("/todos")
+    fun todos() { }
 }
 
 @Controller
@@ -317,13 +339,44 @@ open class PutMappingWithoutResponseBodyAnnotationController {
     fun getAllTodos() { }
 }
 
+@RestController
+open class PutMappingNoProducesInfoAndNoReturnTypeController {
+
+    @PutMapping("/todos")
+    fun todos() { }
+}
+
+@Controller
+@ResponseBody
+@RequestMapping("/todos", produces = [APPLICATION_XML_VALUE])
+open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController {
+
+    @RequestMapping(produces = [TEXT_PLAIN_VALUE])
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
+
+    @RequestMapping("/{id}")
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController())
+}
+
+@Controller
+@ResponseBody
+@RequestMapping("/todos", produces = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController {
+
+    @RequestMapping(produces = [TEXT_PLAIN_VALUE, "application/pdf"])
+    fun getAllTodos() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
+
+    @RequestMapping("/{id}")
+    fun getSpecificTodo() = ResponseEntity.status(200).body(RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController())
+}
+
 @Controller
 @ResponseBody
 @RequestMapping(produces = [APPLICATION_XML_VALUE])
 open class GetMappingOneMediaTypeIsOverwrittenController {
 
     @GetMapping("/todos", produces = [TEXT_PLAIN_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -332,7 +385,7 @@ open class GetMappingOneMediaTypeIsOverwrittenController {
 open class DeleteMappingOneMediaTypeIsOverwrittenController {
 
     @DeleteMapping("/todos", produces = [TEXT_PLAIN_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -341,7 +394,7 @@ open class DeleteMappingOneMediaTypeIsOverwrittenController {
 open class PatchMappingOneMediaTypeIsOverwrittenController {
 
     @PatchMapping("/todos", produces = [TEXT_PLAIN_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -350,7 +403,7 @@ open class PatchMappingOneMediaTypeIsOverwrittenController {
 open class PostMappingOneMediaTypeIsOverwrittenController {
 
     @PostMapping("/todos", produces = [TEXT_PLAIN_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -359,7 +412,7 @@ open class PostMappingOneMediaTypeIsOverwrittenController {
 open class PutMappingOneMediaTypeIsOverwrittenController {
 
     @PutMapping("/todos", produces = [TEXT_PLAIN_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -368,7 +421,7 @@ open class PutMappingOneMediaTypeIsOverwrittenController {
 open class GetMappingMultipleMediaTypesAreOverwrittenController {
 
     @GetMapping("/todos", produces = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -377,7 +430,7 @@ open class GetMappingMultipleMediaTypesAreOverwrittenController {
 open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 
     @DeleteMapping("/todos", produces = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -386,7 +439,7 @@ open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 
     @PatchMapping("/todos", produces = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -395,7 +448,7 @@ open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 open class PostMappingMultipleMediaTypesAreOverwrittenController {
 
     @PostMapping("/todos", produces = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller
@@ -404,7 +457,7 @@ open class PostMappingMultipleMediaTypesAreOverwrittenController {
 open class PutMappingMultipleMediaTypesAreOverwrittenController {
 
     @PutMapping("/todos", produces = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
-    fun todos() { }
+    fun todos() = Todo()
 }
 
 @Controller

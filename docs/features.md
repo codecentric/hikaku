@@ -4,7 +4,7 @@ The following table gives an overview of all features and which converter suppor
 The check for endpoint paths and http methods are base functions that every converter has to support. Those are not listed in the table below.
 There might be various ways to declare or use a feature, so check each converter for unsupported features as well. 
 
-| Feature Name | Description | [OpenApi Converter](openapi.md)| [Spring Converter](spring.md) | [WADL Converter](wadl.md) | [RAML](raml.md) |
+| Feature Name | Description | [OpenApi Converter](../openapi/README.md)| [Spring Converter](../spring/README.md) | [WADL Converter](../wadl/README.md) | [RAML](../raml/README.md) |
 | --- | --- | --- | --- | --- | --- |
 | QueryParameter | Name of a query parameter and whether the parameter is required or not. Example: `/todos?filter=all`| ✅ _(1.0.0)_ | ✅ _(1.0.0)_ | ✅ _(1.1.0)_ | ✅ _(2.0.0)_ |
 | PathParameter | Name of a path parameter. Example: `/todos/{id}`| ✅ _(1.0.0)_ | ✅ _(1.0.0)_ | ✅ _(1.1.0)_ | ✅ _(2.0.0)_ |

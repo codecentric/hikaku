@@ -13,11 +13,11 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 ## Currently supported
 
 + **Specifications**
-  + [OpenAPI 3.0.X](docs/openapi.md)
-  + [RAML 1.X](docs/raml.md)
-  + [WADL](docs/wadl.md)
+  + [OpenAPI 3.0.X](openapi/README.md)
+  + [RAML 1.X](raml/README.md)
+  + [WADL](wadl/README.md)
 + **Implementations**
-  + [Spring MVC 5.1.X](docs/spring.md)
+  + [Spring MVC 5.1.X](spring/README.md)
   
 Please refer to the list of [all features](docs/features.md). To check the feature support for each converter.
 It is possible that not every converter supports every feature. Only the intersection of the features of two `EndpointConverter`s is used for the matching. Please keep that in mind regarding the equality of implementation and specification.

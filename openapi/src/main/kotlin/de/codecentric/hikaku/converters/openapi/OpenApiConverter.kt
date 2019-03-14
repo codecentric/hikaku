@@ -12,6 +12,7 @@ import de.codecentric.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
+import java.lang.RuntimeException
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllLines
 import java.nio.file.Path
@@ -44,7 +45,10 @@ class OpenApiConverter private constructor(private val specificationContent: Str
     }
 
     private fun parseOpenApi(): Set<Endpoint> {
-        val openApi = OpenAPIV3Parser().readContents(specificationContent, null, null).openAPI
+        val swaggerParseResult = OpenAPIV3Parser().readContents(specificationContent, null, null)
+
+        val openApi = swaggerParseResult.openAPI ?: throw OpenApiParseException(swaggerParseResult.messages)
+
         val consumesExtractor = ConsumesExtractor(openApi)
         val producesExtractor = ProducesExtractor(openApi)
         val queryParameterExtractor = QueryParameterExtractor(openApi)
@@ -85,3 +89,5 @@ class OpenApiConverter private constructor(private val specificationContent: Str
         }
     }
 }
+
+class OpenApiParseException(val reasons: List<String>) : RuntimeException("Failed to parse OpenApi spec. Check property `reasons` for details.")

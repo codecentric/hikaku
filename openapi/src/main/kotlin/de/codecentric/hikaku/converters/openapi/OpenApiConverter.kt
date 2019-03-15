@@ -90,4 +90,5 @@ class OpenApiConverter private constructor(private val specificationContent: Str
     }
 }
 
-class OpenApiParseException(val reasons: List<String>) : RuntimeException("Failed to parse OpenApi spec. Check property `reasons` for details.")
+class OpenApiParseException(reasons: List<String>)
+    : RuntimeException("Failed to parse OpenApi spec. Reasons:\n${reasons.joinToString("\n")}")

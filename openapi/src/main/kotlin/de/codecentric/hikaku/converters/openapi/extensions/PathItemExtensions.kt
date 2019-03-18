@@ -11,9 +11,6 @@ import de.codecentric.hikaku.endpoints.HttpMethod.PUT
 import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
 import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
 import de.codecentric.hikaku.endpoints.HttpMethod.TRACE
-import io.swagger.v3.oas.models.parameters.Parameter
-import io.swagger.v3.oas.models.parameters.RequestBody
-import io.swagger.v3.oas.models.responses.ApiResponse
 
 internal fun PathItem.httpMethods() = mapOf<HttpMethod, Operation?>(
         GET to get,

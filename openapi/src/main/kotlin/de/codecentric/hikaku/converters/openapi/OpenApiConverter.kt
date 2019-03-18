@@ -12,7 +12,7 @@ import de.codecentric.hikaku.extensions.checkFileValidity
 import io.swagger.v3.oas.models.Operation
 import io.swagger.v3.parser.OpenAPIV3Parser
 import java.io.File
-import java.lang.RuntimeException
+import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllLines
 import java.nio.file.Path
@@ -25,8 +25,8 @@ import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParamet
  */
 class OpenApiConverter private constructor(private val specificationContent: String) : AbstractEndpointConverter() {
 
-    constructor(openApiSpecification: File): this(openApiSpecification.toPath())
-    constructor(openApiSpecification: Path): this(readFileContent(openApiSpecification))
+    constructor(openApiSpecification: File, charset: Charset = UTF_8): this(openApiSpecification.toPath(), charset)
+    constructor(openApiSpecification: Path, charset: Charset = UTF_8): this(readFileContent(openApiSpecification, charset))
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
@@ -47,7 +47,7 @@ class OpenApiConverter private constructor(private val specificationContent: Str
     private fun parseOpenApi(): Set<Endpoint> {
         val swaggerParseResult = OpenAPIV3Parser().readContents(specificationContent, null, null)
 
-        val openApi = swaggerParseResult.openAPI ?: throw OpenApiParseException(swaggerParseResult.messages)
+        val openApi = swaggerParseResult.openAPI ?: throw openApiParseException(swaggerParseResult.messages)
 
         val consumesExtractor = ConsumesExtractor(openApi)
         val producesExtractor = ProducesExtractor(openApi)
@@ -70,25 +70,22 @@ class OpenApiConverter private constructor(private val specificationContent: Str
         }
         .toSet()
     }
-
-    companion object {
-        private fun readFileContent(openApiSpecification: Path): String {
-            try {
-                openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
-            } catch (throwable: Throwable) {
-                throw EndpointConverterException(throwable)
-            }
-
-            val fileContent = readAllLines(openApiSpecification, UTF_8).joinToString("\n")
-
-            if (fileContent.isBlank()) {
-                throw EndpointConverterException("Given OpenAPI file is blank.")
-            }
-
-            return fileContent
-        }
-    }
 }
 
-class OpenApiParseException(reasons: List<String>)
-    : RuntimeException("Failed to parse OpenApi spec. Reasons:\n${reasons.joinToString("\n")}")
+private fun readFileContent(openApiSpecification: Path, charset: Charset): String {
+    try {
+        openApiSpecification.checkFileValidity(".json", ".yaml", ".yml")
+    } catch (throwable: Throwable) {
+        throw EndpointConverterException(throwable)
+    }
+    val fileContent = readAllLines(openApiSpecification, charset).joinToString("\n")
+
+    if (fileContent.isBlank()) {
+        throw EndpointConverterException("Given OpenAPI file is blank.")
+    }
+
+    return fileContent
+}
+
+private fun openApiParseException(reasons: List<String>)
+    = EndpointConverterException("Failed to parse OpenApi spec. Reasons:\n${reasons.joinToString("\n")}")

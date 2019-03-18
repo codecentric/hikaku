@@ -90,4 +90,4 @@ private fun readFileContent(openApiSpecification: Path, charset: Charset): Strin
 }
 
 private fun openApiParseException(reasons: List<String>)
-    = EndpointConverterException("Failed to parse OpenApi spec. Reasons:\n${reasons.joinToString("\n")}")
+    = EndpointConverterException("Failed to parse OpenAPI spec. Reasons:\n${reasons.joinToString("\n")}")

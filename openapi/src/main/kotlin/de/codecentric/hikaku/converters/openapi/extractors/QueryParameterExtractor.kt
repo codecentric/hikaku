@@ -1,5 +1,6 @@
 package de.codecentric.hikaku.converters.openapi.extractors
 
+import de.codecentric.hikaku.converters.openapi.extensions.referencedSchema
 import de.codecentric.hikaku.endpoints.QueryParameter
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.Operation
@@ -8,13 +9,13 @@ import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParamet
 
 internal class QueryParameterExtractor(private val openApi: OpenAPI) {
 
-    fun extractQueryParameters(operation: Operation?): Set<QueryParameter> {
+    operator fun invoke(operation: Operation?): Set<QueryParameter> {
         return extractInlineQueryParameters(operation).union(extractQueryParametersFromComponents(operation))
     }
 
     private fun extractInlineQueryParameters(operation: Operation?): Set<QueryParameter> {
         return operation?.parameters
-                ?.filter { it is OpenApiQueryParameter }
+                ?.filterIsInstance<OpenApiQueryParameter>()
                 ?.map { QueryParameter(it.name, it.required) }
                 .orEmpty()
                 .toSet()
@@ -22,11 +23,11 @@ internal class QueryParameterExtractor(private val openApi: OpenAPI) {
 
     private fun extractQueryParametersFromComponents(operation: Operation?): Set<QueryParameter> {
         return operation?.parameters
-                ?.filter { it is OpenApiParameter }
-                ?.filter { it.`$ref` != null }
+                ?.filterIsInstance<OpenApiParameter>()
+                ?.filter { it.referencedSchema != null }
                 ?.map {
                     Regex("#/components/parameters/(?<key>.+)")
-                            .find(it.`$ref`)
+                            .find(it.referencedSchema)
                             ?.groups
                             ?.get("key")
                             ?.value

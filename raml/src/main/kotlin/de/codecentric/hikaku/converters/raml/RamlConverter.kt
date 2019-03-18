@@ -20,7 +20,9 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
             Feature.PathParameter,
-            Feature.HeaderParameter
+            Feature.HeaderParameter,
+            Feature.Produces,
+            Feature.Consumes
     )
 
     override fun convert(): Set<Endpoint> {

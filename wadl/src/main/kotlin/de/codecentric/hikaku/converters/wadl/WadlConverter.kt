@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
 import java.io.File
 import java.io.StringReader
+import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files
 import java.nio.file.Path
@@ -24,8 +25,10 @@ import javax.xml.xpath.XPathFactory
  */
 class WadlConverter private constructor(private val wadl: String) : AbstractEndpointConverter() {
 
-    constructor(wadlFile: File): this(wadlFile.toPath())
-    constructor(wadlFile: Path): this(readFileContent(wadlFile))
+    @JvmOverloads
+    constructor(wadlFile: File, charset: Charset = UTF_8): this(wadlFile.toPath(), charset)
+    @JvmOverloads
+    constructor(wadlFile: Path, charset: Charset = UTF_8): this(readFileContent(wadlFile, charset))
 
     override val supportedFeatures = SupportedFeatures(
             Feature.QueryParameter,
@@ -141,31 +144,29 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
 
         return parameterMap
     }
+}
 
-    companion object {
-        private fun readFileContent(wadlFile: Path): String {
-            val fileContentBuilder = StringBuilder()
+private fun readFileContent(wadlFile: Path, charset: Charset): String {
+    val fileContentBuilder = StringBuilder()
 
-            try {
-                wadlFile.checkFileValidity(".wadl")
+    try {
+        wadlFile.checkFileValidity(".wadl")
 
-                Files.readAllLines(wadlFile, UTF_8)
-                        .map { line ->
-                            fileContentBuilder
-                                    .append(line)
-                                    .append("\n")
-                        }
-            } catch (throwable: Throwable) {
-                throw EndpointConverterException(throwable)
-            }
-
-            val fileContent = fileContentBuilder.toString()
-
-            if (fileContent.isBlank()) {
-                throw EndpointConverterException("Given WADL is blank.")
-            }
-
-            return fileContent
-        }
+        Files.readAllLines(wadlFile, charset)
+                .map { line ->
+                    fileContentBuilder
+                            .append(line)
+                            .append("\n")
+                }
+    } catch (throwable: Throwable) {
+        throw EndpointConverterException(throwable)
     }
+
+    val fileContent = fileContentBuilder.toString()
+
+    if (fileContent.isBlank()) {
+        throw EndpointConverterException("Given WADL is blank.")
+    }
+
+    return fileContent
 }

@@ -25,7 +25,9 @@ import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParamet
  */
 class OpenApiConverter private constructor(private val specificationContent: String) : AbstractEndpointConverter() {
 
+    @JvmOverloads
     constructor(openApiSpecification: File, charset: Charset = UTF_8): this(openApiSpecification.toPath(), charset)
+    @JvmOverloads
     constructor(openApiSpecification: Path, charset: Charset = UTF_8): this(readFileContent(openApiSpecification, charset))
 
     override val supportedFeatures = SupportedFeatures(

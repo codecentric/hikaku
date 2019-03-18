@@ -51,22 +51,22 @@ class OpenApiConverter private constructor(private val specificationContent: Str
 
         val openApi = swaggerParseResult.openAPI ?: throw openApiParseException(swaggerParseResult.messages)
 
-        val consumesExtractor = ConsumesExtractor(openApi)
-        val producesExtractor = ProducesExtractor(openApi)
-        val queryParameterExtractor = QueryParameterExtractor(openApi)
-        val headerParameterExtractor = HeaderParameterExtractor(openApi)
-        val pathParameterExtractor = PathParameterExtractor(openApi)
+        val extractConsumesMediaTypes = ConsumesExtractor(openApi)
+        val extractProduceMediaTypes = ProducesExtractor(openApi)
+        val extractQueryParameters = QueryParameterExtractor(openApi)
+        val extractHeaderParameters = HeaderParameterExtractor(openApi)
+        val extractPathParameters = PathParameterExtractor(openApi)
 
         return openApi.paths.flatMap { (path, pathItem) ->
             pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
                 Endpoint(
                         path = path,
                         httpMethod = httpMethod,
-                        queryParameters = queryParameterExtractor.extractQueryParameters(operation),
-                        pathParameters = pathParameterExtractor.extractPathParameters(operation),
-                        headerParameters = headerParameterExtractor.extractHeaderParameters(operation),
-                        consumes = consumesExtractor.extractConsumesMediaTypes(operation),
-                        produces = producesExtractor.extractProduceMediaTypes(operation)
+                        queryParameters = extractQueryParameters(operation),
+                        pathParameters = extractPathParameters(operation),
+                        headerParameters = extractHeaderParameters(operation),
+                        consumes = extractConsumesMediaTypes(operation),
+                        produces = extractProduceMediaTypes(operation)
                 )
             }
         }

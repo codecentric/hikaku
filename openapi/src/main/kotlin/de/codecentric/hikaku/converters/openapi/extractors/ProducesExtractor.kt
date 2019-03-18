@@ -1,11 +1,12 @@
 package de.codecentric.hikaku.converters.openapi.extractors
 
+import de.codecentric.hikaku.converters.openapi.extensions.referencedSchema
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.Operation
 
 internal class ProducesExtractor(private val openApi: OpenAPI) {
 
-    fun extractProduceMediaTypes(operation: Operation?): Set<String> {
+    operator fun invoke(operation: Operation?): Set<String> {
         return operation?.responses
                 ?.flatMap {
                     it.value
@@ -20,7 +21,7 @@ internal class ProducesExtractor(private val openApi: OpenAPI) {
 
     private fun extractResponsesFromComponents(operation: Operation?): Set<String> {
         return operation?.responses
-                ?.mapNotNull { it.value.`$ref` }
+                ?.mapNotNull { it.value.referencedSchema }
                 ?.map {
                     Regex("#/components/responses/(?<key>.+)")
                             .find(it)

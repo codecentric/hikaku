@@ -3,6 +3,10 @@ package de.codecentric.hikaku.extensions
 import java.nio.file.Files
 import java.nio.file.Path
 
+fun Path.nameWithoutExtension() = fileName.toString().substringBeforeLast(".")
+
+fun Path.extension() = fileName.toString().substringAfterLast(".")
+
 fun Path.checkFileValidity(vararg extensions: String) {
     if (!Files.exists(this)) {
         throw IllegalArgumentException("Given file does not exist.")
@@ -13,11 +17,8 @@ fun Path.checkFileValidity(vararg extensions: String) {
     }
 
     if (extensions.isNotEmpty()) {
-        extensions.filter {
-            this.fileName.toString().endsWith(it)
-        }
-        .ifEmpty {
-            throw IllegalArgumentException("Given file is not of type ${extensions.joinToString()}")
-        }
+        extensions.map {it.substringAfter('.') }
+                .filter { this.extension() == it }
+                .ifEmpty { throw IllegalArgumentException("Given file is not of type ${extensions.joinToString()}") }
     }
 }

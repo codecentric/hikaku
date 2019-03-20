@@ -15,6 +15,7 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             Feature.QueryParameters,
             Feature.PathParameters,
             Feature.HeaderParameters,
+            Feature.MatrixParameters,
             Feature.Consumes,
             Feature.Produces
     )
@@ -55,6 +56,7 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             pathParameters = extractPathParameters(method),
             queryParameters = extractQueryParameters(method),
             headerParameters = extractHeaderParameters(method),
+            matrixParameters = extractMatrixParameters(method),
             produces = extractProduces(resource, method),
             consumes = extractConsumes(resource, method)
     )
@@ -159,6 +161,15 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
                 .map { it.getAnnotation(HeaderParam::class.java) }
                 .map { (it as HeaderParam).value }
                 .map { HeaderParameter(it) }
+                .toSet()
+    }
+
+    private fun extractMatrixParameters(method: Method): Set<MatrixParameter> {
+        return method.parameters
+                .filter { it.isAnnotationPresent(MatrixParam::class.java) }
+                .map { it.getAnnotation(MatrixParam::class.java) }
+                .map { (it as MatrixParam).value }
+                .map { MatrixParameter(it) }
                 .toSet()
     }
 }

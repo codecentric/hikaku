@@ -83,13 +83,16 @@ public class SpecificationTest {
 
   @Test
   public void specification_matches_implementation() {
+    OpenApiConverter specification = new OpenApiConverter(Paths.get("openapi.json"));
+    SpringConverter implementation = new SpringConverter(springContext);
+
     HikakuConfig hikakuConfig = new HikakuConfig(
         new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT))
     );
     
     new Hikaku(
-        new OpenApiConverter(Paths.get("openapi.json")),
-        new SpringConverter(springContext),
+        specification,
+        implementation,
         hikakuConfig
     )
     .match();

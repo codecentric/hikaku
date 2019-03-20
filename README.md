@@ -19,6 +19,10 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 + **Implementations**
   + [Spring MVC 5.1.X](spring/README.md)
   + [JAX-RS](jax-rs/README.md)
+    + [Jersey](https://jersey.github.io)
+    + [Apache CXF](http://cxf.apache.org)
+    + [Resteasy](https://resteasy.github.io)
+    + [Restlet](https://restlet.com/open-source/documentation/user-guide/2.3/extensions/jaxrs)
   
 Please refer to the list of [all features](docs/features.md). To check the feature support for each converter.
 It is possible that not every converter supports every feature. Only the intersection of the features of two `EndpointConverter`s is used for the matching. Please keep that in mind regarding the equality of implementation and specification.
@@ -79,16 +83,13 @@ public class SpecificationTest {
 
   @Test
   public void specification_matches_implementation() {
-    OpenApiConverter openApiConverter = new OpenApiConverter(Paths.get("openapi.json"));
-    SpringConverter springConverter = new SpringConverter(springContext);
-
     HikakuConfig hikakuConfig = new HikakuConfig(
         new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT))
     );
     
     new Hikaku(
-        openApiConverter,
-        springConverter,
+        new OpenApiConverter(Paths.get("openapi.json")),
+        new SpringConverter(springContext),
         hikakuConfig
     )
     .match();

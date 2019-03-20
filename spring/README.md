@@ -65,7 +65,7 @@ You will find a list of spring specific features that are supported below.
 + Supports parameter name defined by alias 'name'
   + _Example:_ `@PathVariable(name = "id") otherName: Int`
 
-+ Throw an exception in case both 'value' and 'name' are set.
++ Throws an exception in case both 'value' and 'name' are set.
   + _Example:_ `@PathVariable(value = "param", name = "other") foo: Int`
   
 ### Header parameters
@@ -79,7 +79,7 @@ You will find a list of spring specific features that are supported below.
 + Supports parameter name defined by alias 'name'
   + _Example:_ `@RequestHeader(name = "allow-cache") otherName: String`
 
-+ Throw an exception in case both 'value' and 'name' are set.
++ Throws an exception in case both 'value' and 'name' are set.
   + _Example:_ `@RequestHeader(value = "param", name = "other") foo: String`
 
 + Checks if a parameter is required depending on the value of the 'required' attribute
@@ -87,6 +87,26 @@ You will find a list of spring specific features that are supported below.
 
 + Checks if a parameter is required depending on the existence of the 'defaultValue' attribute
   + _Example:_ `@RequestHeader(value = "tracker-id", defaultValue = "2394")`
+
+### Matrix parameters
+
++ Supports parameter name using variable name
+  + _Example:_ `@MatrixVariable tag: String`
+
++ Supports parameter name defined by 'value'
+  + _Example:_ `@MatrixVariable(value = "tag") otherName: String`
+
++ Supports parameter name defined by alias 'name'
+  + _Example:_ `@MatrixVariable(name = "tag") otherName: String`
+
++ Throws an exception in case both 'value' and 'name' are set.
+  + _Example:_ `@MatrixVariable(value = "param", name = "other") foo: String`
+
++ Checks if a parameter is required depending on the value of the 'required' attribute
+  + _Example:_ `@MatrixVariable(required = false) foo: String`
+
++ Checks if a parameter is required depending on the existence of the 'defaultValue' attribute
+  + _Example:_ `@MatrixVariable(value = "tag", defaultValue = "shopping")`
   
 ### Produces
 
@@ -119,6 +139,11 @@ You will find a list of spring specific features that are supported below.
 
 + Query Parameter based on an object
   + _Example:_ `@RequestParam queryParam: MyObject`
+  
++ Parameter annotations on a HashMap to dynamically extract parameters
+
++ Matrix parameters having a binding to a specific path element 
+  + _Example:_ `@MatrixVariable(pathVar = "employee")
   
 + Produces using negated media type _Example:_ `@RequestParam(produces = "!text/plain")`
 

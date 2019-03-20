@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.spring.pathparameter
+package de.codecentric.hikaku.converters.spring.pathparameters
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.stereotype.Controller

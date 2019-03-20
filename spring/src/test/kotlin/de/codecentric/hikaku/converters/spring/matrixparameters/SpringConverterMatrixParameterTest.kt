@@ -1,9 +1,9 @@
-package de.codecentric.hikaku.converters.spring.pathparameter
+package de.codecentric.hikaku.converters.spring.matrixparameters
 
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import de.codecentric.hikaku.endpoints.PathParameter
+import de.codecentric.hikaku.endpoints.MatrixParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -15,33 +15,33 @@ import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 import org.springframework.http.MediaType.TEXT_HTML_VALUE
 import kotlin.test.assertFailsWith
 
-class SpringConverterPathParameterTest {
+class SpringConverterMatrixParameterTest {
 
     @Nested
-    @WebMvcTest(PathParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-    inner class PathParameterNamedByVariableTest {
+    @WebMvcTest(MatrixParameterNamedByVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterNamedByVariableTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter name defined by variable name`() {
+        fun `matrix parameter name defined by variable name`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = GET,
-                            pathParameters = setOf(
-                                PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/todos/{id}", OPTIONS),
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = HEAD,
-                            pathParameters = setOf(
-                                PathParameter("id")
-                            )
-                    )
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", true)
+                        )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = HEAD,
+                        matrixParameters = setOf(
+                                MatrixParameter("tag", true)
+                        )
+                )
             )
 
             //when
@@ -53,30 +53,30 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-    inner class PathParameterNamedByValueAttributeTest {
+    @WebMvcTest(MatrixParameterNamedByValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterNamedByValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter name defined by 'value' attribute`() {
+        fun `matrix parameter name defined by attribute 'value'`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = GET,
-                            pathParameters = setOf(
-                                    PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/todos/{id}", OPTIONS),
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = HEAD,
-                            pathParameters = setOf(
-                                    PathParameter("id")
-                            )
-                    )
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", true)
+                        )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = HEAD,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", true)
+                        )
+                )
             )
 
             //when
@@ -88,30 +88,30 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-    inner class PathParameterNamedByNameAttributeTest {
+    @WebMvcTest(MatrixParameterNamedByNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterNamedByNameAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter name defined by 'name' attribute`() {
+        fun `matrix parameter name defined by attribute 'name'`() {
             //given
             val specification: Set<Endpoint> = setOf(
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = GET,
-                            pathParameters = setOf(
-                                    PathParameter("id")
-                            )
-                    ),
-                    Endpoint("/todos/{id}", OPTIONS),
-                    Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = HEAD,
-                            pathParameters = setOf(
-                                    PathParameter("id")
-                            )
-                    )
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", true)
+                        )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = HEAD,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", true)
+                        )
+                )
             )
 
             //when
@@ -123,13 +123,13 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterHavingBothValueAndNameAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-    inner class PathParameterHavingBothValueAndNameAttributeTest {
+    @WebMvcTest(MatrixParameterHavingBothNameAndValueAttributeController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterHavingBothNameAndValueAttributeTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter name defined by both 'value' and 'name' attribute`() {
+        fun `both 'value' and 'name' attribute defined for matrix parameter`() {
             assertFailsWith<IllegalStateException> {
                 SpringConverter(context).conversionResult
             }
@@ -137,27 +137,28 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterSupportedForOptionsIfExplicitlyDefinedController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-    inner class PathParameterSupportedForOptionsIfExplicitlyDefinedTest {
+    @WebMvcTest(MatrixParameterOptionalController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterOptionalTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameter are supported for OPTIONS if defined explicitly`() {
+        fun `matrix parameter optional`() {
             //given
             val specification: Set<Endpoint> = setOf(
                     Endpoint(
-                            path = "/todos/{id}",
-                            httpMethod = OPTIONS,
-                            pathParameters = setOf(
-                                    PathParameter("id")
+                            path = "/todos",
+                            httpMethod = GET,
+                            matrixParameters = setOf(
+                                MatrixParameter("tag", false)
                             )
                     ),
+                    Endpoint("/todos", OPTIONS),
                     Endpoint(
-                            path = "/todos/{id}",
+                            path = "/todos",
                             httpMethod = HEAD,
-                            pathParameters = setOf(
-                                    PathParameter("id")
+                            matrixParameters = setOf(
+                                MatrixParameter("tag", false)
                             )
                     )
             )
@@ -171,28 +172,64 @@ class SpringConverterPathParameterTest {
     }
 
     @Nested
-    @WebMvcTest(PathParameterOnDefaultErrorEndpointController::class)
-    inner class PathParameterOnDefaultErrorEndpointTest {
+    @WebMvcTest(MatrixParameterOptionalBecauseOfDefaultValueController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class MatrixParameterOptionalBecauseOfDefaultValueTest {
         @Autowired
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `path parameters are not added to default error endpoint`() {
+        fun `matrix parameter optional because of a default value`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", false)
+                        )
+                ),
+                Endpoint("/todos", OPTIONS),
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = HEAD,
+                        matrixParameters = setOf(
+                            MatrixParameter("tag", false)
+                        )
+                )
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+        }
+    }
+
+
+    @Nested
+    @WebMvcTest(MatrixParameterOnDefaultErrorEndpointController::class)
+    inner class MatrixParameterOnDefaultErrorEndpointTest {
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `matrix parameter is not available in default error endpoints`() {
             //given
             val specification: Set<Endpoint> = setOf(
                     Endpoint(
-                            path = "/todos/{id}",
+                            path = "/todos",
                             httpMethod = GET,
-                            pathParameters = setOf(
-                                    PathParameter("id")
+                            matrixParameters = setOf(
+                                    MatrixParameter("tag", true)
                             )
                     ),
-                    Endpoint("/todos/{id}", OPTIONS),
+                    Endpoint("/todos", OPTIONS),
                     Endpoint(
-                            path = "/todos/{id}",
+                            path = "/todos",
                             httpMethod = HEAD,
-                            pathParameters = setOf(
-                                    PathParameter("id")
+                            matrixParameters = setOf(
+                                    MatrixParameter("tag", true)
                             )
                     ),
                     Endpoint(

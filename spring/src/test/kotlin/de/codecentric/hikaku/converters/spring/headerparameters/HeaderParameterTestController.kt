@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.spring.headerparameter
+package de.codecentric.hikaku.converters.spring.headerparameters
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.stereotype.Controller

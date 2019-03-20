@@ -22,6 +22,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
             Feature.QueryParameters,
             Feature.PathParameters,
             Feature.HeaderParameters,
+            Feature.MatrixParameters,
             Feature.Produces,
             Feature.Consumes
     )
@@ -48,6 +49,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
                     queryParameters = mappingEntry.value.hikakuQueryParameters(),
                     pathParameters = mappingEntry.value.hikakuPathParameters(),
                     headerParameters = mappingEntry.value.hikakuHeaderParameters(),
+                    matrixParameters = mappingEntry.value.hikakuMatrixParameters(),
                     produces = mappingEntry.produces(),
                     consumes = mappingEntry.consumes()
             )

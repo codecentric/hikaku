@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.spring.queryparameter
+package de.codecentric.hikaku.converters.spring.queryparameters
 
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint

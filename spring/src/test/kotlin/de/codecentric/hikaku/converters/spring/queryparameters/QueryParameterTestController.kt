@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.spring.queryparameter
+package de.codecentric.hikaku.converters.spring.queryparameters
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.stereotype.Controller

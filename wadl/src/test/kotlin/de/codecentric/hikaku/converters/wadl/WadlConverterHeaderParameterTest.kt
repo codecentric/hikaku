@@ -10,7 +10,7 @@ class WadlConverterHeaderParameterTest {
     @Test
     fun `check that header parameter are extracted correctly`() {
         //given
-        val file = Paths.get(this::class.java.classLoader.getResource("header_parameter.wadl").toURI())
+        val file = Paths.get(this::class.java.classLoader.getResource("header_parameters.wadl").toURI())
         val headerParameters = setOf(
                 HeaderParameter("x-b3-traceid", false),
                 HeaderParameter("allow-cache", true)

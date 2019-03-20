@@ -34,6 +34,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
             Feature.QueryParameters,
             Feature.HeaderParameters,
             Feature.PathParameters,
+            Feature.MatrixParameters,
             Feature.Produces,
             Feature.Consumes
     )
@@ -84,6 +85,7 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
                             queryParameters = extractQueryParameters(method),
                             headerParameters = extractHeaderParameters(method),
                             pathParameters = extractPathParameters(method),
+                            matrixParameters = extractMatrixParameters(method),
                             produces = extractResponseMediaTypes(method),
                             consumes = extractConsumesMediaTypes(method)
                     )
@@ -127,6 +129,13 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
         return extractParameter(method, "header")
                 .entries
                 .map { HeaderParameter(it.key, it.value) }
+                .toSet()
+    }
+
+    private fun extractMatrixParameters(method: Node): Set<MatrixParameter> {
+        return extractParameter(method, "matrix")
+                .entries
+                .map { MatrixParameter(it.key, it.value) }
                 .toSet()
     }
 

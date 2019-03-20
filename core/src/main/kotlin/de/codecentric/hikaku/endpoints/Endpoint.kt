@@ -15,6 +15,7 @@ data class Endpoint(
         val queryParameters: Set<QueryParameter> = emptySet(),
         val pathParameters: Set<PathParameter> = emptySet(),
         val headerParameters: Set<HeaderParameter> = emptySet(),
+        val matrixParameters: Set<MatrixParameter> = emptySet(),
         val produces: Set<String> = emptySet(),
         val consumes: Set<String> = emptySet()
 )

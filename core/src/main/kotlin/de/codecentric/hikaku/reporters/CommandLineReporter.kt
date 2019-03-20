@@ -2,10 +2,7 @@ package de.codecentric.hikaku.reporters
 
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.*
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
-import de.codecentric.hikaku.endpoints.PathParameter
-import de.codecentric.hikaku.endpoints.QueryParameter
+import de.codecentric.hikaku.endpoints.*
 
 /**
  * Simply prints the result to [System.out].
@@ -51,9 +48,10 @@ class CommandLineReporter : Reporter {
 
         supportedFeatures.forEach {
             path += when(it) {
-                Feature.QueryParameter -> listQueryParameters(endpoint.queryParameters)
-                Feature.PathParameter -> listPathParameters(endpoint.pathParameters)
-                Feature.HeaderParameter -> listHeaderParameter(endpoint.headerParameters)
+                Feature.QueryParameters -> listQueryParameters(endpoint.queryParameters)
+                Feature.PathParameters -> listPathParameters(endpoint.pathParameters)
+                Feature.HeaderParameters -> listHeaderParameter(endpoint.headerParameters)
+                Feature.MatrixParameters -> listMatrixParameter(endpoint.matrixParameters)
                 Feature.Consumes -> listRequestMediaTypes(endpoint.consumes)
                 Feature.Produces -> listResponseMediaTypes(endpoint.produces)
             }
@@ -74,6 +72,11 @@ class CommandLineReporter : Reporter {
 
     private fun listHeaderParameter(headerParameters: Set<HeaderParameter>) =
             "  HeaderParameters[${headerParameters.joinToString {
+                "${it.parameterName} (${if(it.required) "required" else "optional"})"
+            }}]"
+
+    private fun listMatrixParameter(matrixParameters: Set<MatrixParameter>) =
+            "  MatrixParameters[${matrixParameters.joinToString {
                 "${it.parameterName} (${if(it.required) "required" else "optional"})"
             }}]"
 

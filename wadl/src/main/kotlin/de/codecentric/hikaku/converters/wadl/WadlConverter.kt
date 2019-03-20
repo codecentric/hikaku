@@ -31,9 +31,9 @@ class WadlConverter private constructor(private val wadl: String) : AbstractEndp
     constructor(wadlFile: Path, charset: Charset = UTF_8): this(readFileContent(wadlFile, charset))
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameter,
-            Feature.HeaderParameter,
-            Feature.PathParameter,
+            Feature.QueryParameters,
+            Feature.HeaderParameters,
+            Feature.PathParameters,
             Feature.Produces,
             Feature.Consumes
     )

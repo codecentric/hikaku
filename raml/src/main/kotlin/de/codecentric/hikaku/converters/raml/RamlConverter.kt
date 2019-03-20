@@ -18,9 +18,9 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
     constructor(ramlSpecification: Path) : this(ramlSpecification.toFile())
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameter,
-            Feature.PathParameter,
-            Feature.HeaderParameter,
+            Feature.QueryParameters,
+            Feature.PathParameters,
+            Feature.HeaderParameters,
             Feature.Produces,
             Feature.Consumes
     )

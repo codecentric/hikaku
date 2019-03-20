@@ -31,9 +31,9 @@ class OpenApiConverter private constructor(private val specificationContent: Str
     constructor(openApiSpecification: Path, charset: Charset = UTF_8): this(readFileContent(openApiSpecification, charset))
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameter,
-            Feature.PathParameter,
-            Feature.HeaderParameter,
+            Feature.QueryParameters,
+            Feature.PathParameters,
+            Feature.HeaderParameters,
             Feature.Produces,
             Feature.Consumes
     )

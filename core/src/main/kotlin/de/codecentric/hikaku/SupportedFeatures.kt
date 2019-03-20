@@ -13,14 +13,16 @@ class SupportedFeatures(
 
     enum class Feature {
         /** Checks the equality of query parameters. */
-        QueryParameter,
+        QueryParameters,
         /** Checks the equality of path parameters. */
-        PathParameter,
+        PathParameters,
         /** Checks the equality of header parameters. */
-        HeaderParameter,
+        HeaderParameters,
         /** Checks supported media type of responses. */
         Produces,
         /** Checks supported media type of requests. */
-        Consumes
+        Consumes,
+        /** Checks the equality of matrix parameters. */
+        MatrixParameters
     }
 }

@@ -2,11 +2,8 @@ package de.codecentric.hikaku
 
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.EndpointConverter
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
+import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import de.codecentric.hikaku.endpoints.PathParameter
-import de.codecentric.hikaku.endpoints.QueryParameter
 import de.codecentric.hikaku.reporters.MatchResult
 import de.codecentric.hikaku.reporters.Reporter
 import org.assertj.core.api.Assertions.assertThat
@@ -68,7 +65,7 @@ class HikakuTest {
                         Endpoint("/c"),
                         Endpoint("/a")
                 )
-                override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
             }
 
             val reporter = object : Reporter {
@@ -147,7 +144,7 @@ class HikakuTest {
                         Endpoint("/todos", POST),
                         Endpoint("/todos", DELETE)
                 )
-                override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
             }
 
             val reporter = object : Reporter {
@@ -228,7 +225,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -242,7 +239,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -297,7 +294,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -338,7 +335,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -351,7 +348,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.PathParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -396,7 +393,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -411,7 +408,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -466,7 +463,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -508,7 +505,7 @@ class HikakuTest {
 
                     )
 
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -521,7 +518,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -560,7 +557,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -573,7 +570,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -628,7 +625,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -670,7 +667,7 @@ class HikakuTest {
 
                     )
 
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -683,7 +680,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -727,7 +724,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -741,7 +738,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -792,11 +789,11 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("allow-cache")
+                                            HeaderParameter("x-b3-traceid")
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -838,7 +835,7 @@ class HikakuTest {
 
                     )
 
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -851,7 +848,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -890,7 +887,7 @@ class HikakuTest {
                             )
 
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -903,7 +900,7 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -939,7 +936,7 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("allow-cache")
+                                            HeaderParameter("allow-cache", false)
                                     )
                             )
 
@@ -954,11 +951,11 @@ class HikakuTest {
                                     path = "/todos",
                                     httpMethod = GET,
                                     headerParameters = setOf(
-                                            HeaderParameter("allow-cache")
+                                            HeaderParameter("allow-cache", true)
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val reporter = object : Reporter {
@@ -1000,7 +997,7 @@ class HikakuTest {
 
                     )
 
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
                 val implementationDummyConverter = object : EndpointConverter {
@@ -1013,7 +1010,337 @@ class HikakuTest {
                                     )
                             )
                     )
-                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameter)
+                    override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                assertFailsWith<AssertionFailedError> {
+                    hikaku.match()
+                }
+            }
+        }
+
+        @Nested
+        inner class MatrixParameterNameTests {
+
+            @Test
+            fun `matrix parameter names in random order match if the feature is supported by both converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag"),
+                                            MatrixParameter("done")
+                                    )
+                            )
+
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("done"),
+                                            MatrixParameter("tag")
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `matrix parameter names are skipped if the feature is not supported by one of the converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("done")
+                                    )
+                            )
+
+                    )
+
+                    override val supportedFeatures = SupportedFeatures()
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag")
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `matrix parameter names don't match`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag")
+                                    )
+                            )
+
+                    )
+
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("done")
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                assertFailsWith<AssertionFailedError> {
+                    hikaku.match()
+                }
+            }
+
+            @Test
+            fun `matrix parameter required matches if the feature is supported by both converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag", true)
+                                    )
+                            )
+
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag", true)
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `matrix parameter required is skipped if option is not supported by one of the converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("tag", true)
+                                    )
+                            )
+
+                    )
+
+                    override val supportedFeatures = SupportedFeatures()
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    headerParameters = setOf(
+                                            HeaderParameter("tag", false)
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `matrix parameter required don't match`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("allow-cache", true)
+                                    )
+                            )
+
+                    )
+
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    matrixParameters = setOf(
+                                            MatrixParameter("allow-cache", false)
+                                    )
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
                 val reporter = object : Reporter {

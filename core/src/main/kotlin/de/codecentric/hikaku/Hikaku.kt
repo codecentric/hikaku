@@ -79,9 +79,10 @@ class Hikaku(
 
             supportedFeatures.forEach { feature ->
                 matches = when (feature) {
-                    Feature.QueryParameter -> matches && it.queryParameters == otherEndpoint.queryParameters
-                    Feature.PathParameter -> matches && it.pathParameters ==  otherEndpoint.pathParameters
-                    Feature.HeaderParameter -> matches && it.headerParameters == otherEndpoint.headerParameters
+                    Feature.QueryParameters -> matches && it.queryParameters == otherEndpoint.queryParameters
+                    Feature.PathParameters -> matches && it.pathParameters ==  otherEndpoint.pathParameters
+                    Feature.HeaderParameters -> matches && it.headerParameters == otherEndpoint.headerParameters
+                    Feature.MatrixParameters -> matches && it.matrixParameters == otherEndpoint.matrixParameters
                     Feature.Produces -> matches && it.produces == otherEndpoint.produces
                     Feature.Consumes -> matches && it.consumes == otherEndpoint.consumes
                 }

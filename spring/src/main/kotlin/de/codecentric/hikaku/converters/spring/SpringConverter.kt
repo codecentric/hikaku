@@ -19,9 +19,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 class SpringConverter(private val applicationContext: ApplicationContext) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameter,
-            Feature.PathParameter,
-            Feature.HeaderParameter,
+            Feature.QueryParameters,
+            Feature.PathParameters,
+            Feature.HeaderParameters,
             Feature.Produces,
             Feature.Consumes
     )

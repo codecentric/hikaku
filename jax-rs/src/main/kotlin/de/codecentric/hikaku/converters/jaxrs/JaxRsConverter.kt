@@ -12,9 +12,9 @@ import javax.ws.rs.*
 class JaxRsConverter(private val packageName: String) : AbstractEndpointConverter() {
 
     override val supportedFeatures = SupportedFeatures(
-            Feature.QueryParameter,
-            Feature.PathParameter,
-            Feature.HeaderParameter,
+            Feature.QueryParameters,
+            Feature.PathParameters,
+            Feature.HeaderParameters,
             Feature.Consumes,
             Feature.Produces
     )

@@ -7,6 +7,9 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
+/**
+ * Original code snippet found at [dzone](https://dzone.com/articles/get-all-classes-within-package) posted by [Victor Tatai](https://dzone.com/users/74061/vtatai.html).
+ */
 internal object ClassLocator {
 
     fun getClasses(packageName: String): List<Class<*>> {

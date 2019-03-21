@@ -143,8 +143,10 @@ You will find a list of spring specific features that are supported below.
 + Parameter annotations on a HashMap to dynamically extract parameters
 
 + Matrix parameters having a binding to a specific path element 
-  + _Example:_ `@MatrixVariable(pathVar = "employee")
+  + _Example:_ `@MatrixVariable(pathVar = "employee")`
   
-+ Produces using negated media type _Example:_ `@RequestParam(produces = "!text/plain")`
++ Produces using negated media type
+  + _Example:_ `@RequestParam(produces = "!text/plain")`
 
-+ Consumes using negated media type _Example:_ `@RequestParam(produces = "!text/plain")`
++ Consumes using negated media type
+  + _Example:_ `@RequestParam(produces = "!text/plain")`

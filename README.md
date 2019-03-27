@@ -18,7 +18,7 @@ The aim of this project is to meet this need and offer a mechanism to check spec
   + [WADL](wadl/README.md)
 + **Implementations**
   + [Spring MVC 5.1.X](spring/README.md)
-  + [JAX-RS](jax-rs/README.md)
+  + [JAX-RS 2.1.X](jax-rs/README.md)
     + [Jersey](https://jersey.github.io)
     + [Apache CXF](http://cxf.apache.org)
     + [Resteasy](https://resteasy.github.io)
@@ -31,7 +31,6 @@ It is possible that not every converter supports every feature. Only the interse
 
 Setting up a test with hikaku is very simple. You just instantiate the `Hikaku` class and provide an `EndpointConverter` for the specification and another one for the implementation. Optionally, you can also pass an instance of `HikakuConfig`. Check the list of options and default values of the [config](docs/config.md). Then you call `match()` on the `Hikaku` class.
 The match result is sent to one or multiple `Reporter`. If the test fails kotlin's `DefaultAsserter.fail()` method is called.
-
 
 ### Example
 

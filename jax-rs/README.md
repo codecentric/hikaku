@@ -1,6 +1,12 @@
 # hikaku - JAX-RS
 
-Converter for JAX-RS. This converter can be used with frameworks that make use of JAX-RS. For instance: [Jersey](https://jersey.github.io), [Apache CXF](http://cxf.apache.org), [Resteasy](https://resteasy.github.io), [Restlet](https://restlet.com/open-source/documentation/user-guide/2.3/extensions/jaxrs).
+Converter for JAX-RS. This converter can be used with frameworks that make use of JAX-RS. For instance:
++ [Apache CXF](http://cxf.apache.org)
++ [Dropwizard](https://www.dropwizard.io)
++ [Jersey](https://jersey.github.io)
++ [Resteasy](https://resteasy.github.io)
++ [Restlet](https://restlet.com/open-source/documentation/user-guide/2.3/extensions/jaxrs)
++ [Quarkus](https://quarkus.io)
 
 ## Feature Support
 

@@ -1,8 +1,6 @@
-package de.codecentric.hikaku.converters
+package de.codecentric.hikaku.converters.jaxrs
 
-import de.codecentric.hikaku.converters.jaxrs.JaxRsConverter
 import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HeaderParameter
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.MatrixParameter
 import org.assertj.core.api.Assertions.assertThat

@@ -1,6 +1,6 @@
-package de.codecentric.hikaku.converters
+package de.codecentric.hikaku.converters.jaxrs
 
-import de.codecentric.hikaku.converters.jaxrs.JaxRsConverter
+import de.codecentric.hikaku.converters.EndpointConverterException
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 

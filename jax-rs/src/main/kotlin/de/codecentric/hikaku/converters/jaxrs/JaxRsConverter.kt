@@ -3,6 +3,7 @@ package de.codecentric.hikaku.converters.jaxrs
 import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
+import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.endpoints.HttpMethod

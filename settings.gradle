@@ -6,5 +6,6 @@ include(
         'spring',
         'wadl',
         'raml',
-        'jax-rs'
+        'jax-rs',
+        'micronaut'
 )

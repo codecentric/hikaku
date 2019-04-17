@@ -1,4 +1,4 @@
-package de.codecentric.hikaku.converters.jaxrs
+package de.codecentric.hikaku.converters
 
 import de.codecentric.hikaku.extensions.extension
 import de.codecentric.hikaku.extensions.nameWithoutExtension
@@ -10,7 +10,7 @@ import java.nio.file.Paths
 /**
  * Original code snippet found at [dzone](https://dzone.com/articles/get-all-classes-within-package) posted by [Victor Tatai](https://dzone.com/users/74061/vtatai.html).
  */
-internal object ClassLocator {
+object ClassLocator {
 
     fun getClasses(packageName: String): List<Class<*>> {
         val classLoader = Thread.currentThread().contextClassLoader
@@ -42,7 +42,7 @@ internal object ClassLocator {
         Files.list(directory)
                 .forEach {
                     if (Files.isDirectory(it)) {
-                        assert(!it.fileName.toString().contains("."))
+                        assert(!it.fileName.toString().contains(""))
                         classes.addAll(findClasses(it, "$packageName.${it.fileName}"))
                     } else if (it.extension() == "class") {
                         classes.add(Class.forName("$packageName.${it.nameWithoutExtension()}"))

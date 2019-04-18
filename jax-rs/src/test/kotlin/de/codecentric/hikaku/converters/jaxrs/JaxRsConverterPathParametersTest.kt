@@ -6,7 +6,7 @@ import de.codecentric.hikaku.endpoints.PathParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class PathParametersTest {
+class JaxRsConverterPathParametersTest {
 
     @Test
     fun `no path parameter`() {

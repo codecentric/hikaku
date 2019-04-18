@@ -5,7 +5,7 @@ import de.codecentric.hikaku.endpoints.HttpMethod.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class HttpMethodsTest {
+class JaxRsConverterHttpMethodsTest {
 
     @Test
     fun `extract all available http methods`() {

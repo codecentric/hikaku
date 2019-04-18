@@ -4,7 +4,7 @@ import de.codecentric.hikaku.converters.EndpointConverterException
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFailsWith
 
-class PackageDefinitionTest {
+class JaxRsConverterPackageDefinitionTest {
 
     @Test
     fun `invoking converter with empty string leads to EndpointConverterException`() {

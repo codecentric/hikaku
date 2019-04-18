@@ -2,27 +2,27 @@ package de.codecentric.hikaku.converters.jaxrs
 
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
-import de.codecentric.hikaku.endpoints.MatrixParameter
+import de.codecentric.hikaku.endpoints.QueryParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class MatrixParameterTest {
+class JaxRsConverterQueryParameterTest {
 
     @Test
-    fun `matrix parameter on function`() {
+    fun `query parameter on function`() {
         //given
         val specification = setOf(
                 Endpoint(
                         path = "/todos",
                         httpMethod = GET,
-                        matrixParameters = setOf(
-                                MatrixParameter("tag")
+                        queryParameters = setOf(
+                                QueryParameter("filter")
                         )
                 )
         )
 
         //when
-        val result = JaxRsConverter("test.jaxrs.matrixparameters.onfunction").conversionResult
+        val result = JaxRsConverter("test.jaxrs.queryparameters.onfunction").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)

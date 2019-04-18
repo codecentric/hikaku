@@ -5,7 +5,7 @@ import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class ProducesTest {
+class JaxRsConverterProducesTest {
 
     @Test
     fun `single media type defined on class`() {

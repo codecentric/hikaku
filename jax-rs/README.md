@@ -18,6 +18,6 @@ Please refer to the list of [all features](../docs/features.md). To check the fe
 
 ## Usage
 
-Instantiate the controller with a package name which will be scanned recursively for controllers.
+Instantiate the converter with a package name which will be scanned recursively for controllers.
 
 _Example_: `JaxRsConverter("de.codecentric.hikaku")`

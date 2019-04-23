@@ -6,6 +6,7 @@ import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
+import de.codecentric.hikaku.endpoints.QueryParameter
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
 
@@ -45,7 +46,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
     private fun createEndpoint(resource: Class<*>, method: Method) = Endpoint(
             path = extractPath(resource, method),
-            httpMethod = extractHttpMethod(method)
+            httpMethod = extractHttpMethod(method),
+            queryParameters = extractQueryParameters(method)
     )
 
     private fun extractPath(resource: Class<*>, method: Method): String {
@@ -85,5 +87,14 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
             method.isAnnotationPresent(Put::class.java) -> HttpMethod.PUT
             else -> throw IllegalStateException("Unable to determine http method. Valid annotation not found.")
         }
+    }
+
+    private fun extractQueryParameters(method: Method): Set<QueryParameter> {
+        return method.parameters
+                .filter { it.isAnnotationPresent(QueryValue::class.java) }
+                .map { it.getAnnotation(QueryValue::class.java) }
+                .map { (it as QueryValue) }
+                .map { QueryParameter(it.value, it.defaultValue.isBlank()) }
+                .toSet()
     }
 }

@@ -6,9 +6,11 @@ import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod
+import de.codecentric.hikaku.endpoints.PathParameter
 import de.codecentric.hikaku.endpoints.QueryParameter
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
+import kotlin.reflect.jvm.kotlinFunction
 
 class MicronautConverter(private val packageName: String) : AbstractEndpointConverter() {
 
@@ -44,11 +46,16 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         }
     }
 
-    private fun createEndpoint(resource: Class<*>, method: Method) = Endpoint(
-            path = extractPath(resource, method),
-            httpMethod = extractHttpMethod(method),
-            queryParameters = extractQueryParameters(method)
-    )
+    private fun createEndpoint(resource: Class<*>, method: Method): Endpoint {
+        val path = extractPath(resource, method)
+
+        return Endpoint(
+                path = path,
+                httpMethod = extractHttpMethod(method),
+                queryParameters = extractQueryParameters(path, method),
+                pathParameters = extractPathParameters(path, method)
+        )
+    }
 
     private fun extractPath(resource: Class<*>, method: Method): String {
         var pathOnClass = resource.getAnnotation(Controller::class.java).value
@@ -89,12 +96,47 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         }
     }
 
-    private fun extractQueryParameters(method: Method): Set<QueryParameter> {
+    private fun extractQueryParameters(path: String, method: Method): Set<QueryParameter> {
         return method.parameters
                 .filter { it.isAnnotationPresent(QueryValue::class.java) }
                 .map { it.getAnnotation(QueryValue::class.java) }
-                .map { (it as QueryValue) }
+                .map { it as QueryValue }
                 .map { QueryParameter(it.value, it.defaultValue.isBlank()) }
                 .toSet()
+    }
+
+    private fun extractPathParameters(path: String, method: Method): Set<PathParameter> {
+        val parameters = method.parameters
+                .filter { it.isAnnotationPresent(PathVariable::class.java) }
+                .map { it.getAnnotation(PathVariable::class.java) }
+                .map { it as PathVariable }
+                .map {
+                    val pathParameter = if (it.value.isNotBlank()) {
+                        it.value
+                    } else {
+                        it.name
+                    }
+
+                    PathParameter(pathParameter)
+                }
+                .toMutableSet()
+
+        val methodParametersWithoutAnnotation = method.kotlinFunction
+                ?.parameters
+                ?.filter { it.annotations.isEmpty() }
+                ?.map { it.name }
+                .orEmpty()
+
+        val pathParametersWithoutAnnotation = Regex("\\{.+\\}").findAll(path)
+                .map { it.value }
+                .map { it.removePrefix("{") }
+                .map { it.removeSuffix("}") }
+                .filter { methodParametersWithoutAnnotation.contains(it) }
+                .map { PathParameter(it) }
+                .toSet()
+
+        parameters.addAll(pathParametersWithoutAnnotation)
+
+        return parameters
     }
 }

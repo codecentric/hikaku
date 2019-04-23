@@ -22,7 +22,7 @@ class MicronautConverterQueryParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.queryparameter.required").conversionResult
+        val result = MicronautConverter("test.micronaut.queryparameter.required.annotation").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
@@ -43,6 +43,26 @@ class MicronautConverterQueryParameterTest {
 
         //when
         val result = MicronautConverter("test.micronaut.queryparameter.optional").conversionResult
+
+        //then
+        assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
+    }
+
+    @Test
+    fun `query is required and defined without annotation, because no matching template exists in url`() {
+        //given
+        val specification = setOf(
+                Endpoint(
+                        path = "/todos",
+                        httpMethod = GET,
+                        queryParameters = setOf(
+                                QueryParameter("filter", false)
+                        )
+                )
+        )
+
+        //when
+        val result = MicronautConverter("test.micronaut.queryparameter.required.withoutannotation").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)

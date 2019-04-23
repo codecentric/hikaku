@@ -97,12 +97,22 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
     }
 
     private fun extractQueryParameters(path: String, method: Method): Set<QueryParameter> {
-        return method.parameters
+        val queryParameters = method.parameters
                 .filter { it.isAnnotationPresent(QueryValue::class.java) }
                 .map { it.getAnnotation(QueryValue::class.java) }
                 .map { it as QueryValue }
                 .map { QueryParameter(it.value, it.defaultValue.isBlank()) }
+                .toMutableSet()
+
+
+        val queryParameterWithoutAnnotation = methodParametersWithoutAnnotation(method).filterNot { templatesInPath(path).contains(it) }
+                .filterNotNull()
+                .map { QueryParameter(it, false) }
                 .toSet()
+
+        queryParameters.addAll(queryParameterWithoutAnnotation)
+
+        return queryParameters
     }
 
     private fun extractPathParameters(path: String, method: Method): Set<PathParameter> {
@@ -121,17 +131,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 }
                 .toMutableSet()
 
-        val methodParametersWithoutAnnotation = method.kotlinFunction
-                ?.parameters
-                ?.filter { it.annotations.isEmpty() }
-                ?.map { it.name }
-                .orEmpty()
-
-        val pathParametersWithoutAnnotation = Regex("\\{.+\\}").findAll(path)
-                .map { it.value }
-                .map { it.removePrefix("{") }
-                .map { it.removeSuffix("}") }
-                .filter { methodParametersWithoutAnnotation.contains(it) }
+        val pathParametersWithoutAnnotation = templatesInPath(path)
+                .filter { methodParametersWithoutAnnotation(method).contains(it) }
                 .map { PathParameter(it) }
                 .toSet()
 
@@ -139,4 +140,16 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
 
         return parameters
     }
+
+    private fun methodParametersWithoutAnnotation(method: Method) = method.kotlinFunction
+        ?.parameters
+        ?.filter { it.annotations.isEmpty() }
+        ?.map { it.name }
+        .orEmpty()
+
+    private fun templatesInPath(path: String) = Regex("\\{.+\\}").findAll(path)
+        .map { it.value }
+        .map { it.removePrefix("{") }
+        .map { it.removeSuffix("}") }
+        .toSet()
 }

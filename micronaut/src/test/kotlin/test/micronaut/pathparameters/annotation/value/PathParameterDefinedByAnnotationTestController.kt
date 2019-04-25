@@ -1,4 +1,4 @@
-package test.micronaut.pathparameter.annotation.name
+package test.micronaut.pathparameters.annotation.value
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
@@ -8,5 +8,5 @@ import io.micronaut.http.annotation.PathVariable
 class PathParameterDefinedByAnnotationTestController {
 
     @Get
-    fun todos(@PathVariable(name = "id") otherName: String) { }
+    fun todos(@PathVariable("id") otherName: String) { }
 }

@@ -22,7 +22,7 @@ class MicronautConverterQueryParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.queryparameter.required.annotation").conversionResult
+        val result = MicronautConverter("test.micronaut.queryparameters.required.annotation").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
@@ -42,7 +42,7 @@ class MicronautConverterQueryParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.queryparameter.optional").conversionResult
+        val result = MicronautConverter("test.micronaut.queryparameters.optional").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
@@ -62,7 +62,7 @@ class MicronautConverterQueryParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.queryparameter.required.withoutannotation").conversionResult
+        val result = MicronautConverter("test.micronaut.queryparameters.required.withoutannotation").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)

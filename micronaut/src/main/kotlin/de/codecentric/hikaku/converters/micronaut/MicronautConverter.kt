@@ -4,10 +4,7 @@ import de.codecentric.hikaku.SupportedFeatures
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.PathParameter
-import de.codecentric.hikaku.endpoints.QueryParameter
+import de.codecentric.hikaku.endpoints.*
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
 import kotlin.reflect.jvm.kotlinFunction
@@ -53,7 +50,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 path = path,
                 httpMethod = extractHttpMethod(method),
                 queryParameters = extractQueryParameters(path, method),
-                pathParameters = extractPathParameters(path, method)
+                pathParameters = extractPathParameters(path, method),
+                headerParameters = extractHeaderParameters(method)
         )
     }
 
@@ -152,4 +150,13 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         .map { it.removePrefix("{") }
         .map { it.removeSuffix("}") }
         .toSet()
+
+    private fun extractHeaderParameters(method: Method): Set<HeaderParameter> {
+        return method.parameters
+                .filter { it.isAnnotationPresent(Header::class.java) }
+                .map { it.getAnnotation(Header::class.java) }
+                .map { it as Header }
+                .map { HeaderParameter(it.value, it.defaultValue.isBlank()) }
+                .toSet()
+    }
 }

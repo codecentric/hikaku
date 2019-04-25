@@ -1,4 +1,4 @@
-package test.micronaut.pathparameter.variable
+package test.micronaut.pathparameters.variable
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get

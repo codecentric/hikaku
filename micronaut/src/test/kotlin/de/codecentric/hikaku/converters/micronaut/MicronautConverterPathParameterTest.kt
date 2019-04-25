@@ -23,7 +23,7 @@ class MicronautConverterPathParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.pathparameter.variable").conversionResult
+        val result = MicronautConverter("test.micronaut.pathparameters.variable").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
@@ -43,7 +43,7 @@ class MicronautConverterPathParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.pathparameter.annotation.value").conversionResult
+        val result = MicronautConverter("test.micronaut.pathparameters.annotation.value").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)
@@ -63,7 +63,7 @@ class MicronautConverterPathParameterTest {
         )
 
         //when
-        val result = MicronautConverter("test.micronaut.pathparameter.annotation.name").conversionResult
+        val result = MicronautConverter("test.micronaut.pathparameters.annotation.name").conversionResult
 
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(specification)

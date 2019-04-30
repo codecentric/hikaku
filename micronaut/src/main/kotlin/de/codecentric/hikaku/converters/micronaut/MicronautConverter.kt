@@ -7,6 +7,7 @@ import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.*
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
+import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.jvm.kotlinFunction
 
 class MicronautConverter(private val packageName: String) : AbstractEndpointConverter() {
@@ -51,8 +52,50 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 httpMethod = extractHttpMethod(method),
                 queryParameters = extractQueryParameters(path, method),
                 pathParameters = extractPathParameters(path, method),
-                headerParameters = extractHeaderParameters(method)
+                headerParameters = extractHeaderParameters(method),
+                consumes = extractConsumes(resource, method)
         )
+    }
+
+    private fun extractConsumes(resource: Class<*>, method: Method): Set<String> {
+        val methodAwaitsPayload = method.kotlinFunction
+                ?.parameters
+                ?.any { it.findAnnotation<Body>() != null }
+                ?: false
+
+        if (!methodAwaitsPayload) {
+            return emptySet()
+        }
+
+        val mediaTypesOnFunction = method.kotlinFunction
+                ?.annotations
+                ?.filterIsInstance<Consumes>()
+                ?.flatMap { it.value.map { entry -> entry } }
+                ?.toSet()
+                .orEmpty()
+
+        if (mediaTypesOnFunction.isNotEmpty()) {
+            return mediaTypesOnFunction
+        }
+
+        val mediaTypesOnControllerByConsumesAnnotation = resource.getAnnotation(Consumes::class.java)
+                ?.value
+                ?.toSet()
+                .orEmpty()
+
+        if (mediaTypesOnControllerByConsumesAnnotation.isNotEmpty()) {
+            return mediaTypesOnControllerByConsumesAnnotation
+        }
+
+        val mediaTypesDefinedByControllerAnnotation = resource.getAnnotation(Controller::class.java)
+                .consumes
+                .toSet()
+
+        if (mediaTypesDefinedByControllerAnnotation.isNotEmpty()) {
+            return mediaTypesDefinedByControllerAnnotation
+        }
+
+        return setOf("application/json")
     }
 
     private fun extractPath(resource: Class<*>, method: Method): String {

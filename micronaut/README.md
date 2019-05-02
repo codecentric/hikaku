@@ -8,7 +8,7 @@ Please refer to the list of [all features](../docs/features.md). To check the fe
 
 ### Paths
 
-+ Supports Controller annotation in combination with empty HttpMethod annotation
++ Supports Controller annotation combined with empty HttpMethod annotation
   + _Example:_
 ```
 @Controller("/todos")
@@ -19,13 +19,13 @@ class TodosController {
 }
 ```
 
-+ Supports path declaration in combination of Controller annotation and HttpMethod annotation
++ Supports Controller annotation combined with HttpMethod annotation
   + _Example:_
 ```
 @Controller("/todo")
 class TodosController {
 
-    @Get("list")
+    @Get("/list")
     fun todos() { }
 }
 ```
@@ -107,6 +107,26 @@ class TodosController {
 
 + Supports optional header parameter based on the existence of a default value
   + _Examples:_ `@Header("allow-cache", defaultValue = "true") otherName: String`
+  
+### Consumes
+
++ Supports default media type `application/json`
+
++ Supports single and multiple media type declarations in Controller annotation
+
++ Supports Consumes annotation with single and multiple media type declarations on class and function
+
++ Supports Consumes annotation overriding the value of the Controller annotation
+
+### Produces
+
++ Supports default media type `application/json`
+
++ Supports single and multiple media type declarations in Controller annotation
+
++ Supports Produces annotation with single and multiple media type declarations on class and function
+
++ Supports Produces annotation overriding the value of the Controller annotation
 
 ## Usage
 

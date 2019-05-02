@@ -3,7 +3,7 @@ archivesBaseName = 'hikaku-openapi'
 
 dependencies {
   api project(':core')
-  api 'io.swagger.parser.v3:swagger-parser-v3:2.0.11'
+  api 'io.swagger.parser.v3:swagger-parser-v3:2.0.12'
 }
 
 uploadArchives {

@@ -53,8 +53,47 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 queryParameters = extractQueryParameters(path, method),
                 pathParameters = extractPathParameters(path, method),
                 headerParameters = extractHeaderParameters(method),
-                consumes = extractConsumes(resource, method)
+                consumes = extractConsumes(resource, method),
+                produces = extractProduces(resource, method)
         )
+    }
+
+    private fun extractProduces(resource: Class<*>, method: Method): Set<String> {
+        val methodHasNoReturnType = method.returnType.name == "void" || method.returnType.name == "java.lang.Void"
+
+        if (methodHasNoReturnType) {
+            return emptySet()
+        }
+
+        val mediaTypesOnFunction = method.kotlinFunction
+                ?.annotations
+                ?.filterIsInstance<Produces>()
+                ?.flatMap { it.value.map { entry -> entry } }
+                ?.toSet()
+                .orEmpty()
+
+        if (mediaTypesOnFunction.isNotEmpty()) {
+            return mediaTypesOnFunction
+        }
+
+        val mediaTypesOnControllerByConsumesAnnotation = resource.getAnnotation(Produces::class.java)
+                ?.value
+                ?.toSet()
+                .orEmpty()
+
+        if (mediaTypesOnControllerByConsumesAnnotation.isNotEmpty()) {
+            return mediaTypesOnControllerByConsumesAnnotation
+        }
+
+        val mediaTypesDefinedByControllerAnnotation = resource.getAnnotation(Controller::class.java)
+                .produces
+                .toSet()
+
+        if (mediaTypesDefinedByControllerAnnotation.isNotEmpty()) {
+            return mediaTypesDefinedByControllerAnnotation
+        }
+
+        return setOf("application/json")
     }
 
     private fun extractConsumes(resource: Class<*>, method: Method): Set<String> {

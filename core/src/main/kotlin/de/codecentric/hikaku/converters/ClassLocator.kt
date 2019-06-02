@@ -18,9 +18,8 @@ object ClassLocator {
         val resources = classLoader.getResources(path)
         val dirs = mutableListOf<Path>()
 
-        while (resources.hasMoreElements()) {
-            val resource = resources.nextElement() as URL
-            dirs.add(Paths.get(resource.file))
+        resources.iterator().forEach {
+            dirs.add(Paths.get(it.toURI()))
         }
 
         val classes = mutableListOf<Class<*>>()

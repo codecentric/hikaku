@@ -116,6 +116,9 @@ You will find a list of spring specific features that are supported below.
 + Supports all HTTP method based mapping annotations (DeleteMapping, GetMapping, PatchMapping, PostMapping, PutMapping)
   + _Example:_ `@GetMapping(produces = "text/plain")`
 
++ Supports `javax.servlet.http.HttpServletResponse` parameter type
+  + _Example:_ `@GetMapping("/items") fun getItems(response: HttpServletResponse)`
+
 + Supports default value in case no produces definition has been set
 
 + Supports text/plain if the return value is a String and no produces definition has been set

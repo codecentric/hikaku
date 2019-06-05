@@ -61,7 +61,9 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 pathParameters = extractPathParameters(path, method),
                 headerParameters = extractHeaderParameters(method),
                 consumes = extractConsumes(resource, method),
-                produces = extractProduces(resource, method)
+                produces = extractProduces(resource, method),
+                deprecated = method.isAnnotationPresent(Deprecated::class.java)
+                    || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
         )
     }
 

@@ -54,6 +54,7 @@ class CommandLineReporter : Reporter {
                 Feature.MatrixParameters -> listMatrixParameter(endpoint.matrixParameters)
                 Feature.Consumes -> listRequestMediaTypes(endpoint.consumes)
                 Feature.Produces -> listResponseMediaTypes(endpoint.produces)
+                Feature.Deprecated -> if (endpoint.deprecated) "  Deprecated" else ""
             }
         }
 

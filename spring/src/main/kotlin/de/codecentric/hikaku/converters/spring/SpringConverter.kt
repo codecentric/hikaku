@@ -24,7 +24,8 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
             Feature.HeaderParameters,
             Feature.MatrixParameters,
             Feature.Produces,
-            Feature.Consumes
+            Feature.Consumes,
+            Feature.Deprecated
     )
 
     override fun convert(): Set<Endpoint> {
@@ -51,7 +52,9 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
                     headerParameters = mappingEntry.value.hikakuHeaderParameters(),
                     matrixParameters = mappingEntry.value.hikakuMatrixParameters(),
                     produces = mappingEntry.produces(),
-                    consumes = mappingEntry.consumes()
+                    consumes = mappingEntry.consumes(),
+                    deprecated = mappingEntry.value.method.isAnnotationPresent(Deprecated::class.java)
+                            || mappingEntry.value.method.declaringClass.isAnnotationPresent(Deprecated::class.java)
             )
         }
         .toMutableSet()

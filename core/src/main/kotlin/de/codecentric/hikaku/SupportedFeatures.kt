@@ -23,6 +23,8 @@ class SupportedFeatures(
         /** Checks supported media type of requests. */
         Consumes,
         /** Checks the equality of matrix parameters. */
-        MatrixParameters
+        MatrixParameters,
+        /** Checks the equality of deprecation. */
+        Deprecated
     }
 }

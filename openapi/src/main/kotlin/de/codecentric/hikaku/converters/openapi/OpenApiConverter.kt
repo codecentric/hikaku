@@ -35,7 +35,8 @@ class OpenApiConverter private constructor(private val specificationContent: Str
             Feature.PathParameters,
             Feature.HeaderParameters,
             Feature.Produces,
-            Feature.Consumes
+            Feature.Consumes,
+            Feature.Deprecated
     )
 
     override fun convert(): Set<Endpoint> {
@@ -66,7 +67,8 @@ class OpenApiConverter private constructor(private val specificationContent: Str
                         pathParameters = extractPathParameters(operation),
                         headerParameters = extractHeaderParameters(operation),
                         consumes = extractConsumesMediaTypes(operation),
-                        produces = extractProduceMediaTypes(operation)
+                        produces = extractProduceMediaTypes(operation),
+                        deprecated = operation?.deprecated ?: false
                 )
             }
         }

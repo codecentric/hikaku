@@ -1,6 +1,7 @@
 package de.codecentric.hikaku.converters.micronaut
 
 import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
@@ -12,7 +13,13 @@ import kotlin.reflect.jvm.kotlinFunction
 
 class MicronautConverter(private val packageName: String) : AbstractEndpointConverter() {
 
-    override val supportedFeatures = SupportedFeatures()
+    override val supportedFeatures = SupportedFeatures(
+        Feature.QueryParameters,
+        Feature.PathParameters,
+        Feature.HeaderParameters,
+        Feature.Produces,
+        Feature.Consumes
+    )
 
     override fun convert(): Set<Endpoint> {
         if (packageName.isBlank()) {

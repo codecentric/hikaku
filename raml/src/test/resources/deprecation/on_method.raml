@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test api
+version: v3
+annotationTypes:
+  deprecated: string
+/todos:
+  displayName: Todos
+  get:
+    (deprecated): This method is deprecated
+    displayName: Get all todos
+    responses:
+      200:
+        body:
+          text/plain:
+            type: string

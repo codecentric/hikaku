@@ -71,6 +71,7 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
                             consumes = it.requestMediaTypes(),
                             produces = it.responseMediaTypes(),
                             deprecated = it.annotations().any { i -> i.annotation().name() == "deprecated" }
+                                    || resource.annotations().any { i -> i.annotation().name() == "deprecated" }
                     )
             }
         }

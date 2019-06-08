@@ -60,11 +60,13 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
         .toMutableSet()
 
         // Spring always adds an OPTIONS http method if it does not exist, but without query and path parameter
-        if(!httpMethods.contains(OPTIONS)) {
+        if (!httpMethods.contains(OPTIONS)) {
             endpoints.add(
                     Endpoint(
                             path = cleanedPath,
-                            httpMethod = OPTIONS
+                            httpMethod = OPTIONS,
+                            deprecated = mappingEntry.value.method.isAnnotationPresent(Deprecated::class.java)
+                                    || mappingEntry.value.method.declaringClass.isAnnotationPresent(Deprecated::class.java)
                     )
             )
         }

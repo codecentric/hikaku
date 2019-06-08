@@ -19,7 +19,7 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             Feature.MatrixParameters,
             Feature.Consumes,
             Feature.Produces,
-            Feature.Deprecated
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {

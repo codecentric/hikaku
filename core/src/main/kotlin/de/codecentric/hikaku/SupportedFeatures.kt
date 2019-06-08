@@ -25,6 +25,6 @@ class SupportedFeatures(
         /** Checks the equality of matrix parameters. */
         MatrixParameters,
         /** Checks the equality of deprecation. */
-        Deprecated
+        Deprecation
     }
 }

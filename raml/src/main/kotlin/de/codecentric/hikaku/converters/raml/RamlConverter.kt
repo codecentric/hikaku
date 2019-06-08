@@ -23,7 +23,7 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
             Feature.HeaderParameters,
             Feature.Produces,
             Feature.Consumes,
-            Feature.Deprecated
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {

@@ -36,7 +36,7 @@ class OpenApiConverter private constructor(private val specificationContent: Str
             Feature.HeaderParameters,
             Feature.Produces,
             Feature.Consumes,
-            Feature.Deprecated
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {

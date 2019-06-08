@@ -25,7 +25,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
             Feature.MatrixParameters,
             Feature.Produces,
             Feature.Consumes,
-            Feature.Deprecated
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {

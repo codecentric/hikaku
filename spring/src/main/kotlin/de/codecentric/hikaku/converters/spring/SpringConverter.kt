@@ -53,8 +53,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
                     matrixParameters = mappingEntry.value.hikakuMatrixParameters(),
                     produces = mappingEntry.produces(),
                     consumes = mappingEntry.consumes(),
-                    deprecated = mappingEntry.value.method.isAnnotationPresent(Deprecated::class.java)
-                            || mappingEntry.value.method.declaringClass.isAnnotationPresent(Deprecated::class.java)
+                    deprecated = mappingEntry.isEndpointDeprecated()
             )
         }
         .toMutableSet()
@@ -65,8 +64,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
                     Endpoint(
                             path = cleanedPath,
                             httpMethod = OPTIONS,
-                            deprecated = mappingEntry.value.method.isAnnotationPresent(Deprecated::class.java)
-                                    || mappingEntry.value.method.declaringClass.isAnnotationPresent(Deprecated::class.java)
+                            deprecated = mappingEntry.isEndpointDeprecated()
                     )
             )
         }

@@ -29,27 +29,7 @@ class OpenApiConverterDeprecationTest {
     }
 
     @Test
-    fun `deprecated class`() {
-        //given
-        val file = Paths.get(this::class.java.classLoader.getResource("deprecation/deprecation_operation.yaml").toURI())
-        val implementation = setOf(
-                Endpoint(
-                        path = "/todos",
-                        httpMethod = GET,
-                        produces = setOf("application/json"),
-                        deprecated = true
-                )
-        )
-
-        //when
-        val specification = OpenApiConverter(file)
-
-        //then
-        assertThat(specification.conversionResult).containsExactlyInAnyOrderElementsOf(implementation)
-    }
-
-    @Test
-    fun `deprecated function`() {
+    fun `deprecated operation`() {
         //given
         val file = Paths.get(this::class.java.classLoader.getResource("deprecation/deprecation_operation.yaml").toURI())
         val implementation = setOf(

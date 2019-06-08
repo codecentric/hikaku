@@ -12,7 +12,7 @@ data class Todo(val description: String)
 @Controller
 open class NoDeprecationController {
 
-    @RequestMapping("/todos")
+    @GetMapping("/todos")
     fun todos(@RequestBody todo: Todo) { }
 }
 
@@ -20,14 +20,14 @@ open class NoDeprecationController {
 @Deprecated("Test")
 open class DeprecatedClassController {
 
-    @RequestMapping("/todos")
+    @GetMapping("/todos")
     fun todos(@RequestBody todo: Todo) { }
 }
 
 @Controller
 open class DeprecatedFunctionController {
 
-    @RequestMapping("/todos")
+    @GetMapping("/todos")
     @Deprecated("Test")
     fun todos(@RequestBody todo: Todo) { }
 }

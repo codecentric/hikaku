@@ -70,8 +70,7 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
                             headerParameters = it?.hikakuHeaderParameters().orEmpty(),
                             consumes = it.requestMediaTypes(),
                             produces = it.responseMediaTypes(),
-                            deprecated = it.annotations().any { i -> i.annotation().name() == "deprecated" }
-                                    || resource.annotations().any { i -> i.annotation().name() == "deprecated" }
+                            deprecated = it.isEndpointDeprecated()
                     )
             }
         }

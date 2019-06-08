@@ -33,31 +33,7 @@ class SpringConverterDeprecationTest {
                     ),
                     Endpoint(
                             path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint(
-                            path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PUT,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PATCH,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = false
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = DELETE,
                             consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
                             deprecated = false
                     ),
@@ -91,31 +67,7 @@ class SpringConverterDeprecationTest {
                     ),
                     Endpoint(
                             path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PUT,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PATCH,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = DELETE,
                             consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),
@@ -149,31 +101,7 @@ class SpringConverterDeprecationTest {
                     ),
                     Endpoint(
                             path = "/todos",
-                            httpMethod = POST,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PUT,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = PATCH,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
-                            deprecated = true
-                    ),
-                    Endpoint(
-                            path = "/todos",
-                            httpMethod = DELETE,
                             consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),

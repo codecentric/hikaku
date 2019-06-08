@@ -34,5 +34,9 @@ internal fun Method.responseMediaTypes(): Set<String> {
     return this.responses().flatMap {response ->
         response.body().map { it.name() }
     }
-    .toSet()
+            .toSet()
 }
+
+internal fun Method.isEndpointDeprecated() =
+        this.annotations().any { i -> i.annotation().name() == "deprecated" }
+                || checkNotNull(this.resource()).annotations().any { i -> i.annotation().name() == "deprecated" }

@@ -207,6 +207,7 @@ class HikakuTest {
 
     @Nested
     inner class FeatureTests {
+
         @Nested
         inner class PathParameterTests {
 
@@ -1679,6 +1680,166 @@ class HikakuTest {
                             )
                     )
                     override val supportedFeatures = SupportedFeatures(Feature.Consumes)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                assertFailsWith<AssertionFailedError> {
+                    hikaku.match()
+                }
+            }
+        }
+
+        @Nested
+        inner class DeprecationTests {
+
+            @Test
+            fun `deprecation info in random order match if the feature is supported by both converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = false
+                            ),
+                            Endpoint(
+                                    path = "/todos/tags",
+                                    httpMethod = GET,
+                                    deprecated = true
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos/tags",
+                                    httpMethod = GET,
+                                    deprecated = true
+                            ),
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = false
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `deprecation info is skipped if the feature is not supported by one of the converters`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = false
+                            )
+                    )
+
+                    override val supportedFeatures = SupportedFeatures()
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = true
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
+                }
+
+                val reporter = object : Reporter {
+                    lateinit var matchResult: MatchResult
+
+                    override fun report(endpointMatchResult: MatchResult) {
+                        matchResult = endpointMatchResult
+                    }
+                }
+
+                val hikaku = Hikaku(
+                        specificationDummyConverter,
+                        implementationDummyConverter,
+                        HikakuConfig(
+                                reporter = listOf(reporter)
+                        )
+                )
+
+                //when
+                hikaku.match()
+
+                //then
+                assertThat(reporter.matchResult.notFound).isEmpty()
+                assertThat(reporter.matchResult.notExpected).isEmpty()
+            }
+
+            @Test
+            fun `deprecation info does not match`() {
+                //given
+                val specificationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = false
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
+                }
+
+                val implementationDummyConverter = object : EndpointConverter {
+                    override val conversionResult: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/todos",
+                                    httpMethod = GET,
+                                    deprecated = true
+                            )
+                    )
+                    override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
                 }
 
                 val reporter = object : Reporter {

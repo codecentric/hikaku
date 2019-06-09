@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.http.MediaType
+import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
 
 class SpringConverterDeprecationTest {
 
@@ -28,13 +29,13 @@ class SpringConverterDeprecationTest {
                     Endpoint(
                             path = "/todos",
                             httpMethod = GET,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = false
                     ),
                     Endpoint(
                             path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = false
                     ),
                     Endpoint("/todos", OPTIONS, deprecated = false)
@@ -62,13 +63,13 @@ class SpringConverterDeprecationTest {
                     Endpoint(
                             path = "/todos",
                             httpMethod = GET,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),
                     Endpoint(
                             path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),
                     Endpoint("/todos", OPTIONS, deprecated = true)
@@ -96,13 +97,13 @@ class SpringConverterDeprecationTest {
                     Endpoint(
                             path = "/todos",
                             httpMethod = GET,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),
                     Endpoint(
                             path = "/todos",
                             httpMethod = HEAD,
-                            consumes = setOf(MediaType.APPLICATION_JSON_UTF8_VALUE),
+                            produces = setOf(APPLICATION_JSON_UTF8_VALUE),
                             deprecated = true
                     ),
                     Endpoint("/todos", OPTIONS, deprecated = true)

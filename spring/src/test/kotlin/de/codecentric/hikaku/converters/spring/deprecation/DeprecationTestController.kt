@@ -7,27 +7,27 @@ import org.springframework.web.bind.annotation.*
 @SpringBootApplication
 open class DummyApp
 
-data class Todo(val description: String)
+data class Todo(val description: String = "")
 
-@Controller
+@RestController
 open class NoDeprecationController {
 
     @GetMapping("/todos")
-    fun todos(@RequestBody todo: Todo) { }
+    fun todos() = Todo()
 }
 
-@Controller
+@RestController
 @Deprecated("Test")
 open class DeprecatedClassController {
 
     @GetMapping("/todos")
-    fun todos(@RequestBody todo: Todo) { }
+    fun todos() = Todo()
 }
 
-@Controller
+@RestController
 open class DeprecatedFunctionController {
 
     @GetMapping("/todos")
     @Deprecated("Test")
-    fun todos(@RequestBody todo: Todo) { }
+    fun todos() = Todo()
 }

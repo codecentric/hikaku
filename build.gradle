@@ -22,7 +22,7 @@ subprojects {
     apply plugin: 'kotlin'
     apply plugin: 'java-library'
 
-    version = '2.2.1-SNAPSHOT'
+    version = '2.3.0-SNAPSHOT'
     sourceCompatibility = jvmVersion
     targetCompatibility = jvmVersion
 

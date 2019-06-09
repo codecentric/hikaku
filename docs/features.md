@@ -12,3 +12,4 @@ There might be various ways to declare or use a feature, so check each converter
 | MatrixParameters | Name of a matrix parameter and whether the parameter is required or not. _Example:_ `/todos;param=value` | ❌ | ✅ _(2.1.0)_ | ✅ _(2.1.0)_ | ❌ | ✅ _(2.1.0)_ | ❌ |
 | Produces | Checks the supported media types of the response. | ✅ _(1.1.0)_ | ✅ _(1.1.0)_ | ✅ _(1.1.0)_ | ✅ _(2.0.0)_ | ✅ _(2.1.0)_ | ✅ _(2.3.0)_ |
 | Consumes | Checks the supported media types of the request. | ✅ _(1.1.0)_ | ✅ _(1.1.0)_ | ✅ _(1.1.0)_ | ✅ _(2.0.0)_ | ✅ _(2.1.0)_ | ✅ _(2.3.0)_ |
+| Deprecation | Checks deprecated endpoints are properly marked. | ✅ _(2.3.0)_ | ✅ _(2.3.0)_ | ❌ | ✅ _(2.3.0)_ | ✅ _(2.3.0)_ | ✅ _(2.3.0)_ |

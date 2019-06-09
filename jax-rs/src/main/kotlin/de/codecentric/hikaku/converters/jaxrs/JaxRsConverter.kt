@@ -18,7 +18,8 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             Feature.HeaderParameters,
             Feature.MatrixParameters,
             Feature.Consumes,
-            Feature.Produces
+            Feature.Produces,
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -59,7 +60,8 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             headerParameters = extractHeaderParameters(method),
             matrixParameters = extractMatrixParameters(method),
             produces = extractProduces(resource, method),
-            consumes = extractConsumes(resource, method)
+            consumes = extractConsumes(resource, method),
+            deprecated = isEndpointDeprecated(method)
     )
 
     private fun extractPath(resource: Class<*>, method: Method): String {
@@ -173,4 +175,8 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
                 .map { MatrixParameter(it) }
                 .toSet()
     }
+
+    private fun isEndpointDeprecated(method: Method) =
+            method.isAnnotationPresent(Deprecated::class.java)
+                    || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
 }

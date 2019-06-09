@@ -18,7 +18,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
         Feature.PathParameters,
         Feature.HeaderParameters,
         Feature.Produces,
-        Feature.Consumes
+        Feature.Consumes,
+        Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -61,7 +62,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 pathParameters = extractPathParameters(path, method),
                 headerParameters = extractHeaderParameters(method),
                 consumes = extractConsumes(resource, method),
-                produces = extractProduces(resource, method)
+                produces = extractProduces(resource, method),
+                deprecated = isEndpointDeprecated(method)
         )
     }
 
@@ -248,4 +250,8 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
                 .map { HeaderParameter(it.value, it.defaultValue.isBlank()) }
                 .toSet()
     }
+
+    private fun isEndpointDeprecated(method: Method) =
+            method.isAnnotationPresent(Deprecated::class.java)
+                    || method.declaringClass.isAnnotationPresent(Deprecated::class.java)
 }

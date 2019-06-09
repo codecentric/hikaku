@@ -85,6 +85,7 @@ class Hikaku(
                     Feature.MatrixParameters -> matches && it.matrixParameters == otherEndpoint.matrixParameters
                     Feature.Produces -> matches && it.produces == otherEndpoint.produces
                     Feature.Consumes -> matches && it.consumes == otherEndpoint.consumes
+                    Feature.Deprecation -> matches && it.deprecated == otherEndpoint.deprecated
                 }
             }
 

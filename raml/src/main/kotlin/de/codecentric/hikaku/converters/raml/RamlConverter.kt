@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.raml
 
 import de.codecentric.hikaku.SupportedFeatures
-import de.codecentric.hikaku.SupportedFeatures.*
+import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.converters.raml.extensions.*
@@ -22,7 +22,8 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
             Feature.PathParameters,
             Feature.HeaderParameters,
             Feature.Produces,
-            Feature.Consumes
+            Feature.Consumes,
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -68,7 +69,8 @@ class RamlConverter(private val ramlSpecification: File) : AbstractEndpointConve
                             pathParameters = it.resource()?.hikakuPathParameters().orEmpty(),
                             headerParameters = it?.hikakuHeaderParameters().orEmpty(),
                             consumes = it.requestMediaTypes(),
-                            produces = it.responseMediaTypes()
+                            produces = it.responseMediaTypes(),
+                            deprecated = it.isEndpointDeprecated()
                     )
             }
         }

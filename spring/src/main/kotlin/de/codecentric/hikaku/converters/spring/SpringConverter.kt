@@ -24,7 +24,8 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
             Feature.HeaderParameters,
             Feature.MatrixParameters,
             Feature.Produces,
-            Feature.Consumes
+            Feature.Consumes,
+            Feature.Deprecation
     )
 
     override fun convert(): Set<Endpoint> {
@@ -51,17 +52,19 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
                     headerParameters = mappingEntry.value.hikakuHeaderParameters(),
                     matrixParameters = mappingEntry.value.hikakuMatrixParameters(),
                     produces = mappingEntry.produces(),
-                    consumes = mappingEntry.consumes()
+                    consumes = mappingEntry.consumes(),
+                    deprecated = mappingEntry.isEndpointDeprecated()
             )
         }
         .toMutableSet()
 
         // Spring always adds an OPTIONS http method if it does not exist, but without query and path parameter
-        if(!httpMethods.contains(OPTIONS)) {
+        if (!httpMethods.contains(OPTIONS)) {
             endpoints.add(
                     Endpoint(
                             path = cleanedPath,
-                            httpMethod = OPTIONS
+                            httpMethod = OPTIONS,
+                            deprecated = mappingEntry.isEndpointDeprecated()
                     )
             )
         }

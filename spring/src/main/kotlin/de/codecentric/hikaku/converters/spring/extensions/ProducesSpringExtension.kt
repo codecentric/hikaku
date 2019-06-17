@@ -16,8 +16,13 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
     val isNotErrorPath = !this.key.patternsCondition.patterns.contains("/error")
     val hasNoResponseBodyAnnotation = !this.value.providesResponseBodyAnnotation()
     val hasNoRestControllerAnnotation = !this.value.providesRestControllerAnnotation()
+    val hasHttpServletResponseParam = this.value.hasHttpServletResponseParam()
 
-    if (isNotErrorPath && ((hasNoResponseBodyAnnotation && hasNoRestControllerAnnotation) || this.value.method.hasNoReturnType())) {
+    if (isNotErrorPath && (hasNoResponseBodyAnnotation && hasNoRestControllerAnnotation)) {
+        return emptySet()
+    }
+
+    if (isNotErrorPath && (this.value.method.hasNoReturnType() && !hasHttpServletResponseParam)) {
         return emptySet()
     }
 
@@ -63,7 +68,16 @@ private fun HandlerMethod.isResponseBodyAnnotationOnClass() = this.method
         ?.jvmErasure
         ?.findAnnotation<ResponseBody>() != null
 
-
 private fun HandlerMethod.isResponseBodyAnnotationOnFunction() = this.method
         .kotlinFunction
         ?.findAnnotation<ResponseBody>() != null
+
+private val javaxServletResponseClass: Class<*>? =
+        (try {
+            Class.forName("javax.servlet.http.HttpServletResponse")
+        } catch (ex: Throwable) {
+            null
+        })
+
+private fun HandlerMethod.hasHttpServletResponseParam() = this.methodParameters
+        .any { javaxServletResponseClass !== null && it.parameterType.isAssignableFrom(javaxServletResponseClass) }

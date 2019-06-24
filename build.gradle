@@ -116,6 +116,11 @@ subprojects {
                             name = 'Jannes Heinrich'
                             email = 'jannes.heinrich@codecentric.de'
                         }
+                        developer {
+                            id = 'lmller'
+                            name = 'Lovis Möller'
+                            email = 'lovis.moeller@codecentric.de'
+                        }
                     }
                 }
             }

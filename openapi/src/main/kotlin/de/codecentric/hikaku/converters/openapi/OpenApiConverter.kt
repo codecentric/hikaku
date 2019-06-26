@@ -59,13 +59,17 @@ class OpenApiConverter private constructor(private val specificationContent: Str
         val extractPathParameters = PathParameterExtractor(openApi)
 
         return openApi.paths.flatMap { (path, pathItem) ->
+            val commonQueryParameters = extractQueryParameters(pathItem.parameters)
+            val commonPathParameters = extractPathParameters(pathItem.parameters)
+            val commonHeaderParameters = extractHeaderParameters(pathItem.parameters)
+
             pathItem.httpMethods().map { (httpMethod: HttpMethod, operation: Operation?) ->
                 Endpoint(
                         path = path,
                         httpMethod = httpMethod,
-                        queryParameters = extractQueryParameters(operation),
-                        pathParameters = extractPathParameters(operation),
-                        headerParameters = extractHeaderParameters(operation),
+                        queryParameters = commonQueryParameters.union(extractQueryParameters(operation?.parameters)),
+                        pathParameters = commonPathParameters.union(extractPathParameters(operation?.parameters)),
+                        headerParameters = commonHeaderParameters.union(extractHeaderParameters(operation?.parameters)),
                         consumes = extractConsumesMediaTypes(operation),
                         produces = extractProduceMediaTypes(operation),
                         deprecated = operation?.deprecated ?: false

@@ -38,4 +38,36 @@ class OpenApiConverterQueryParameterTest {
         //then
         assertThat(result).containsExactlyInAnyOrderElementsOf(queryParameters)
     }
+
+    @Test
+    fun `common query parameter inline declaration on Operation object`() {
+        //given
+        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter/common_query_parameter_inline.yaml").toURI())
+        val queryParameters = setOf(
+                QueryParameter("tag", false),
+                QueryParameter("limit", true)
+        )
+
+        //when
+        val result = OpenApiConverter(file).conversionResult.toList()[0].queryParameters
+
+        //then
+        assertThat(result).containsExactlyInAnyOrderElementsOf(queryParameters)
+    }
+
+    @Test
+    fun `one query parameter declared inline and one common parameter referenced from parameters section in components`() {
+        //given
+        val file = Paths.get(this::class.java.classLoader.getResource("query_parameter/common_query_parameter_in_components.yaml").toURI())
+        val queryParameters = setOf(
+                QueryParameter("tag", false),
+                QueryParameter("limit", true)
+        )
+
+        //when
+        val result = OpenApiConverter(file).conversionResult.toList()[0].queryParameters
+
+        //then
+        assertThat(result).containsExactlyInAnyOrderElementsOf(queryParameters)
+    }
 }

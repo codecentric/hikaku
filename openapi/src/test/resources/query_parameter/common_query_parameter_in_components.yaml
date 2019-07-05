@@ -1,0 +1,30 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Todo List
+paths:
+  /todos:
+    parameters:
+      - $ref: "#/components/parameters/limitParam"
+    get:
+      description: 'Get all todos'
+      parameters:
+        - name: tag
+          in: query
+          required: false
+          description: "Filter todos by a given tag."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      required: true
+      description: "Limit"
+      schema:
+        type: number
+        format: int32

@@ -118,7 +118,7 @@ subprojects {
                         developer {
                             id = 'cc-jhr'
                             name = 'Jannes Heinrich'
-                            email = 'jannes.heinrich@codecentric.de'
+                            email = 'jannes.heinrich@otto.de'
                         }
                         developer {
                             id = 'lmller'

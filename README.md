@@ -42,8 +42,8 @@ First add the dependencies for the converters, that we want to use. In this case
 
 ```gradle
 dependencies {
-    testImplementation: "de.codecentric.hikaku:hikaku-openapi:$hikakuVersion"
-    testImplementation: "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
+    testImplementation "de.codecentric.hikaku:hikaku-openapi:$hikakuVersion"
+    testImplementation "de.codecentric.hikaku:hikaku-spring:$hikakuVersion"
 }
 ```
 

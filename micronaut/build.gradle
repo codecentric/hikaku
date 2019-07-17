@@ -3,7 +3,7 @@ archivesBaseName = 'hikaku-micronaut'
 
 dependencies {
   api project(':core')
-  api 'io.micronaut:micronaut-http:1.1.3'
+  api 'io.micronaut:micronaut-http:1.1.4'
 }
 
 uploadArchives {

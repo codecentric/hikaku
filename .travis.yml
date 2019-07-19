@@ -1,7 +1,14 @@
-language: java
-jdk:
-  - openjdk8
-  - openjdk11
+language: bash
+matrix:
+  include:
+    - env: JDK="openjdk@1.11.0-2"
+      os: linux
+    - env: JDK="openjdk@1.11.0-2"
+      os: windows
+    - env: JDK="openjdk@1.11.0-2"
+      os: osx
+before_install:
+  - source install-jdk.sh
 install: true
 script:
-  - ./gradlew test
+  - ./gradlew clean test

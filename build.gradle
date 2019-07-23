@@ -55,7 +55,7 @@ subprojects {
         api "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
         api "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
 
-        testImplementation 'org.junit.platform:junit-platform-launcher:1.5.0'
+        testImplementation 'org.junit.platform:junit-platform-launcher:1.5.1'
         testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
         testImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$kotlinVersion"
         testImplementation 'org.assertj:assertj-core:3.12.2'

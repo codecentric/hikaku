@@ -3,8 +3,6 @@ package de.codecentric.hikaku
 import de.codecentric.hikaku.SupportedFeatures.Feature
 import de.codecentric.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod.HEAD
-import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
 import de.codecentric.hikaku.reporters.MatchResult
 import de.codecentric.hikaku.reporters.Reporter
 import kotlin.test.fail
@@ -13,7 +11,7 @@ import kotlin.test.fail
  * Entry point for writing a hikaku test. Provide the [EndpointConverter]s and call [match] to test if the specification and the implementation of your REST-API match.
  * @param specification An [EndpointConverter] which converts your specification for the equality check.
  * @param implementation An [EndpointConverter]  which converts your implementation for the equality check.
- * @param config The configuration is optional. It lets you partially control the matching.
+ * @param config The configuration is optional. It lets you control the matching.
  */
 class Hikaku(
         private val specification: EndpointConverter,
@@ -22,10 +20,14 @@ class Hikaku(
 ) {
     private val supportedFeatures = SupportedFeatures(specification.supportedFeatures.intersect(implementation.supportedFeatures))
 
-    private fun Set<Endpoint>.applyConfig(config: HikakuConfig): List<Endpoint> {
-        return this.filterNot { config.ignorePaths.contains(it.path) }
-                .filterNot { config.ignoreHttpMethodHead && it.httpMethod == HEAD }
-                .filterNot { config.ignoreHttpMethodOptions && it.httpMethod == OPTIONS }
+    private fun Set<Endpoint>.applyConfig(): List<Endpoint> {
+        val result = this.toMutableList()
+
+        config.filter.forEach {
+            result.removeAll(this.filter(it))
+        }
+
+        return result
     }
 
     private fun reportResult(matchResult: MatchResult) {
@@ -38,12 +40,12 @@ class Hikaku(
     fun match() {
         val specificationEndpoints = specification
                 .conversionResult
-                .applyConfig(config)
+                .applyConfig()
                 .toSet()
 
         val implementationEndpoints = implementation
                 .conversionResult
-                .applyConfig(config)
+                .applyConfig()
                 .toSet()
 
         val notExpected = implementationEndpoints.toMutableSet()

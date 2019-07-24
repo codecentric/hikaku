@@ -1870,12 +1870,13 @@ class HikakuTest {
     inner class ConfigTests {
 
         @Test
-        fun `ignoreHttpMethodHead must ignore endpoints with http method HEAD on both specification and implementation`() {
+        fun `ignore endpoints with http method HEAD and OPTIONS on specification`() {
             //given
             val dummyConverterWithHead = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET),
-                        Endpoint("/todos", HEAD)
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
@@ -1899,7 +1900,10 @@ class HikakuTest {
                     dummyConverterWithHead,
                     dummyConverter,
                     HikakuConfig(
-                            ignoreHttpMethodHead = true,
+                            filter = listOf (
+                                { endpoint -> endpoint.httpMethod == HEAD },
+                                { endpoint -> endpoint.httpMethod == OPTIONS }
+                            ),
                             reporter = listOf(reporter)
                     )
             )
@@ -1913,19 +1917,20 @@ class HikakuTest {
         }
 
         @Test
-        fun `ignoreHttpMethodOptions must ignore endpoints with http method OPTIONS on both specification and implementation`() {
+        fun `ignore endpoints with http method HEAD and OPTIONS on implementation`() {
             //given
-            val dummyConverterWithOptions = object : EndpointConverter {
+            val dummyConverterWithHead = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET),
-                        Endpoint("/todos", OPTIONS)
+                        Endpoint("/todos", GET)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
 
             val dummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/todos", GET)
+                        Endpoint("/todos", GET),
+                        Endpoint("/todos", HEAD),
+                        Endpoint("/todos", OPTIONS)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
@@ -1939,10 +1944,13 @@ class HikakuTest {
             }
 
             val hikaku = Hikaku(
-                    dummyConverterWithOptions,
+                    dummyConverterWithHead,
                     dummyConverter,
                     HikakuConfig(
-                            ignoreHttpMethodOptions = true,
+                            filter = listOf (
+                                    { endpoint -> endpoint.httpMethod == HEAD },
+                                    { endpoint -> endpoint.httpMethod == OPTIONS }
+                            ),
                             reporter = listOf(reporter)
                     )
             )
@@ -1970,7 +1978,8 @@ class HikakuTest {
                         Endpoint("/todos", GET),
                         Endpoint("/error", GET),
                         Endpoint("/error", HEAD),
-                        Endpoint("/error", OPTIONS)
+                        Endpoint("/error", OPTIONS),
+                        Endpoint("/actuator/health", OPTIONS)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
@@ -1987,7 +1996,10 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            ignorePaths = setOf("/error"),
+                            filter = listOf (
+                                    { endpoint -> endpoint.path == "/error" },
+                                    { endpoint -> endpoint.path.startsWith("/actuator") }
+                            ),
                             reporter = listOf(reporter)
                     )
             )

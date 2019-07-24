@@ -13,11 +13,13 @@ import de.codecentric.hikaku.reporters.Reporter
  * @param ignoreHttpMethodHead All checks for an [Endpoint] providing http method [HEAD] will be skipped if set to `true`.
  * @param ignoreHttpMethodOptions All checks for an [Endpoint] providing http method [OPTIONS] will be skipped if set to `true`.
  * @param reporter The [MatchResult] will be passed to one or many [Reporter] before the test either fails or succeeds. Default is a [CommandLineReporter] that prints the results to [System.out].
+ * @param endpointFilter Filtering rule: only the [Endpoint]s matching the predicate will be considered.
  */
 data class HikakuConfig
 @JvmOverloads constructor(
         val ignorePaths: Set<String> = emptySet(),
         val ignoreHttpMethodHead: Boolean = false,
         val ignoreHttpMethodOptions: Boolean = false,
-        val reporter: List<Reporter> = listOf(CommandLineReporter())
+        val reporter: List<Reporter> = listOf(CommandLineReporter()),
+        val endpointFilter: (Endpoint) -> Boolean = { _ -> true }
 )

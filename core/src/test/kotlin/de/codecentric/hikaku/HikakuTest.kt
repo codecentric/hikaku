@@ -1999,6 +1999,51 @@ class HikakuTest {
             assertThat(reporter.matchResult.notFound).isEmpty()
             assertThat(reporter.matchResult.notExpected).isEmpty()
         }
+
+        @Test
+        fun `consider only filtered paths`() {
+            //given
+            val specificationDummyConverter = object : EndpointConverter {
+                override val conversionResult: Set<Endpoint> = setOf(
+                        Endpoint("/todos", GET)
+                )
+                override val supportedFeatures = SupportedFeatures()
+            }
+
+            val implementationDummyConverter = object : EndpointConverter {
+                override val conversionResult: Set<Endpoint> = setOf(
+                        Endpoint("/todos", GET),
+                        Endpoint("/error", GET),
+                        Endpoint("/error", HEAD),
+                        Endpoint("/error", OPTIONS)
+                )
+                override val supportedFeatures = SupportedFeatures()
+            }
+
+            val reporter = object : Reporter {
+                lateinit var matchResult: MatchResult
+
+                override fun report(endpointMatchResult: MatchResult) {
+                    matchResult = endpointMatchResult
+                }
+            }
+
+            val hikaku = Hikaku(
+                    specificationDummyConverter,
+                    implementationDummyConverter,
+                    HikakuConfig(
+                            reporter = listOf(reporter),
+                            endpointFilter = { endpoint -> !endpoint.path.startsWith("/error") }
+                    )
+            )
+
+            //when
+            hikaku.match()
+
+            //then
+            assertThat(reporter.matchResult.notFound).isEmpty()
+            assertThat(reporter.matchResult.notExpected).isEmpty()
+        }
     }
 
     @Nested

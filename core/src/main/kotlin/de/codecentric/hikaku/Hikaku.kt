@@ -26,6 +26,7 @@ class Hikaku(
         return this.filterNot { config.ignorePaths.contains(it.path) }
                 .filterNot { config.ignoreHttpMethodHead && it.httpMethod == HEAD }
                 .filterNot { config.ignoreHttpMethodOptions && it.httpMethod == OPTIONS }
+                .filter(config.endpointFilter)
     }
 
     private fun reportResult(matchResult: MatchResult) {

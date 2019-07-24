@@ -20,7 +20,7 @@ class Hikaku(
 ) {
     private val supportedFeatures = SupportedFeatures(specification.supportedFeatures.intersect(implementation.supportedFeatures))
 
-    private fun Set<Endpoint>.applyConfig(): List<Endpoint> {
+    private fun Set<Endpoint>.applyConfig(config: HikakuConfig): List<Endpoint> {
         val result = this.toMutableList()
 
         config.filter.forEach {
@@ -40,12 +40,12 @@ class Hikaku(
     fun match() {
         val specificationEndpoints = specification
                 .conversionResult
-                .applyConfig()
+                .applyConfig(config)
                 .toSet()
 
         val implementationEndpoints = implementation
                 .conversionResult
-                .applyConfig()
+                .applyConfig(config)
                 .toSet()
 
         val notExpected = implementationEndpoints.toMutableSet()

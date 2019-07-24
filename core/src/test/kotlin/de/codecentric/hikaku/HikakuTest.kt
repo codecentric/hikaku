@@ -5,6 +5,7 @@ import de.codecentric.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.reporters.MatchResult
+import de.codecentric.hikaku.reporters.NoOperationReporter
 import de.codecentric.hikaku.reporters.Reporter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
@@ -37,7 +38,10 @@ class HikakuTest {
 
             val hikaku = Hikaku(
                     specificationDummyConverter,
-                    implementationDummyConverter
+                    implementationDummyConverter,
+                    HikakuConfig(
+                            reporter = listOf(NoOperationReporter())
+                    )
             )
 
             //when
@@ -68,28 +72,16 @@ class HikakuTest {
                 override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
             }
 
-            val reporter = object : Reporter {
-                lateinit var matchResult: MatchResult
-
-                override fun report(endpointMatchResult: MatchResult) {
-                    matchResult = endpointMatchResult
-                }
-            }
-
             val hikaku = Hikaku(
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(reporter)
+                            reporter = listOf(NoOperationReporter())
                     )
             )
 
             //when
             hikaku.match()
-
-            //then
-            assertThat(reporter.matchResult.notExpected).isEmpty()
-            assertThat(reporter.matchResult.notFound).isEmpty()
         }
 
         @Test
@@ -116,7 +108,10 @@ class HikakuTest {
 
             val hikaku = Hikaku(
                     specificationDummyConverter,
-                    implementationDummyConverter
+                    implementationDummyConverter,
+                    HikakuConfig(
+                            reporter = listOf(NoOperationReporter())
+                    )
             )
 
             //when
@@ -147,28 +142,16 @@ class HikakuTest {
                 override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
             }
 
-            val reporter = object : Reporter {
-                lateinit var matchResult: MatchResult
-
-                override fun report(endpointMatchResult: MatchResult) {
-                    matchResult = endpointMatchResult
-                }
-            }
-
             val hikaku = Hikaku(
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(reporter)
+                            reporter = listOf(NoOperationReporter())
                     )
             )
 
             //when
             hikaku.match()
-
-            //then
-            assertThat(reporter.matchResult.notFound).isEmpty()
-            assertThat(reporter.matchResult.notExpected).isEmpty()
         }
 
         @Test
@@ -195,7 +178,10 @@ class HikakuTest {
 
             val hikaku = Hikaku(
                     specificationDummyConverter,
-                    implementationDummyConverter
+                    implementationDummyConverter,
+                    HikakuConfig(
+                            reporter = listOf(NoOperationReporter())
+                    )
             )
 
             //when
@@ -243,28 +229,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -298,28 +272,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -352,19 +314,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -412,28 +366,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -467,28 +409,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -522,19 +452,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -574,28 +496,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -629,28 +539,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -684,19 +582,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.QueryParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -742,28 +632,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -797,28 +675,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -852,19 +718,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -904,28 +762,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -959,28 +805,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1014,19 +848,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.HeaderParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1072,28 +898,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1127,28 +941,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1182,19 +984,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1234,28 +1028,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1289,28 +1071,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1344,19 +1114,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.MatrixParameters)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1402,28 +1164,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Produces)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1458,28 +1208,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Produces)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1513,19 +1251,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Produces)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1571,28 +1301,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Consumes)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1627,28 +1345,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Consumes)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1682,19 +1388,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Consumes)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1743,28 +1441,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1793,28 +1479,16 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
                 //when
                 hikaku.match()
-
-                //then
-                assertThat(reporter.matchResult.notFound).isEmpty()
-                assertThat(reporter.matchResult.notExpected).isEmpty()
             }
 
             @Test
@@ -1842,19 +1516,11 @@ class HikakuTest {
                     override val supportedFeatures = SupportedFeatures(Feature.Deprecation)
                 }
 
-                val reporter = object : Reporter {
-                    lateinit var matchResult: MatchResult
-
-                    override fun report(endpointMatchResult: MatchResult) {
-                        matchResult = endpointMatchResult
-                    }
-                }
-
                 val hikaku = Hikaku(
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(reporter)
+                                reporter = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1872,7 +1538,7 @@ class HikakuTest {
         @Test
         fun `ignore endpoints with http method HEAD and OPTIONS on specification`() {
             //given
-            val dummyConverterWithHead = object : EndpointConverter {
+            val dummyConverterWithHeadAndOptions = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET),
                         Endpoint("/todos", HEAD),
@@ -1888,45 +1554,33 @@ class HikakuTest {
                 override val supportedFeatures = SupportedFeatures()
             }
 
-            val reporter = object : Reporter {
-                lateinit var matchResult: MatchResult
-
-                override fun report(endpointMatchResult: MatchResult) {
-                    matchResult = endpointMatchResult
-                }
-            }
-
             val hikaku = Hikaku(
-                    dummyConverterWithHead,
+                    dummyConverterWithHeadAndOptions,
                     dummyConverter,
                     HikakuConfig(
                             filter = listOf (
                                 { endpoint -> endpoint.httpMethod == HEAD },
                                 { endpoint -> endpoint.httpMethod == OPTIONS }
                             ),
-                            reporter = listOf(reporter)
+                            reporter = listOf(NoOperationReporter())
                     )
             )
 
             //when
             hikaku.match()
-
-            //then
-            assertThat(reporter.matchResult.notFound).isEmpty()
-            assertThat(reporter.matchResult.notExpected).isEmpty()
         }
 
         @Test
         fun `ignore endpoints with http method HEAD and OPTIONS on implementation`() {
             //given
-            val dummyConverterWithHead = object : EndpointConverter {
+            val dummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
 
-            val dummyConverter = object : EndpointConverter {
+            val dummyConverterWithHeadAndOptions = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
                         Endpoint("/todos", GET),
                         Endpoint("/todos", HEAD),
@@ -1935,32 +1589,20 @@ class HikakuTest {
                 override val supportedFeatures = SupportedFeatures()
             }
 
-            val reporter = object : Reporter {
-                lateinit var matchResult: MatchResult
-
-                override fun report(endpointMatchResult: MatchResult) {
-                    matchResult = endpointMatchResult
-                }
-            }
-
             val hikaku = Hikaku(
-                    dummyConverterWithHead,
                     dummyConverter,
+                    dummyConverterWithHeadAndOptions,
                     HikakuConfig(
                             filter = listOf (
                                     { endpoint -> endpoint.httpMethod == HEAD },
                                     { endpoint -> endpoint.httpMethod == OPTIONS }
                             ),
-                            reporter = listOf(reporter)
+                            reporter = listOf(NoOperationReporter())
                     )
             )
 
             //when
             hikaku.match()
-
-            //then
-            assertThat(reporter.matchResult.notFound).isEmpty()
-            assertThat(reporter.matchResult.notExpected).isEmpty()
         }
 
         @Test
@@ -1984,14 +1626,6 @@ class HikakuTest {
                 override val supportedFeatures = SupportedFeatures()
             }
 
-            val reporter = object : Reporter {
-                lateinit var matchResult: MatchResult
-
-                override fun report(endpointMatchResult: MatchResult) {
-                    matchResult = endpointMatchResult
-                }
-            }
-
             val hikaku = Hikaku(
                     specificationDummyConverter,
                     implementationDummyConverter,
@@ -2000,16 +1634,12 @@ class HikakuTest {
                                     { endpoint -> endpoint.path == "/error" },
                                     { endpoint -> endpoint.path.startsWith("/actuator") }
                             ),
-                            reporter = listOf(reporter)
+                            reporter = listOf(NoOperationReporter())
                     )
             )
 
             //when
             hikaku.match()
-
-            //then
-            assertThat(reporter.matchResult.notFound).isEmpty()
-            assertThat(reporter.matchResult.notExpected).isEmpty()
         }
     }
 

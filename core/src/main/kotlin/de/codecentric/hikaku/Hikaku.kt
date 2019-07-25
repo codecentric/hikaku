@@ -23,7 +23,7 @@ class Hikaku(
     private fun Set<Endpoint>.applyConfig(config: HikakuConfig): List<Endpoint> {
         val result = this.toMutableList()
 
-        config.filter.forEach {
+        config.filters.forEach {
             result.removeAll(this.filter(it))
         }
 
@@ -31,7 +31,7 @@ class Hikaku(
     }
 
     private fun reportResult(matchResult: MatchResult) {
-        config.reporter.forEach { it.report(matchResult) }
+        config.reporters.forEach { it.report(matchResult) }
     }
 
     /**

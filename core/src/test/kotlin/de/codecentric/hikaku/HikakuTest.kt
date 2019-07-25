@@ -40,7 +40,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -76,7 +76,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -110,7 +110,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -146,7 +146,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -180,7 +180,7 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -233,7 +233,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -276,7 +276,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -318,7 +318,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -370,7 +370,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -413,7 +413,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -456,7 +456,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -500,7 +500,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -543,7 +543,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -586,7 +586,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -636,7 +636,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -679,7 +679,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -722,7 +722,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -766,7 +766,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -809,7 +809,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -852,7 +852,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -902,7 +902,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -945,7 +945,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -988,7 +988,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1032,7 +1032,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1075,7 +1075,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1118,7 +1118,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1168,7 +1168,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1212,7 +1212,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1255,7 +1255,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1305,7 +1305,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1349,7 +1349,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1392,7 +1392,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1445,7 +1445,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1483,7 +1483,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1520,7 +1520,7 @@ class HikakuTest {
                         specificationDummyConverter,
                         implementationDummyConverter,
                         HikakuConfig(
-                                reporter = listOf(NoOperationReporter())
+                                reporters = listOf(NoOperationReporter())
                         )
                 )
 
@@ -1558,11 +1558,11 @@ class HikakuTest {
                     dummyConverterWithHeadAndOptions,
                     dummyConverter,
                     HikakuConfig(
-                            filter = listOf (
+                            filters = listOf (
                                 { endpoint -> endpoint.httpMethod == HEAD },
                                 { endpoint -> endpoint.httpMethod == OPTIONS }
                             ),
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -1593,11 +1593,11 @@ class HikakuTest {
                     dummyConverter,
                     dummyConverterWithHeadAndOptions,
                     HikakuConfig(
-                            filter = listOf (
+                            filters = listOf (
                                     { endpoint -> endpoint.httpMethod == HEAD },
                                     { endpoint -> endpoint.httpMethod == OPTIONS }
                             ),
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -1630,11 +1630,11 @@ class HikakuTest {
                     specificationDummyConverter,
                     implementationDummyConverter,
                     HikakuConfig(
-                            filter = listOf (
+                            filters = listOf (
                                     { endpoint -> endpoint.path == "/error" },
                                     { endpoint -> endpoint.path.startsWith("/actuator") }
                             ),
-                            reporter = listOf(NoOperationReporter())
+                            reporters = listOf(NoOperationReporter())
                     )
             )
 
@@ -1669,7 +1669,7 @@ class HikakuTest {
                     dummyConverter,
                     dummyConverter,
                     HikakuConfig(
-                            reporter = listOf(reporter)
+                            reporters = listOf(reporter)
                     )
             )
 
@@ -1711,7 +1711,7 @@ class HikakuTest {
                     dummyConverter,
                     dummyConverter,
                     HikakuConfig(
-                            reporter = listOf(firstReporter, secondReporter)
+                            reporters = listOf(firstReporter, secondReporter)
                     )
             )
 

@@ -56,7 +56,7 @@ And now we can create the test case:
 class SpecificationTest {
 
     @Autowired
-    lateinit var springContext: ApplicationContext
+    private lateinit var springContext: ApplicationContext
 
     @Test
     fun `specification matches implementation`() {
@@ -64,7 +64,7 @@ class SpecificationTest {
                 specification = OpenApiConverter(Paths.get("openapi.yaml")),
                 implementation = SpringConverter(springContext),
                 config = HikakuConfig(
-                        ignorePaths = setOf(SpringConverter.IGNORE_ERROR_ENDPOINT)
+                        filters = listOf { endpoint -> endpoint.path == SpringConverter.IGNORE_ERROR_ENDPOINT }
                 )
         )
         .match()
@@ -85,17 +85,19 @@ public class SpecificationTest {
 
   @Test
   public void specification_matches_implementation() {
-    OpenApiConverter specification = new OpenApiConverter(Paths.get("openapi.json"));
-    SpringConverter implementation = new SpringConverter(springContext);
+    List<Function1<Endpoint, Boolean>> filters = new ArrayList<>();
+    filters.add(endpoint -> endpoint.getPath().equals(SpringConverter.IGNORE_ERROR_ENDPOINT));
 
-    HikakuConfig hikakuConfig = new HikakuConfig(
-        new HashSet<>(Arrays.asList(SpringConverter.IGNORE_ERROR_ENDPOINT))
-    );
-    
+    List<Reporter> reporters = new ArrayList<>();
+    reporters.add(new CommandLineReporter());
+
     new Hikaku(
-        specification,
-        implementation,
-        hikakuConfig
+            new OpenApiConverter(Paths.get("openapi.json")),
+            new SpringConverter(springContext),
+            new HikakuConfig(
+                    reporters,
+                    filters
+            )
     )
     .match();
   }

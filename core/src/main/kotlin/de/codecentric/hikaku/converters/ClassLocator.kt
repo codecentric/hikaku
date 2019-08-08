@@ -41,7 +41,6 @@ object ClassLocator {
         Files.list(directory)
                 .forEach {
                     if (Files.isDirectory(it)) {
-                        assert(!it.fileName.toString().contains(""))
                         classes.addAll(findClasses(it, "$packageName.${it.fileName}"))
                     } else if (it.extension() == "class") {
                         classes.add(Class.forName("$packageName.${it.nameWithoutExtension()}"))

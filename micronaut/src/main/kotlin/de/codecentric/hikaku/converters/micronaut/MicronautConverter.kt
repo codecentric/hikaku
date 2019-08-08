@@ -207,8 +207,7 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
     private fun extractPathParameters(path: String, method: Method): Set<PathParameter> {
         val parameters = method.parameters
                 .filter { it.isAnnotationPresent(PathVariable::class.java) }
-                .map { it.getAnnotation(PathVariable::class.java) }
-                .map { it as PathVariable }
+                .map { it.getAnnotation(PathVariable::class.java) as PathVariable }
                 .map {
                     val pathParameter = if (it.value.isNotBlank()) {
                         it.value

@@ -72,12 +72,11 @@ private fun HandlerMethod.isResponseBodyAnnotationOnFunction() = this.method
         .kotlinFunction
         ?.findAnnotation<ResponseBody>() != null
 
-private val javaxServletResponseClass: Class<*>? =
-        (try {
+private val javaxServletResponseClass: Class<*>? = try {
             Class.forName("javax.servlet.http.HttpServletResponse")
         } catch (ex: Throwable) {
             null
-        })
+        }
 
 private fun HandlerMethod.hasHttpServletResponseParam() = this.methodParameters
-        .any { javaxServletResponseClass !== null && it.parameterType.isAssignableFrom(javaxServletResponseClass) }
+        .any { javaxServletResponseClass != null && it.parameterType.isAssignableFrom(javaxServletResponseClass) }

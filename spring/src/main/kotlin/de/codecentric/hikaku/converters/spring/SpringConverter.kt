@@ -97,6 +97,7 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
     }
 
     companion object {
-        const val IGNORE_ERROR_ENDPOINT = "/error"
+        @JvmField
+        val IGNORE_ERROR_ENDPOINT: (Endpoint) -> Boolean = { endpoint -> endpoint.path == "/error" }
     }
 }

@@ -17,6 +17,14 @@ open class RequestMappingOnClassWithMultiplePathsController {
 }
 
 @Controller
+@RequestMapping("/todos", method = [GET])
+open class RequestMappingIgnoreErrorPathController {
+
+    @RequestMapping
+    fun todo() { }
+}
+
+@Controller
 @RequestMapping("/todos/{id:[0-9]+}", method = [GET])
 open class RequestMappingOnClassProvidingRegexForPathVariableController {
 

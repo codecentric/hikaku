@@ -64,7 +64,7 @@ class SpecificationTest {
                 specification = OpenApiConverter(Paths.get("openapi.yaml")),
                 implementation = SpringConverter(springContext),
                 config = HikakuConfig(
-                        filters = listOf { endpoint -> endpoint.path == SpringConverter.IGNORE_ERROR_ENDPOINT }
+                        filters = listOf(SpringConverter.IGNORE_ERROR_ENDPOINT)
                 )
         )
         .match()
@@ -86,7 +86,7 @@ public class SpecificationTest {
   @Test
   public void specification_matches_implementation() {
     List<Function1<Endpoint, Boolean>> filters = new ArrayList<>();
-    filters.add(endpoint -> endpoint.getPath().equals(SpringConverter.IGNORE_ERROR_ENDPOINT));
+    filters.add(SpringConverter.IGNORE_ERROR_ENDPOINT);
 
     List<Reporter> reporters = new ArrayList<>();
     reporters.add(new CommandLineReporter());

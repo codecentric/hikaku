@@ -1,6 +1,11 @@
 package de.codecentric.hikaku.converters.spring.path
 
+import de.codecentric.hikaku.Hikaku
+import de.codecentric.hikaku.HikakuConfig
+import de.codecentric.hikaku.SupportedFeatures
+import de.codecentric.hikaku.converters.EndpointConverter
 import de.codecentric.hikaku.converters.spring.SpringConverter
+import de.codecentric.hikaku.converters.spring.SpringConverter.Companion.IGNORE_ERROR_ENDPOINT
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.*
 import de.codecentric.hikaku.endpoints.PathParameter
@@ -16,6 +21,35 @@ class SpringConverterPathTest {
 
     @Nested
     inner class RequestMappingTests {
+
+        @Nested
+        @WebMvcTest(RequestMappingIgnoreErrorPathController::class)
+        inner class RequestMappingIgnoreErrorPathTest {
+            @Autowired
+            lateinit var context: ConfigurableApplicationContext
+
+            @Test
+            fun `pre defined filter for ignoring error paths`() {
+                //given
+                val specification = object : EndpointConverter {
+                    override val conversionResult = setOf(
+                        Endpoint(httpMethod = GET, path = "/todos"),
+                        Endpoint(httpMethod = HEAD, path = "/todos"),
+                        Endpoint(httpMethod = OPTIONS, path = "/todos")
+                    )
+                    override val supportedFeatures = SupportedFeatures()
+                }
+
+                val hikakuConfig = HikakuConfig(filters = listOf(IGNORE_ERROR_ENDPOINT))
+                val implementation = SpringConverter(context)
+
+                //when
+                val hikaku = Hikaku(config = hikakuConfig, specification = specification, implementation = implementation)
+
+                //then
+                hikaku.match()
+            }
+        }
 
         @Nested
         inner class ClassLevelTests {

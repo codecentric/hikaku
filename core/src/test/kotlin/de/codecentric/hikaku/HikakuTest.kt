@@ -55,9 +55,9 @@ class HikakuTest {
             //given
             val specificationDummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/c"),
-                        Endpoint("/a"),
-                        Endpoint("/b")
+                        Endpoint("/c", GET),
+                        Endpoint("/a", GET),
+                        Endpoint("/b", GET)
 
                 )
                 override val supportedFeatures = SupportedFeatures()
@@ -65,9 +65,9 @@ class HikakuTest {
 
             val implementationDummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/b"),
-                        Endpoint("/c"),
-                        Endpoint("/a")
+                        Endpoint("/b", GET),
+                        Endpoint("/c", GET),
+                        Endpoint("/a", GET)
                 )
                 override val supportedFeatures = SupportedFeatures(Feature.PathParameters)
             }
@@ -89,9 +89,9 @@ class HikakuTest {
             //given
             val specificationDummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/c"),
-                        Endpoint("/a"),
-                        Endpoint("/b")
+                        Endpoint("/c", GET),
+                        Endpoint("/a", GET),
+                        Endpoint("/b", GET)
 
                 )
                 override val supportedFeatures = SupportedFeatures()
@@ -99,9 +99,9 @@ class HikakuTest {
 
             val implementationDummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/y"),
-                        Endpoint("/z"),
-                        Endpoint("/a")
+                        Endpoint("/y", GET),
+                        Endpoint("/z", GET),
+                        Endpoint("/a", GET)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
@@ -1651,7 +1651,7 @@ class HikakuTest {
             //given
             val dummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/todos")
+                        Endpoint("/todos", GET)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }
@@ -1685,7 +1685,7 @@ class HikakuTest {
             //given
             val dummyConverter = object : EndpointConverter {
                 override val conversionResult: Set<Endpoint> = setOf(
-                        Endpoint("/todos")
+                        Endpoint("/todos", GET)
                 )
                 override val supportedFeatures = SupportedFeatures()
             }

@@ -10,8 +10,8 @@ import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
  * @param consumes Supported media types for the request.
  */
 data class Endpoint(
-        val path: String = "",
-        val httpMethod: HttpMethod = OPTIONS,
+        val path: String,
+        val httpMethod: HttpMethod,
         val queryParameters: Set<QueryParameter> = emptySet(),
         val pathParameters: Set<PathParameter> = emptySet(),
         val headerParameters: Set<HeaderParameter> = emptySet(),

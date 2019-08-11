@@ -141,7 +141,7 @@ You will find a list of spring specific features that are supported below.
   + _Example:_ `@RequestParam(value="tag", required=false) tags: List<String>` **or** `@RequestParam(value="tag", required=false) tags: Array<String>`
 
 + Query Parameter based on an object
-  + _Example:_ `@RequestParam queryParam: MyObject`
+  + _Example:_ `@GetMapping("/todos") fun getAllTodos(queryParams: MyObject)`
   
 + Parameter annotations on a HashMap to dynamically extract parameters
 

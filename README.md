@@ -8,7 +8,7 @@
 Hikaku (比較) is japanese and means "comparison". This library tests if a REST-API implementation meets its specification.
 
 If you create your REST-API contract-first without using any type of generation, you have to make sure that specification and implementation don't diverge.
-The aim of this project is to meet this need and offer a mechanism to check specification and implementation for equality without having to create requests which are fired against a mock server. So this library won't check the behavior of the API, but the structural correctness.
+The aim of this project is to meet this need and offer a mechanism to check specification and implementation for equality without having to create requests which are fired against a mock server. So this library won't check the behavior of the API, but the structural correctness. Please see also the section [limitations](#limitations)
 
 ## Currently supported
 
@@ -104,7 +104,16 @@ public class SpecificationTest {
 }
 ```
 
-#### More Info
+## Limitations
+Hikaku checks the implementation with static code analysis. So everything that is highly dynamic is not covered by hikaku. There might be other libraries and frameworks that can cover these aspects by checking the behavior.
+
+### http status codes
+For implementations the status codes are very dynamic. There are various ways to set a http status on a `ResponseEntity` object in spring for example: There might also be filters and so on. That's why hikaku does not to support http status codes.
+
+### Request and response object
+For implementations both request and response objects are highly dynamic. For response objects there might be a generic `ResponseEntity` as well or interfaces with different implementaitons can be used. For both request and response objects the objects can be altered by a serialization library and there a lot of different libs out there. That's hikaku does neither support request objects nor response objects.
+
+## More Info
 
 * **Blog (english):** [Spotting mismatches between your spec and your REST-API with hikaku](https://blog.codecentric.de/en/2019/03/spot-mismatches-between-your-spec-and-your-rest-api/)
 * **Blog (german):** [ Abweichungen zwischen Spezifikation und REST-API mit hikaku erkennen](https://blog.codecentric.de/2019/03/abweichungen-zwischen-rest-api-spezifikation-erkennen/)

@@ -3,6 +3,7 @@ matrix:
   include:
     - env: JDK="openjdk@1.11.0-2"
       os: linux
+      dist: trusty
     - env: JDK="openjdk@1.11.0-2"
       os: windows
     - env: JDK="openjdk@1.11.0-2"

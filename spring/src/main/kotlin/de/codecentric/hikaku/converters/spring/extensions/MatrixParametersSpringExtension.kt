@@ -33,8 +33,8 @@ private fun isMatrixParameterRequired(matrixParameter: MatrixVariable): Boolean 
 }
 
 private fun extractMatrixParameterName(matrixParameter: MatrixVariable, it: KParameter): String {
-    if (matrixParameter.value.isNotBlank() && matrixParameter.name.isNotBlank()) {
-        throw IllegalStateException("Both 'value' and 'name' attribute are provided for matrix parameter '${it.name}'. Only one is permitted.")
+    check(!(matrixParameter.value.isNotBlank() && matrixParameter.name.isNotBlank())) {
+        "Both 'value' and 'name' attribute are provided for matrix parameter '${it.name}'. Only one is permitted."
     }
 
     return when {

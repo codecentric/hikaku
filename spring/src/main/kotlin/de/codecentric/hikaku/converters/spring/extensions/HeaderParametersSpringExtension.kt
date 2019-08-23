@@ -33,8 +33,8 @@ private fun isHeaderParameterRequired(requestHeader: RequestHeader): Boolean {
 }
 
 private fun extractHeaderParameterName(requestHeader: RequestHeader, it: KParameter): String {
-    if (requestHeader.value.isNotBlank() && requestHeader.name.isNotBlank()) {
-        throw IllegalStateException("Both 'value' and 'name' attribute are provided for header parameter '${it.name}'. Only one is permitted.")
+    check(!(requestHeader.value.isNotBlank() && requestHeader.name.isNotBlank())) {
+        "Both 'value' and 'name' attribute are provided for header parameter '${it.name}'. Only one is permitted."
     }
 
     return when {

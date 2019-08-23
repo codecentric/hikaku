@@ -23,8 +23,8 @@ private fun extractPathParameter(it: KParameter): PathParameter {
 }
 
 private fun extractPathParameterName(requestParam: PathVariable, it: KParameter): String {
-    if (requestParam.value.isNotBlank() && requestParam.name.isNotBlank()) {
-        throw IllegalStateException("Both 'value' and 'name' attribute are provided for path parameter '${it.name}'. Only one is permitted.")
+    check(!(requestParam.value.isNotBlank() && requestParam.name.isNotBlank())) {
+        "Both 'value' and 'name' attribute are provided for path parameter '${it.name}'. Only one is permitted."
     }
 
     return when {

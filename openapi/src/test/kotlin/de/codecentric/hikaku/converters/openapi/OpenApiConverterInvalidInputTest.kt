@@ -1,5 +1,6 @@
+package de.codecentric.hikaku.converters.openapi
+
 import de.codecentric.hikaku.converters.EndpointConverterException
-import de.codecentric.hikaku.converters.openapi.OpenApiConverter
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File

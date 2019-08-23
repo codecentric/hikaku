@@ -1,8 +1,6 @@
 package de.codecentric.hikaku.converters.micronaut
 
 import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
-import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.HttpMethod.POST
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested

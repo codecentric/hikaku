@@ -16,9 +16,6 @@ import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllLines
 import java.nio.file.Path
-import io.swagger.v3.oas.models.parameters.HeaderParameter as OpenApiHeaderParameter
-import io.swagger.v3.oas.models.parameters.PathParameter as OpenApiPathParameter
-import io.swagger.v3.oas.models.parameters.QueryParameter as OpenApiQueryParameter
 
 /**
  * Extracts and converts [Endpoint]s from OpenAPI 3.0.X document. Either a *.yaml*, *.yml* or a *.json* file.

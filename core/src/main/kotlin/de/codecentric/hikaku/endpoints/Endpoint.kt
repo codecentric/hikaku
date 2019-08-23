@@ -1,7 +1,5 @@
 package de.codecentric.hikaku.endpoints
 
-import de.codecentric.hikaku.endpoints.HttpMethod.OPTIONS
-
 /**
  * A single [Endpoint] containing all information. Each [Endpoint] consists of exactly one path in combination with exactly one [HttpMethod].
  * If a REST endpoint supports multiple [HttpMethod]s, this will result in multiple [Endpoint] instances.

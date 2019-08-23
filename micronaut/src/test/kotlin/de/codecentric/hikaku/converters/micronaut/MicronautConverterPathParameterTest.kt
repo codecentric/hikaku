@@ -3,7 +3,6 @@ package de.codecentric.hikaku.converters.micronaut
 import de.codecentric.hikaku.endpoints.Endpoint
 import de.codecentric.hikaku.endpoints.HttpMethod.GET
 import de.codecentric.hikaku.endpoints.PathParameter
-import de.codecentric.hikaku.endpoints.QueryParameter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

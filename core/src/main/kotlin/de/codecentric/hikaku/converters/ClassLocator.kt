@@ -2,7 +2,6 @@ package de.codecentric.hikaku.converters
 
 import de.codecentric.hikaku.extensions.extension
 import de.codecentric.hikaku.extensions.nameWithoutExtension
-import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths

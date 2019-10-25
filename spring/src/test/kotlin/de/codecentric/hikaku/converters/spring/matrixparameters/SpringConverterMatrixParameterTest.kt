@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.MediaType.TEXT_HTML_VALUE
 import kotlin.test.assertFailsWith
 
@@ -235,32 +235,32 @@ class SpringConverterMatrixParameterTest {
                     Endpoint(
                             path = "/error",
                             httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PUT,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PATCH,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = DELETE,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint("/error", OPTIONS),
                     Endpoint(

@@ -200,32 +200,32 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -468,32 +468,32 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    produces = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -697,12 +697,12 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -877,12 +877,12 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1057,12 +1057,12 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1237,12 +1237,12 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1417,12 +1417,12 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                produces = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -2031,32 +2031,32 @@ class SpringConverterProducesResponseBodyAnnotationTest {
                     Endpoint(
                             path = "/error",
                             httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PUT,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PATCH,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = DELETE,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint("/error", OPTIONS),
                     Endpoint(

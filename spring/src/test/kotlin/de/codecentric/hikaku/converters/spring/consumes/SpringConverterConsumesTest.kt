@@ -200,32 +200,32 @@ class SpringConverterConsumesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -440,32 +440,32 @@ class SpringConverterConsumesTest {
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = GET,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = POST,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = HEAD,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PUT,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = PATCH,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint(
                                     path = "/todos",
                                     httpMethod = DELETE,
-                                    consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                    consumes = setOf(APPLICATION_JSON_VALUE)
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
@@ -641,12 +641,12 @@ class SpringConverterConsumesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = GET,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -797,12 +797,12 @@ class SpringConverterConsumesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = DELETE,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -953,12 +953,12 @@ class SpringConverterConsumesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PATCH,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1109,12 +1109,12 @@ class SpringConverterConsumesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = POST,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1265,12 +1265,12 @@ class SpringConverterConsumesTest {
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = PUT,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint(
                                 path = "/todos",
                                 httpMethod = HEAD,
-                                consumes = setOf(APPLICATION_JSON_UTF8_VALUE)
+                                consumes = setOf(APPLICATION_JSON_VALUE)
                         ),
                         Endpoint("/todos", OPTIONS)
                 )
@@ -1855,32 +1855,32 @@ class SpringConverterConsumesTest {
                     Endpoint(
                             path = "/error",
                             httpMethod = GET,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = POST,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = HEAD,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PUT,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = PATCH,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint(
                             path = "/error",
                             httpMethod = DELETE,
-                            produces = setOf(APPLICATION_JSON_UTF8_VALUE)
+                            produces = setOf(APPLICATION_JSON_VALUE)
                     ),
                     Endpoint("/error", OPTIONS),
                     Endpoint(

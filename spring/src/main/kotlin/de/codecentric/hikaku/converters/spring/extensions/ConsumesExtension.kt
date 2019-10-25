@@ -1,7 +1,7 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
 import org.springframework.http.MediaType.ALL_VALUE
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE
+import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
@@ -51,6 +51,6 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.consumes(): Set<String
     return if (isParameterString) {
         setOf(ALL_VALUE)
     } else {
-        setOf(APPLICATION_JSON_UTF8_VALUE)
+        setOf(APPLICATION_JSON_VALUE)
     }
 }

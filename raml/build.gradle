@@ -3,7 +3,7 @@ archivesBaseName = 'hikaku-raml'
 
 dependencies {
   api project(':core')
-  api 'org.raml:raml-parser-2:1.0.41'
+  api 'org.raml:raml-parser-2:1.0.47'
 
 
   testImplementation "io.mockk:mockk:1.9.3"

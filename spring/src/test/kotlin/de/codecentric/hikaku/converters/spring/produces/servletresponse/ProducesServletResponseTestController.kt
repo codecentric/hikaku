@@ -10,7 +10,7 @@ open class DummyApp
 
 @Controller
 open class ProducesServletResponseTestController {
-    @GetMapping("/test", produces = ["text/plain"])
+    @GetMapping("/todos", produces = ["text/plain"])
     @ResponseBody
     fun getTest(response: HttpServletResponse) {
         response.outputStream.println("Hello, world!")

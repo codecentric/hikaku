@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.method.HandlerMethod
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo
+import org.springframework.web.servlet.view.RedirectView
 import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.instanceParameter
@@ -36,17 +37,17 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
         return produces
     }
 
-    val isParameterString = this.value
+    val returnType = this.value
             .method
             .kotlinFunction
             ?.returnType
             ?.jvmErasure
-            ?.java == java.lang.String::class.java
+            ?.java
 
-    return if (isParameterString) {
-        setOf(TEXT_PLAIN_VALUE)
-    } else {
-        setOf(APPLICATION_JSON_VALUE)
+    return when(returnType) {
+        java.lang.String::class.java -> setOf(TEXT_PLAIN_VALUE)
+        RedirectView::class.java -> emptySet()
+        else -> setOf(APPLICATION_JSON_VALUE)
     }
 }
 

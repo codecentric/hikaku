@@ -47,7 +47,7 @@ class SpringControllerRedirectTest {
         lateinit var context: ConfigurableApplicationContext
 
         @Test
-        fun `produces not set if the return type is RedirectView`() {
+        fun `produces is empty if there is no return type, because redirect is done using HttpServletResponse`() {
             //given
             val specification: Set<Endpoint> = setOf(
                 Endpoint("/todos", GET, produces = emptySet()),

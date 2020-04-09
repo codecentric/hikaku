@@ -38,4 +38,28 @@ class SpringControllerRedirectTest {
             assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
         }
     }
+
+    @Nested
+    @WebMvcTest(RedirectUsingHttpServletResponseTestController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+    inner class RedirectUsingHttpServletResponseTest {
+
+        @Autowired
+        lateinit var context: ConfigurableApplicationContext
+
+        @Test
+        fun `produces not set if the return type is RedirectView`() {
+            //given
+            val specification: Set<Endpoint> = setOf(
+                Endpoint("/todos", GET, produces = emptySet()),
+                Endpoint("/todos", HEAD, produces = emptySet()),
+                Endpoint("/todos", OPTIONS, produces = emptySet())
+            )
+
+            //when
+            val implementation = SpringConverter(context)
+
+            //then
+            assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+        }
+    }
 }

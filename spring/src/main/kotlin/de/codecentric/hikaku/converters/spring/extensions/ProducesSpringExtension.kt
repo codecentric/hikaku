@@ -44,14 +44,18 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
             ?.jvmErasure
             ?.java
 
-    return when(returnType) {
-        java.lang.String::class.java -> setOf(TEXT_PLAIN_VALUE)
-        RedirectView::class.java -> emptySet()
+    return when {
+        returnType == java.lang.String::class.java -> setOf(TEXT_PLAIN_VALUE)
+        returnType == String::class.java -> setOf(TEXT_PLAIN_VALUE)
+        returnType == RedirectView::class.java -> emptySet()
+        returnType != null && isVoid(returnType) -> emptySet()
         else -> setOf(APPLICATION_JSON_VALUE)
     }
 }
 
-private fun Method.hasNoReturnType() = this.returnType.name == "void" || this.returnType.name == "java.lang.Void"
+private fun Method.hasNoReturnType() = isVoid(this.returnType)
+
+private fun isVoid(returnType: Class<*>) = returnType.name == "void" || returnType.name == "java.lang.Void" || returnType.name == "kotlin.Unit"
 
 private fun HandlerMethod.providesRestControllerAnnotation() = this.method
         .kotlinFunction

@@ -6,7 +6,7 @@ dependencies {
   api 'org.raml:raml-parser-2:1.0.48'
 
 
-  testImplementation "io.mockk:mockk:1.9.3"
+  testImplementation "io.mockk:mockk:1.10.0"
 }
 
 uploadArchives {

@@ -8,5 +8,6 @@ import javax.ws.rs.Path
 class HeaderParameterOnFunction {
 
     @GET
+    @Suppress("UNUSED_PARAMETER")
     fun todo(@HeaderParam("allow-cache") allowCache: String) { }
 }

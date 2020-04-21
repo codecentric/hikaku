@@ -7,5 +7,6 @@ class SingleMediaTypeWithoutRequestBodyButOtherAnnotatedParameter {
 
     @GET
     @Consumes("application/json")
+    @Suppress("UNUSED_PARAMETER")
     fun todo(@Encoded filter: String) { }
 }

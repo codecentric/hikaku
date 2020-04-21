@@ -9,5 +9,6 @@ class PathParameterOnFunction {
 
     @GET
     @Path("/{id}")
+    @Suppress("UNUSED_PARAMETER")
     fun todo(@PathParam("id") id: String) { }
 }

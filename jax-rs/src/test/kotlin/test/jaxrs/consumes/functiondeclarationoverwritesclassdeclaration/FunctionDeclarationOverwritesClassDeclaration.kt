@@ -12,5 +12,6 @@ class FunctionDeclarationOverwritesClassDeclaration {
 
     @GET
     @Consumes("application/json", "text/plain")
+    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

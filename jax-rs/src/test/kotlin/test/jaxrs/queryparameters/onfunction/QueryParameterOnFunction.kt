@@ -8,5 +8,6 @@ import javax.ws.rs.QueryParam
 class QueryParameterOnFunction {
 
     @GET
+    @Suppress("UNUSED_PARAMETER")
     fun todo(@QueryParam("filter") filter: String) { }
 }

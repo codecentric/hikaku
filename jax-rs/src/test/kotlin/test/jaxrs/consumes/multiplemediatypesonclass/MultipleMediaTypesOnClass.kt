@@ -11,5 +11,6 @@ data class Todo(val description: String = "")
 class MultipleMediaTypesOnClass {
 
     @GET
+    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) {}
 }

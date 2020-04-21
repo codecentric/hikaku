@@ -8,5 +8,6 @@ import javax.ws.rs.Path
 class MatrixParameterOnFunction {
 
     @GET
+    @Suppress("UNUSED_PARAMETER")
     fun todo(@MatrixParam("tag") tag: String) { }
 }

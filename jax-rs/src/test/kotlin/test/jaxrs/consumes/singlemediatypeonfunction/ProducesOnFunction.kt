@@ -11,5 +11,6 @@ class ProducesOnFunction {
 
     @GET
     @Consumes("application/json")
+    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

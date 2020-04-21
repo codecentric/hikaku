@@ -2,10 +2,8 @@ package de.codecentric.hikaku.converters.spring.produces.redirect
 
 import de.codecentric.hikaku.converters.spring.SpringConverter
 import de.codecentric.hikaku.endpoints.Endpoint
-import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.HttpMethod.*
-import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

@@ -11,5 +11,6 @@ class ConsumesMultipleMediaTypesTestController {
 
     @Post
     @Consumes("application/json", "application/pdf")
+    @Suppress("UNUSED_PARAMETER")
     fun todos(@Body todo: Todo) { }
 }

@@ -12,5 +12,6 @@ class ConsumesSingleMediaTypeTestController {
 
     @Post
     @Consumes("application/xml")
+    @Suppress("UNUSED_PARAMETER")
     fun todos(@Body todo: Todo) { }
 }

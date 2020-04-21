@@ -8,5 +8,6 @@ import io.micronaut.http.annotation.Header
 class HeaderParameterTestController {
 
     @Get
+    @Suppress("UNUSED_PARAMETER")
     fun todos(@Header("allow-cache", defaultValue = "true") otherName: String) { }
 }

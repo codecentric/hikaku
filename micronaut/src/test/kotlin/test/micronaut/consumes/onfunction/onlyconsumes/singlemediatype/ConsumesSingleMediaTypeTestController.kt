@@ -10,5 +10,6 @@ import test.micronaut.Todo
 class ConsumesSingleMediaTypeTestController {
 
     @Post
+    @Suppress("UNUSED_PARAMETER")
     fun todos(@Body todo: Todo) { }
 }

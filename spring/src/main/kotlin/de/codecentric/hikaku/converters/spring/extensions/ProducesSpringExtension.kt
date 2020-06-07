@@ -1,5 +1,7 @@
 package de.codecentric.hikaku.converters.spring.extensions
 
+import de.codecentric.hikaku.extensions.isString
+import de.codecentric.hikaku.extensions.isUnit
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.MediaType.TEXT_PLAIN_VALUE
 import org.springframework.web.bind.annotation.ResponseBody
@@ -42,20 +44,20 @@ internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String
             .kotlinFunction
             ?.returnType
             ?.jvmErasure
-            ?.java
 
-    return when {
-        returnType == java.lang.String::class.java -> setOf(TEXT_PLAIN_VALUE)
-        returnType == String::class.java -> setOf(TEXT_PLAIN_VALUE)
-        returnType == RedirectView::class.java -> emptySet()
-        returnType != null && isVoid(returnType) -> emptySet()
-        else -> setOf(APPLICATION_JSON_VALUE)
+    return if (returnType != null) {
+        when {
+            returnType.isString() -> setOf(TEXT_PLAIN_VALUE)
+            returnType.isUnit() -> emptySet()
+            returnType == RedirectView::class -> emptySet()
+            else -> setOf(APPLICATION_JSON_VALUE)
+        }
+    } else {
+        emptySet()
     }
 }
 
-private fun Method.hasNoReturnType() = isVoid(this.returnType)
-
-private fun isVoid(returnType: Class<*>) = returnType.name == "void" || returnType.name == "java.lang.Void" || returnType.name == "kotlin.Unit"
+private fun Method.hasNoReturnType() = this.returnType.kotlin.isUnit()
 
 private fun HandlerMethod.providesRestControllerAnnotation() = this.method
         .kotlinFunction

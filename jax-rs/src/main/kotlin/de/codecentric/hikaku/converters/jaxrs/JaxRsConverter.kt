@@ -7,6 +7,7 @@ import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.endpoints.HttpMethod
+import de.codecentric.hikaku.extensions.isUnit
 import java.lang.reflect.Method
 import javax.ws.rs.*
 
@@ -105,7 +106,7 @@ class JaxRsConverter(private val packageName: String) : AbstractEndpointConverte
             else -> setOf("*/*")
         }
 
-        return if (method.returnType.name == "void" || method.returnType.name == "java.lang.Void") {
+        return if (method.returnType.kotlin.isUnit()) {
             emptySet()
         } else {
             annotationValue

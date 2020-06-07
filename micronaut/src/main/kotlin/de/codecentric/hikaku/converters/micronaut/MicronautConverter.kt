@@ -6,6 +6,7 @@ import de.codecentric.hikaku.converters.AbstractEndpointConverter
 import de.codecentric.hikaku.converters.ClassLocator
 import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.*
+import de.codecentric.hikaku.extensions.isUnit
 import io.micronaut.http.annotation.*
 import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation
@@ -68,7 +69,7 @@ class MicronautConverter(private val packageName: String) : AbstractEndpointConv
     }
 
     private fun extractProduces(resource: Class<*>, method: Method): Set<String> {
-        val methodHasNoReturnType = method.returnType.name == "void" || method.returnType.name == "java.lang.Void"
+        val methodHasNoReturnType = method.returnType.kotlin.isUnit()
 
         if (methodHasNoReturnType) {
             return emptySet()

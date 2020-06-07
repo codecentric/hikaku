@@ -13,6 +13,7 @@ import java.lang.reflect.Method
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.instanceParameter
 import kotlin.reflect.jvm.jvmErasure
+import kotlin.reflect.jvm.jvmName
 import kotlin.reflect.jvm.kotlinFunction
 
 internal fun Map.Entry<RequestMappingInfo, HandlerMethod>.produces(): Set<String> {
@@ -79,11 +80,7 @@ private fun HandlerMethod.isResponseBodyAnnotationOnFunction() = this.method
         .kotlinFunction
         ?.findAnnotation<ResponseBody>() != null
 
-private val javaxServletResponseClass: Class<*>? = try {
-            Class.forName("javax.servlet.http.HttpServletResponse")
-        } catch (ex: Throwable) {
-            null
-        }
-
-private fun HandlerMethod.hasHttpServletResponseParam() = this.methodParameters
-        .any { javaxServletResponseClass != null && it.parameterType.isAssignableFrom(javaxServletResponseClass) }
+private fun HandlerMethod.hasHttpServletResponseParam(): Boolean {
+    return this.methodParameters
+        .any { it.parameterType.name == "javax.servlet.http.HttpServletResponse" }
+}

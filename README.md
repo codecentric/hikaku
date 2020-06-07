@@ -108,10 +108,10 @@ public class SpecificationTest {
 Hikaku checks the implementation with static code analysis. So everything that is highly dynamic is not covered by hikaku. There might be other libraries and frameworks that can cover these aspects by checking the behavior.
 
 ### http status codes
-For implementations the status codes are very dynamic. There are various ways to set a http status. For example using a `ResponseEntity` object in spring or using additional filters and so on. That's why hikaku does not to support http status codes.
+For implementations the status codes are very dynamic. There are various ways to set a http status. For example using a `ResponseEntity` object in spring or using additional filters and so on. That's why hikaku does not support http status codes.
 
 ### Request and response object
-For implementations both request and response objects are highly dynamic. For response objects there might be a generic `ResponseEntity` as well or interfaces with different implementations can be used. In both cases both cases (request and response) the objects can be altered by a serialization library and there a lot of different libs out there. That's why hikaku neither supports request nor response objects.
+For implementations both request and response objects are highly dynamic. For response objects there might be a generic `ResponseEntity` as well or interfaces with different implementations can be used. In both cases (request and response) the objects can be altered by a serialization library and there a lot of different libs out there. That's why hikaku neither supports request nor response objects.
 
 ## More Info
 

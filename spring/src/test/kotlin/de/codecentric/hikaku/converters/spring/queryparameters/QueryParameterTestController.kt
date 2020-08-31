@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam
 open class DummyApp
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterNamedByVariableController {
 
     @GetMapping("/todos")
@@ -16,6 +17,7 @@ open class QueryParameterNamedByVariableController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
@@ -23,6 +25,7 @@ open class QueryParameterNamedByValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
@@ -30,6 +33,7 @@ open class QueryParameterNamedByNameAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
@@ -37,6 +41,7 @@ open class QueryParameterHavingBothNameAndValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterOptionalController {
 
     @GetMapping("/todos")
@@ -44,6 +49,7 @@ open class QueryParameterOptionalController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
@@ -51,6 +57,7 @@ open class QueryParameterOptionalBecauseOfDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class QueryParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")

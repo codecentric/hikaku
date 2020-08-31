@@ -8,10 +8,10 @@ import test.micronaut.Todo
 
 
 @Controller("/todos", consumes = ["text/plain"])
+@Suppress("UNUSED_PARAMETER")
 class ConsumesSingleMediaTypeTestController {
 
     @Post
     @Consumes("application/xml")
-    @Suppress("UNUSED_PARAMETER")
     fun todos(@Body todo: Todo) { }
 }

@@ -6,9 +6,9 @@ import javax.ws.rs.Path
 data class Todo(val description: String = "")
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class NoAnnotation {
 
     @GET
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

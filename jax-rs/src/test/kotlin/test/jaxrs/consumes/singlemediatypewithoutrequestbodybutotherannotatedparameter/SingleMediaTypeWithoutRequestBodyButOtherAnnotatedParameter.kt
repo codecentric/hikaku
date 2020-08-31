@@ -3,10 +3,10 @@ package test.jaxrs.consumes.singlemediatypewithoutrequestbodybutotherannotatedpa
 import javax.ws.rs.*
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class SingleMediaTypeWithoutRequestBodyButOtherAnnotatedParameter {
 
     @GET
     @Consumes("application/json")
-    @Suppress("UNUSED_PARAMETER")
     fun todo(@Encoded filter: String) { }
 }

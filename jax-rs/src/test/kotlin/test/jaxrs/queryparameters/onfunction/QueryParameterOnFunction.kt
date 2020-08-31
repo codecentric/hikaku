@@ -5,9 +5,9 @@ import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class QueryParameterOnFunction {
 
     @GET
-    @Suppress("UNUSED_PARAMETER")
     fun todo(@QueryParam("filter") filter: String) { }
 }

@@ -5,10 +5,10 @@ import javax.ws.rs.Path
 import javax.ws.rs.PathParam
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class PathParameterOnFunction {
 
     @GET
     @Path("/{id}")
-    @Suppress("UNUSED_PARAMETER")
     fun todo(@PathParam("id") id: String) { }
 }

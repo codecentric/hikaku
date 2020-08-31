@@ -8,10 +8,10 @@ data class Todo(val description: String = "")
 
 @Path("/todos")
 @Consumes("application/xml")
+@Suppress("UNUSED_PARAMETER")
 class FunctionDeclarationOverwritesClassDeclaration {
 
     @GET
     @Consumes("application/json", "text/plain")
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

@@ -6,9 +6,9 @@ import io.micronaut.http.annotation.Post
 import test.micronaut.Todo
 
 @Controller("/todos")
+@Suppress("UNUSED_PARAMETER")
 class ConsumesDefaultMediaTypeTestController {
 
     @Post
-    @Suppress("UNUSED_PARAMETER")
     fun todos(@Body todo: Todo) { }
 }

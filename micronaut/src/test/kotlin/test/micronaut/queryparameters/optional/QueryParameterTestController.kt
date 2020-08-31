@@ -5,9 +5,9 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
 
 @Controller("/todos")
+@Suppress("UNUSED_PARAMETER")
 class QueryParameterTestController {
 
     @Get
-    @Suppress("UNUSED_PARAMETER")
     fun todos(@QueryValue("filter", defaultValue = "all") filter: String) { }
 }

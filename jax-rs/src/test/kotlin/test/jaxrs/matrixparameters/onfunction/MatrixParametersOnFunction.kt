@@ -5,9 +5,9 @@ import javax.ws.rs.MatrixParam
 import javax.ws.rs.Path
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class MatrixParameterOnFunction {
 
     @GET
-    @Suppress("UNUSED_PARAMETER")
     fun todo(@MatrixParam("tag") tag: String) { }
 }

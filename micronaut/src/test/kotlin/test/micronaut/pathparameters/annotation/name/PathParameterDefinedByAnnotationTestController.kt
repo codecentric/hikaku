@@ -5,9 +5,9 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 
 @Controller("/todos/{id}")
+@Suppress("UNUSED_PARAMETER")
 class PathParameterDefinedByAnnotationTestController {
 
     @Get
-    @Suppress("UNUSED_PARAMETER")
     fun todos(@PathVariable(name = "id") otherName: String) { }
 }

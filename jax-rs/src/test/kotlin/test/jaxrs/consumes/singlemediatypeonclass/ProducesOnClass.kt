@@ -8,9 +8,9 @@ data class Todo(val description: String = "")
 
 @Path("/todos")
 @Consumes("application/json")
+@Suppress("UNUSED_PARAMETER")
 class ProducesOnClass {
 
     @GET
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

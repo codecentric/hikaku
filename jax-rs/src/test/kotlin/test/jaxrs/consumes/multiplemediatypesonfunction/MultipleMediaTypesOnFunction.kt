@@ -7,10 +7,10 @@ import javax.ws.rs.Path
 data class Todo(val description: String = "")
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class MultipleMediaTypesOnFunction {
 
     @GET
     @Consumes("application/json", "application/xml")
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

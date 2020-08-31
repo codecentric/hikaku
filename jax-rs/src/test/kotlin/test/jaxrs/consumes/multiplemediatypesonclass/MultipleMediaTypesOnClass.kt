@@ -8,9 +8,9 @@ data class Todo(val description: String = "")
 
 @Path("/todos")
 @Consumes("application/json", "application/xml")
+@Suppress("UNUSED_PARAMETER")
 class MultipleMediaTypesOnClass {
 
     @GET
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) {}
 }

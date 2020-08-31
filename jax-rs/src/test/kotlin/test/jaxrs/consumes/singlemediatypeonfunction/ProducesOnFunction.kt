@@ -7,10 +7,10 @@ import javax.ws.rs.Path
 data class Todo(val description: String = "")
 
 @Path("/todos")
+@Suppress("UNUSED_PARAMETER")
 class ProducesOnFunction {
 
     @GET
     @Consumes("application/json")
-    @Suppress("UNUSED_PARAMETER")
     fun todo(todo: Todo) { }
 }

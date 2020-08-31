@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.MatrixVariable
 open class DummyApp
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterNamedByVariableController {
 
     @GetMapping("/todos")
@@ -16,6 +17,7 @@ open class MatrixParameterNamedByVariableController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
@@ -23,6 +25,7 @@ open class MatrixParameterNamedByValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
@@ -30,6 +33,7 @@ open class MatrixParameterNamedByNameAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
@@ -37,6 +41,7 @@ open class MatrixParameterHavingBothNameAndValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterOptionalController {
 
     @GetMapping("/todos")
@@ -44,6 +49,7 @@ open class MatrixParameterOptionalController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
@@ -52,6 +58,7 @@ open class MatrixParameterOptionalBecauseOfDefaultValueController {
 
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class MatrixParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")

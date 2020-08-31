@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader
 open class DummyApp
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterNamedByVariableController {
 
     @GetMapping("/todos")
@@ -16,6 +17,7 @@ open class HeaderParameterNamedByVariableController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterNamedByValueAttributeController {
 
     @GetMapping("/todos")
@@ -23,6 +25,7 @@ open class HeaderParameterNamedByValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterNamedByNameAttributeController {
 
     @GetMapping("/todos")
@@ -30,6 +33,7 @@ open class HeaderParameterNamedByNameAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterHavingBothNameAndValueAttributeController {
 
     @GetMapping("/todos")
@@ -37,6 +41,7 @@ open class HeaderParameterHavingBothNameAndValueAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterOptionalController {
 
     @GetMapping("/todos")
@@ -44,6 +49,7 @@ open class HeaderParameterOptionalController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterOptionalBecauseOfDefaultValueController {
 
     @GetMapping("/todos")
@@ -52,6 +58,7 @@ open class HeaderParameterOptionalBecauseOfDefaultValueController {
 
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class HeaderParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/todos")

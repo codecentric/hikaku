@@ -12,6 +12,7 @@ open class DummyApp
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterNamedByVariableController {
 
     @GetMapping("/{id}")
@@ -20,6 +21,7 @@ open class PathParameterNamedByVariableController {
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterNamedByValueAttributeController {
 
     @GetMapping("/{id}")
@@ -28,6 +30,7 @@ open class PathParameterNamedByValueAttributeController {
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterNamedByNameAttributeController {
 
     @GetMapping("/{id}")
@@ -36,6 +39,7 @@ open class PathParameterNamedByNameAttributeController {
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterHavingBothValueAndNameAttributeController {
 
     @GetMapping("/{id}")
@@ -43,6 +47,7 @@ open class PathParameterHavingBothValueAndNameAttributeController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
 
     @RequestMapping("/todos/{id}", method = [OPTIONS])
@@ -51,6 +56,7 @@ open class PathParameterSupportedForOptionsIfExplicitlyDefinedController {
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class PathParameterOnDefaultErrorEndpointController {
 
     @GetMapping("/{id}")

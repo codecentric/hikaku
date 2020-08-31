@@ -26,6 +26,7 @@ open class RequestMappingIgnoreErrorPathController {
 
 @Controller
 @RequestMapping("/todos/{id:[0-9]+}", method = [GET])
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnClassProvidingRegexForPathVariableController {
 
     @RequestMapping
@@ -40,6 +41,7 @@ open class RequestMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnFunctionProvidingRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9]+}", method = [GET])
@@ -54,6 +56,7 @@ open class GetMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingProvidingRegexForPathVariableController {
 
     @GetMapping("/todos/{id:[0-9]+}")
@@ -68,6 +71,7 @@ open class DeleteMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingProvidingRegexForPathVariableController {
 
     @DeleteMapping("/todos/{id:[0-9]+}")
@@ -82,6 +86,7 @@ open class PatchMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingProvidingRegexForPathVariableController {
 
     @PatchMapping("/todos/{id:[0-9]+}")
@@ -96,6 +101,7 @@ open class PostMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingProvidingRegexForPathVariableController {
 
     @PostMapping("/todos/{id:[0-9]+}")
@@ -110,6 +116,7 @@ open class PutMappingOnFunctionWithMultiplePathsController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingProvidingRegexForPathVariableController {
 
     @PutMapping("/todos/{id:[0-9]+}")

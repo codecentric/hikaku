@@ -13,6 +13,7 @@ data class Tag(val name: String)
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOneMediaTypeIsInheritedByAllFunctionsController {
 
     @RequestMapping("/todos")
@@ -24,6 +25,7 @@ open class RequestMappingOneMediaTypeIsInheritedByAllFunctionsController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController {
 
     @RequestMapping("/todos")
@@ -34,6 +36,7 @@ open class RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController 
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @RequestMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -41,6 +44,7 @@ open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @RequestMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -49,6 +53,7 @@ open class RequestMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionController {
 
     @RequestMapping("/todos")
@@ -60,6 +65,7 @@ open class RequestMappingOneMediaTypeIsOverwrittenByDeclarationOnFunctionControl
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunctionController {
 
     @RequestMapping("/todos")
@@ -71,6 +77,7 @@ open class RequestMappingMultipleMediaTypesAreOverwrittenByDeclarationOnFunction
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnClassDefaultValueController {
 
     @RequestMapping
@@ -78,6 +85,7 @@ open class RequestMappingOnClassDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnFunctionDefaultValueController {
 
     @RequestMapping("/todos")
@@ -86,6 +94,7 @@ open class RequestMappingOnFunctionDefaultValueController {
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnClassWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @RequestMapping
@@ -93,6 +102,7 @@ open class RequestMappingOnClassWithoutConsumesInfoAndStringAsRequestBodyValueCo
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnFunctionWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @RequestMapping("/todos")
@@ -101,6 +111,7 @@ open class RequestMappingOnFunctionWithoutConsumesInfoAndStringAsRequestBodyValu
 
 @Controller
 @RequestMapping("/todos")
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnClassWithoutRequestBodyAnnotationController {
 
     @RequestMapping
@@ -108,6 +119,7 @@ open class RequestMappingOnClassWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class RequestMappingOnFunctionWithoutRequestBodyAnnotationController {
 
     @RequestMapping("/todos")
@@ -115,6 +127,7 @@ open class RequestMappingOnFunctionWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @GetMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -122,6 +135,7 @@ open class GetMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @GetMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -129,6 +143,7 @@ open class GetMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingDefaultValueController {
 
     @GetMapping("/todos")
@@ -136,6 +151,7 @@ open class GetMappingDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @GetMapping("/todos")
@@ -143,6 +159,7 @@ open class GetMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingWithoutRequestBodyAnnotationController {
 
     @GetMapping("/todos")
@@ -150,6 +167,7 @@ open class GetMappingWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @DeleteMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -157,6 +175,7 @@ open class DeleteMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @DeleteMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -164,6 +183,7 @@ open class DeleteMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingDefaultValueController {
 
     @DeleteMapping("/todos")
@@ -171,6 +191,7 @@ open class DeleteMappingDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @DeleteMapping("/todos")
@@ -178,6 +199,7 @@ open class DeleteMappingWithoutConsumesInfoAndStringAsRequestBodyValueController
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingWithoutRequestBodyAnnotationController {
 
     @DeleteMapping("/todos")
@@ -185,6 +207,7 @@ open class DeleteMappingWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PatchMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -192,6 +215,7 @@ open class PatchMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PatchMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -199,6 +223,7 @@ open class PatchMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingDefaultValueController {
 
     @PatchMapping("/todos")
@@ -206,6 +231,7 @@ open class PatchMappingDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @PatchMapping("/todos")
@@ -213,6 +239,7 @@ open class PatchMappingWithoutConsumesInfoAndStringAsRequestBodyValueController 
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingWithoutRequestBodyAnnotationController {
 
     @PatchMapping("/todos")
@@ -220,6 +247,7 @@ open class PatchMappingWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PostMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -227,6 +255,7 @@ open class PostMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PostMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -234,6 +263,7 @@ open class PostMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingDefaultValueController {
 
     @PostMapping("/todos")
@@ -241,6 +271,7 @@ open class PostMappingDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @PostMapping("/todos")
@@ -248,6 +279,7 @@ open class PostMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingWithoutRequestBodyAnnotationController {
 
     @PostMapping("/todos")
@@ -255,6 +287,7 @@ open class PostMappingWithoutRequestBodyAnnotationController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @PutMapping("/todos", consumes = [APPLICATION_XML_VALUE])
@@ -262,6 +295,7 @@ open class PutMappingOneMediaTypeIsExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingMultipleMediaTypesAreExtractedCorrectlyController {
 
     @PutMapping("/todos", consumes = [APPLICATION_XML_VALUE, TEXT_PLAIN_VALUE])
@@ -269,6 +303,7 @@ open class PutMappingMultipleMediaTypesAreExtractedCorrectlyController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingDefaultValueController {
 
     @PutMapping("/todos")
@@ -276,6 +311,7 @@ open class PutMappingDefaultValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 
     @PutMapping("/todos")
@@ -283,6 +319,7 @@ open class PutMappingWithoutConsumesInfoAndStringAsRequestBodyValueController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingWithoutRequestBodyAnnotationController {
 
     @PutMapping("/todos")
@@ -291,6 +328,7 @@ open class PutMappingWithoutRequestBodyAnnotationController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingOneMediaTypeIsOverwrittenController {
 
     @GetMapping("/todos", consumes = [TEXT_PLAIN_VALUE])
@@ -299,6 +337,7 @@ open class GetMappingOneMediaTypeIsOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingOneMediaTypeIsOverwrittenController {
 
     @DeleteMapping("/todos", consumes = [TEXT_PLAIN_VALUE])
@@ -307,6 +346,7 @@ open class DeleteMappingOneMediaTypeIsOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingOneMediaTypeIsOverwrittenController {
 
     @PatchMapping("/todos", consumes = [TEXT_PLAIN_VALUE])
@@ -315,6 +355,7 @@ open class PatchMappingOneMediaTypeIsOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingOneMediaTypeIsOverwrittenController {
 
     @PostMapping("/todos", consumes = [TEXT_PLAIN_VALUE])
@@ -323,6 +364,7 @@ open class PostMappingOneMediaTypeIsOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingOneMediaTypeIsOverwrittenController {
 
     @PutMapping("/todos", consumes = [TEXT_PLAIN_VALUE])
@@ -331,6 +373,7 @@ open class PutMappingOneMediaTypeIsOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class GetMappingMultipleMediaTypesAreOverwrittenController {
 
     @GetMapping("/todos", consumes = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
@@ -339,6 +382,7 @@ open class GetMappingMultipleMediaTypesAreOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 
     @DeleteMapping("/todos", consumes = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
@@ -347,6 +391,7 @@ open class DeleteMappingMultipleMediaTypesAreOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 
     @PatchMapping("/todos", consumes = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
@@ -355,6 +400,7 @@ open class PatchMappingMultipleMediaTypesAreOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PostMappingMultipleMediaTypesAreOverwrittenController {
 
     @PostMapping("/todos", consumes = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
@@ -363,6 +409,7 @@ open class PostMappingMultipleMediaTypesAreOverwrittenController {
 
 @Controller
 @RequestMapping(consumes = [APPLICATION_XML_VALUE, APPLICATION_XHTML_XML_VALUE])
+@Suppress("UNUSED_PARAMETER")
 open class PutMappingMultipleMediaTypesAreOverwrittenController {
 
     @PutMapping("/todos", consumes = [TEXT_PLAIN_VALUE, APPLICATION_PDF_VALUE])
@@ -370,6 +417,7 @@ open class PutMappingMultipleMediaTypesAreOverwrittenController {
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
 open class ErrorEndpointController {
 
     @GetMapping("/todos", consumes = [APPLICATION_PDF_VALUE])

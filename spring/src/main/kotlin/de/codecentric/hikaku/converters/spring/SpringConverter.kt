@@ -73,17 +73,20 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
     }
 
     private fun removeRegex(path: String): String {
-        if (path.contains(':')) {
-            return path.replace(Regex(":.*?}"), "}")
+        return path.split('/').joinToString("/") { pathSegment ->
+            pathSegment.let {
+                when {
+                    it.contains(':') -> it.replace(Regex(":.*"), "}")
+                    else -> it
+                }
+            }
         }
-
-        return path
     }
 
     private fun extractAvailableHttpMethods(mappingEntry: Map.Entry<RequestMappingInfo, HandlerMethod>): Set<HttpMethod> {
         val httpMethods = mappingEntry.key.hikakuHttpMethods()
 
-        // Spring adds all http methods except for trace if no http method has been set explicitly
+        // Spring adds all http methods except for TRACE if no http method has been set explicitly
         // OPTIONS is a special case. If it's not added manually it has to be added without any path or query parameters
         return if (httpMethods.isEmpty()) {
             HttpMethod.values()

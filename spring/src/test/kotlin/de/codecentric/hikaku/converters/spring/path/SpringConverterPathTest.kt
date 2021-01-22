@@ -114,6 +114,78 @@ class SpringConverterPathTest {
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnClassProvidingComplexRegexForPathVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class RequestMappingOnClassProvidingComplexRegexForPathVariableTest {
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `endpoint having complex regex on path parameter using RequestMapping converts to a path without the regex`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = GET,
+                            pathParameters = setOf(
+                                PathParameter("id")
+                            )
+                        ),
+                        Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = HEAD,
+                            pathParameters = setOf(
+                                PathParameter("id")
+                            )
+                        ),
+                        Endpoint("/todos/{id}", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnClassProvidingMultipleRegexForPathVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class RequestMappingOnClassProvidingMutlipleRegexForPathVariableTest {
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `endpoint having complex regex on path parameter using RequestMapping converts to a path without the regex`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                            path = "/todos/{id}/{title}",
+                            httpMethod = GET,
+                            pathParameters = setOf(
+                                PathParameter("id"),
+                                PathParameter("title"),
+                            )
+                        ),
+                        Endpoint(
+                            path = "/todos/{id}/{title}",
+                            httpMethod = HEAD,
+                            pathParameters = setOf(
+                                PathParameter("id"),
+                                PathParameter("title"),
+                            )
+                        ),
+                        Endpoint("/todos/{id}/{title}", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
         }
 
         @Nested
@@ -170,6 +242,78 @@ class SpringConverterPathTest {
                                     )
                             ),
                             Endpoint("/todos/{id}", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnFunctionProvidingComplexRegexForPathVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class RequestMappingOnFunctionProvidingComplexRegexForPathVariableTest {
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `endpoint having complex regex on path parameter using RequestMapping converts to a path without the regex`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = GET,
+                            pathParameters = setOf(
+                                PathParameter("id")
+                            )
+                        ),
+                        Endpoint(
+                            path = "/todos/{id}",
+                            httpMethod = HEAD,
+                            pathParameters = setOf(
+                                PathParameter("id")
+                            )
+                        ),
+                        Endpoint("/todos/{id}", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnFunctionProvidingMultipleRegexForPathVariableController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class RequestMappingOnFunctionProvidingMutlipleRegexForPathVariableTest {
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `endpoint having complex regex on path parameter using RequestMapping converts to a path without the regex`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                            path = "/todos/{id}/{title}",
+                            httpMethod = GET,
+                            pathParameters = setOf(
+                                PathParameter("id"),
+                                PathParameter("title"),
+                            )
+                        ),
+                        Endpoint(
+                            path = "/todos/{id}/{title}",
+                            httpMethod = HEAD,
+                            pathParameters = setOf(
+                                PathParameter("id"),
+                                PathParameter("title"),
+                            )
+                        ),
+                        Endpoint("/todos/{id}/{title}", OPTIONS)
                     )
 
                     //when

@@ -34,6 +34,23 @@ open class RequestMappingOnClassProvidingRegexForPathVariableController {
 }
 
 @Controller
+@RequestMapping("/todos/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", method = [GET])
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingOnClassProvidingComplexRegexForPathVariableController {
+
+    @RequestMapping
+    fun todo(@PathVariable(name = "id") variable: Int) { }
+}
+
+@Controller
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingOnClassProvidingMultipleRegexForPathVariableController {
+
+    @RequestMapping("/todos/{id:[0-9]+}/{title:[a-z]*}", method = [GET])
+    fun todo(@PathVariable(name = "id",) variable: Int, @PathVariable(name = "title") title: String) { }
+}
+
+@Controller
 open class RequestMappingOnFunctionWithMultiplePathsController {
 
     @RequestMapping("/todos", "/todo/list", method = [GET])
@@ -46,6 +63,22 @@ open class RequestMappingOnFunctionProvidingRegexForPathVariableController {
 
     @RequestMapping("/todos/{id:[0-9]+}", method = [GET])
     fun todo(@PathVariable(name = "id") variable: Int) { }
+}
+
+@Controller
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingOnFunctionProvidingComplexRegexForPathVariableController {
+
+    @RequestMapping("/todos/{id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", method = [GET])
+    fun todo(@PathVariable(name = "id") variable: Int) { }
+}
+
+@Controller
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingOnFunctionProvidingMultipleRegexForPathVariableController {
+
+    @RequestMapping("/todos/{id:[0-9]+}/{title:[a-z]*}", method = [GET])
+    fun todo(@PathVariable(name = "id") variable: Int, @PathVariable(name = "title") title: String) { }
 }
 
 @Controller

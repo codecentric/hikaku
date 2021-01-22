@@ -17,7 +17,7 @@ The aim of this project is to meet this need and offer a mechanism to check spec
   + [RAML 1.X](raml/README.md)
   + [WADL](wadl/README.md)
 + **Implementations**
-  + [Spring MVC 5.2.X](spring/README.md)
+  + [Spring MVC 5.3.X](spring/README.md)
   + [Micronaut](micronaut/README.md)
   + [JAX-RS 3.0.X](jax-rs/README.md)
     + [Apache CXF](http://cxf.apache.org)

@@ -1,6 +1,6 @@
 package test.jaxrs.consumes.singlemediatypewithoutrequestbodybutotherannotatedparameter
 
-import javax.ws.rs.*
+import jakarta.ws.rs.*
 
 @Path("/todos")
 @Suppress("UNUSED_PARAMETER")

@@ -3,7 +3,7 @@ archivesBaseName = 'hikaku-jax-rs'
 
 dependencies {
   api project(':core')
-  api 'jakarta.ws.rs:jakarta.ws.rs-api:2.1.6'
+  api 'jakarta.ws.rs:jakarta.ws.rs-api:3.0.0'
 }
 
 uploadArchives {

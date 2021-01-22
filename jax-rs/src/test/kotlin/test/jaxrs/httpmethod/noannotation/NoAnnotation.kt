@@ -1,6 +1,6 @@
 package test.jaxrs.httpmethod.noannotation
 
-import javax.ws.rs.Path
+import jakarta.ws.rs.Path
 
 @Path("")
 class NoAnnotation

@@ -1,6 +1,6 @@
 package test.jaxrs.httpmethod.allmethods
 
-import javax.ws.rs.*
+import jakarta.ws.rs.*
 
 @Path("/todos")
 class AllHttpMethods {

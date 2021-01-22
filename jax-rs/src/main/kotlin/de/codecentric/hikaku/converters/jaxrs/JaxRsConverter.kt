@@ -8,8 +8,8 @@ import de.codecentric.hikaku.converters.EndpointConverterException
 import de.codecentric.hikaku.endpoints.*
 import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.extensions.isUnit
+import jakarta.ws.rs.*
 import java.lang.reflect.Method
-import javax.ws.rs.*
 
 class JaxRsConverter(private val packageName: String) : AbstractEndpointConverter() {
 

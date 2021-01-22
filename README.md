@@ -19,7 +19,7 @@ The aim of this project is to meet this need and offer a mechanism to check spec
 + **Implementations**
   + [Spring MVC 5.2.X](spring/README.md)
   + [Micronaut](micronaut/README.md)
-  + [JAX-RS 2.1.X](jax-rs/README.md)
+  + [JAX-RS 3.0.X](jax-rs/README.md)
     + [Apache CXF](http://cxf.apache.org)
     + [Dropwizard](https://www.dropwizard.io)
     + [Jersey](https://jersey.github.io)

@@ -19,14 +19,14 @@ class SpringConverterConsumesTest {
 
         @Nested
         inner class ClassLevelTests {
-            
+
             @Nested
             @WebMvcTest(RequestMappingOneMediaTypeIsInheritedByAllFunctionsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class OneMediaTypeIsInheritedByAllFunctionsTest {
-    
+
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-    
+
                 @Test
                 fun `media type declared at class level using RequestMapping annotation is inherited by all functions`() {
                     //given
@@ -94,22 +94,22 @@ class SpringConverterConsumesTest {
                             ),
                             Endpoint("/tags", OPTIONS)
                     )
-    
+
                     //when
                     val implementation = SpringConverter(context)
-    
+
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
-    
+
             @Nested
             @WebMvcTest(RequestMappingMultipleMediaTypesAreInheritedByAllFunctionsController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class MultipleMediaTypesAreInheritedByAllFunctionsTest {
-    
+
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-    
+
                 @Test
                 fun `multiple media types declared at class level using RequestMapping annotation are inherited by all functions`() {
                     //given
@@ -177,10 +177,10 @@ class SpringConverterConsumesTest {
                             ),
                             Endpoint("/tags", OPTIONS)
                     )
-    
+
                     //when
                     val implementation = SpringConverter(context)
-    
+
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
@@ -318,17 +318,17 @@ class SpringConverterConsumesTest {
                 }
             }
         }
-        
+
         @Nested
         inner class FunctionLevelTests {
-            
+
             @Nested
             @WebMvcTest(RequestMappingOneMediaTypeIsExtractedCorrectlyController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class OneMediaTypeIsExtractedCorrectlyTest {
-    
+
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-    
+
                 @Test
                 fun `media type declared at function level using RequestMapping annotation is extracted correctly`() {
                     //given
@@ -365,22 +365,57 @@ class SpringConverterConsumesTest {
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
-    
+
                     //when
                     val implementation = SpringConverter(context)
-    
+
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
-    
+
+            @Nested
+            @WebMvcTest(RequestMappingMultipartFormIsExtractedCorrectlyController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class MultipartFormIsExtractedCorrectlyTest {
+
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `multipart form media type is extracted correctly`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                            Endpoint(
+                                    path = "/form",
+                                    httpMethod = POST,
+                                    consumes = setOf(MULTIPART_FORM_DATA_VALUE)
+                            ),
+                            Endpoint(
+                                    path = "/form",
+                                    httpMethod = HEAD,
+                                    consumes = setOf(MULTIPART_FORM_DATA_VALUE)
+                            ),
+                            Endpoint(
+                                    path = "/form",
+                                    httpMethod = OPTIONS,
+                            ),
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
+
             @Nested
             @WebMvcTest(RequestMappingMultipleMediaTypesAreExtractedCorrectlyController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
             inner class MultipleMediaTypesAreExtractedCorrectlyTest {
-    
+
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
-    
+
                 @Test
                 fun `multiple media types declared at function level using RequestMapping annotation are extracted correctly`() {
                     //given
@@ -417,10 +452,10 @@ class SpringConverterConsumesTest {
                             ),
                             Endpoint("/todos", OPTIONS)
                     )
-    
+
                     //when
                     val implementation = SpringConverter(context)
-    
+
                     //then
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
@@ -531,14 +566,14 @@ class SpringConverterConsumesTest {
             }
 
             @Nested
-            @WebMvcTest(RequestMappingOnFunctionWithoutRequestBodyAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
-            inner class NoRequestBodyAnnotationTest {
+            @WebMvcTest(RequestMappingOnFunctionWithoutConsumesAnnotationController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class EmptyAnnotationTest {
 
                 @Autowired
                 lateinit var context: ConfigurableApplicationContext
 
                 @Test
-                fun `no RequestBody annotation results in an empty produces list`() {
+                fun `no RequestBody nor consumes annotation results in an empty produces list`() {
                     //given
                     val specification: Set<Endpoint> = setOf(
                             Endpoint("/todos", GET),

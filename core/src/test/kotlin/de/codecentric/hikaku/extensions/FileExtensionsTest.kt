@@ -3,6 +3,7 @@ package de.codecentric.hikaku.extensions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.io.File
+import kotlin.io.path.createTempDirectory
 import kotlin.test.assertFailsWith
 
 class FileExtensionsTest {
@@ -20,7 +21,7 @@ class FileExtensionsTest {
         @Test
         fun `directory in validity check throws an exception`() {
             assertFailsWith<IllegalArgumentException> {
-                createTempDir().checkFileValidity()
+                createTempDirectory().checkFileValidity()
             }
         }
 

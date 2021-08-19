@@ -5,7 +5,7 @@ import de.codecentric.hikaku.endpoints.HttpMethod
 import de.codecentric.hikaku.endpoints.QueryParameter
 import org.raml.v2.api.model.v10.methods.Method
 
-internal fun Method.hikakuHttpMethod() = HttpMethod.valueOf(this.method().toUpperCase())
+internal fun Method.hikakuHttpMethod() = HttpMethod.valueOf(this.method().uppercase())
 
 internal fun Method.hikakuQueryParameters(): Set<QueryParameter> {
     return this.queryParameters()

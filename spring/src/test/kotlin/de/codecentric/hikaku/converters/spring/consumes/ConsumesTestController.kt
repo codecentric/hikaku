@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.MediaType.*
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 @SpringBootApplication
 open class DummyApp
@@ -41,6 +42,21 @@ open class RequestMappingOneMediaTypeIsExtractedCorrectlyController {
 
     @RequestMapping("/todos", consumes = [APPLICATION_XML_VALUE])
     fun todos(@RequestBody todo: Todo) { }
+}
+
+@Controller
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingMultipartFormIsExtractedCorrectlyController {
+
+    @RequestMapping(
+            path = ["/form"],
+            method = [RequestMethod.POST],
+            consumes = [MULTIPART_FORM_DATA_VALUE]
+    )
+    fun form(
+            @RequestPart("title") title: String,
+            @RequestPart("file") form: MultipartFile
+    ) { }
 }
 
 @Controller
@@ -120,7 +136,7 @@ open class RequestMappingOnClassWithoutRequestBodyAnnotationController {
 
 @Controller
 @Suppress("UNUSED_PARAMETER")
-open class RequestMappingOnFunctionWithoutRequestBodyAnnotationController {
+open class RequestMappingOnFunctionWithoutConsumesAnnotationController {
 
     @RequestMapping("/todos")
     fun todos(todo: String) { }

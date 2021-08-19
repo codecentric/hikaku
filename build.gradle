@@ -118,7 +118,7 @@ subprojects {
                         developer {
                             id = 'cc-jhr'
                             name = 'Jannes Heinrich'
-                            email = 'jannes.heinrich@otto.de'
+                            email = '34243889+cc-jhr@users.noreply.github.com'
                         }
                         developer {
                             id = 'lmller'

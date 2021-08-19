@@ -5,9 +5,7 @@ buildscript {
     }
 
     repositories {
-        maven {
-            url "https://repo1.maven.org/maven2"
-        }
+        mavenCentral()
     }
 
     dependencies {
@@ -45,9 +43,7 @@ subprojects {
     }
 
     repositories {
-        maven {
-            url "https://repo1.maven.org/maven2"
-        }
+        mavenCentral()
     }
 
     dependencies {

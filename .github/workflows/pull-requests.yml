@@ -1,0 +1,31 @@
+name: Pull Requests
+
+on:
+  pull_request:
+    branches:
+      - '**'
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+      - '.gitattributes'
+      - '.github/workflows/**'
+      - '!.github/workflows/pull-requests.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 17, x ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK ${{ matrix.java }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: ${{ matrix.java }}
+      - name: Set executable flag on gradlew
+        run: chmod +x gradlew
+      - name: Execute tests
+        run: ./gradlew test

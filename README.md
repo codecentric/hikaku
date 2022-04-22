@@ -1,5 +1,5 @@
 # hikaku
-[![Build](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml/badge.svg)](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml) [![Maven Central Version](https://img.shields.io/maven-central/v/de.codecentric.hikaku/hikaku-core.svg)](https://search.maven.org/search?q=g:de.codecentric.hikaku)
+[![Build](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml/badge.svg)](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml)
 
 <p align="center">
   <img src="docs/images/hikaku-logo-small.png">

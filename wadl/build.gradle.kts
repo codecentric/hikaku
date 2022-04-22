@@ -1,9 +1,24 @@
+plugins {
+  kotlin("jvm") version "1.6.21"
+  `maven-publish`
+  `java-library`
+}
+
 val moduleName = "hikaku-wadl"
 val githubUsername: String by rootProject.extra
 val githubReleaseToken: String by rootProject.extra
 
 dependencies {
+  implementation(platform(kotlin("bom")))
+  api(kotlin("stdlib-jdk8"))
+  api(kotlin("reflect"))
+  api(kotlin("test"))
   api(project(":core"))
+
+  testImplementation(kotlin("test-junit5"))
+  testImplementation("org.junit.platform:junit-platform-launcher:1.7.2")
+  testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+  testImplementation("org.assertj:assertj-core:3.20.2")
 }
 
 val sourcesJar by tasks.registering(Jar::class) {

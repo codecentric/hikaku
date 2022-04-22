@@ -2,6 +2,7 @@ plugins {
   kotlin("jvm") version "1.6.21"
   `maven-publish`
   `java-library`
+  jacoco
 }
 
 val moduleName = "hikaku-wadl"

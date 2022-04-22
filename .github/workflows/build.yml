@@ -27,3 +27,9 @@ jobs:
         run: chmod +x gradlew
       - name: Execute tests
         run: ./gradlew test
+      - name: Generate coverage
+        if: ${{ matrix.java == 17 }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew jacocoTestReport coverallsJacoco

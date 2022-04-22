@@ -1,5 +1,5 @@
 # hikaku
-[![Build](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml/badge.svg)](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml)
+[![Build](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml/badge.svg)](https://github.com/cc-jhr/hikaku/actions/workflows/build.yml) [![Coverage Status](https://coveralls.io/repos/github/cc-jhr/hikaku/badge.svg)](https://coveralls.io/github/cc-jhr/hikaku)
 
 <p align="center">
   <img src="docs/images/hikaku-logo-small.png">

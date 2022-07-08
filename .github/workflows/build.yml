@@ -6,8 +6,8 @@ on:
       - 'README.md'
       - '.gitignore'
       - '.gitattributes'
-      - '.github/workflows/**'
-      - '!.github/workflows/build.yml'
+      - '.github/**'
+      - '!.github/workflows/*.yml'
 
 jobs:
   build:

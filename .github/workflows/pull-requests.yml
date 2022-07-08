@@ -8,8 +8,7 @@ on:
       - 'README.md'
       - '.gitignore'
       - '.gitattributes'
-      - '.github/workflows/**'
-      - '!.github/workflows/pull-requests.yml'
+      - '.github/**'
 
 jobs:
   build:

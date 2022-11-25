@@ -8,7 +8,7 @@ group = 'de.codecentric.hikaku'
 archivesBaseName = 'hikaku-spring'
 
 dependencies {
-  api 'org.springframework:spring-webmvc:5.3.9'
+  api 'org.springframework:spring-webmvc:6.0.2'
   api project(':core')
 
   testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"

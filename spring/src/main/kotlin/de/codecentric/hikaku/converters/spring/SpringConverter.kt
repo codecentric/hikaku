@@ -73,10 +73,11 @@ class SpringConverter(private val applicationContext: ApplicationContext) : Abst
     }
 
     private fun removeRegex(path: String): String {
+        val segmentRegex = """\{([a-zA-Z][a-zA-Z0-9]+)(:.*)}""".toRegex()
         return path.split('/').joinToString("/") { pathSegment ->
             pathSegment.let {
                 when {
-                    it.contains(':') -> it.replace(Regex(":.*"), "}")
+                    it.contains(':') -> it.replace(segmentRegex, "{$1}")
                     else -> it
                 }
             }

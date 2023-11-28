@@ -82,6 +82,14 @@ open class RequestMappingOnFunctionProvidingMultipleRegexForPathVariableControll
 }
 
 @Controller
+@Suppress("UNUSED_PARAMETER")
+open class RequestMappingOnFunctionProvidingCustomMethodStylePathController {
+
+    @RequestMapping("/todos/list:clear", method = [GET])
+    fun todo() { }
+}
+
+@Controller
 open class GetMappingOnFunctionWithMultiplePathsController {
 
     @GetMapping("/todos", "/todo/list")

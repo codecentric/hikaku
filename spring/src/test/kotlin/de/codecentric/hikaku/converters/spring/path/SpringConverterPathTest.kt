@@ -323,6 +323,35 @@ class SpringConverterPathTest {
                     assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
                 }
             }
+
+            @Nested
+            @WebMvcTest(RequestMappingOnFunctionProvidingCustomMethodStylePathController::class, excludeAutoConfiguration = [ErrorMvcAutoConfiguration::class])
+            inner class RequestMappingOnFunctionProvidingCustomMethodStylePathTest {
+                @Autowired
+                lateinit var context: ConfigurableApplicationContext
+
+                @Test
+                fun `endpoint having regex on path parameter and using google-style using RequestMapping converts to a path without the regex`() {
+                    //given
+                    val specification: Set<Endpoint> = setOf(
+                        Endpoint(
+                            path = "/todos/list:clear",
+                            httpMethod = GET,
+                        ),
+                        Endpoint(
+                            path = "/todos/list:clear",
+                            httpMethod = HEAD,
+                        ),
+                        Endpoint("/todos/list:clear", OPTIONS)
+                    )
+
+                    //when
+                    val implementation = SpringConverter(context)
+
+                    //then
+                    assertThat(implementation.conversionResult).containsExactlyInAnyOrderElementsOf(specification)
+                }
+            }
         }
     }
 
